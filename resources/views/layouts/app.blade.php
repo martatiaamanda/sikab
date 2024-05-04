@@ -6,19 +6,24 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-        <title>{{$title}}</title>
+        <title>{{$title}} - Sistem Informasi Kelurahan Bakung</title>
 
 
         <x-metas-x-demo />
     </head>
     <body class="g-sidenav-show  bg-gray-100">
-        <div class="min-h-screen bg-gray-100">
+        <x-layouts.sidebar/>
 
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg " >
+            <x-layouts.navbar/>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
+            {{ $slot }}
+        </main>
+
+        <x-scripts-x-demo/>
+
+        @if (isset($scripts))
+            {{ $scripts }}
+        @endif
     </body>
 </html>
