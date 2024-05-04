@@ -7,11 +7,9 @@
 
         {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
         <title>{{$title}} - Sistem Informasi Kelurahan Bakung</title>
-
-
         <x-metas-x-demo />
     </head>
-    <body class="g-sidenav-show  bg-gray-100">
+    <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">
         <x-layouts.sidebar/>
 
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg " >
