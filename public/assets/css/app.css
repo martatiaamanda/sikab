@@ -1,0 +1,18 @@
+:root {
+    --main-color: #3AB990;
+}
+
+.active {
+    background: var(--main-color) !important;
+}
+
+.bg-main-color {
+    background: var(--main-color) !important;
+}
+
+.text-main-color {
+    color: #3AB990;
+}
+
+
+
