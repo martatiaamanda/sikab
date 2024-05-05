@@ -10,9 +10,15 @@
         <x-metas-x-demo />
     </head>
     <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">
+        @if ( session('success') || session('error') )
+        <x-toaster type="{{session('success') ? 'success' : 'error'}}" :message="session('success') ?? session('error')" />
+            {{session('success')}}
+         @endif
         <x-layouts.sidebar/>
 
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg " >
+
+
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg " style="min-height: 100vh" >
             <x-layouts.navbar/>
 
             {{ $slot }}

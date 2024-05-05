@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
 // auth routes
@@ -16,17 +17,25 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('error', 'anda tidak memiliki akses');
     });
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard')->with('status', 'anda tidak memiliki akses');
     })->name('dashboard');
+
+    Route::prefix('/admin')->middleware(Admin::class)->group( function () {
+        Route::get('/', function () {
+                     dd('admin');
+                })->name('admin.dashboard');
+    });
 });
 
 
-Route::prefix('admin')->group(function () {
-
-})->middleware('auth');
+// Route::prefix('admin')->
+//     Route::get('/', function () {
+//         return dd('admin');
+//     });
+// });
 
 // Route::group(['middleware' => ['auth', 'verified']], function () {
 //     Route::get('/logout')->;

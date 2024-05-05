@@ -11,6 +11,11 @@
         <x-metas-x-demo />
     </head>
     <body >
+        {{session('success') ?? session('error')}}
+        @if ( session('success') || session('error') )
+        <x-toaster type="{{session('success') ? 'success' : 'error'}}" :message="session('success') ?? session('error')" />
+            {{session('success')}}
+         @endif
         <main class="main-content  mt-0" >
             {{ $slot }}
         </main>

@@ -21,16 +21,37 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string' ],
-            'password_confirmation' => ['required', 'string', 'same:password'],
+            'password_confirmation' => ['required', 'same:password'],
             'NIK' => ['required', 'string', 'max:255', 'unique:users'],
             'alamat' => ['required', 'string', 'max:255'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
-            'tanggal_lahir' => ['required', 'string', 'max:255'],
-            'jenis_kelamin' => ['required', 'in:L,P', 'max:255'],
+            'tanggal_lahir' => ['required', 'string'],
+            'jenis_kelamin' => ['required', 'in:L,P'],
             'no_hp' => ['required', 'string', 'max:255'],
-            'profile_ficture' => ['string', 'max:255'],
+            // 'profile_ficture' => ['string', 'max:255'],
             // 'role' => ['required', 'string', 'max:255'],
+        ], [
+            'NIK.unique' => 'NIK sudah terdaftar',
+            'NIK.required' => 'NIK harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'password_confirmation.same' => 'Password tidak sama',
+            'password_confirmation.required' => 'Password konfirmasi harus diisi',
+            'password.string' => 'Password harus berupa string',
+            'password_confirmation.required' => 'Password konfirmasi harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
+            'tempat_lahir.required' => 'Tempat lahir harus diisi',
+            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
+            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
+            'no_hp.required' => 'Nomor Handphone harus diisi',
         ]);
+
+        if (!$validator) {
+            return redirect()
+                ->back()
+                ->with('error', $validator)
+                ->withInput();
+        }
         // return $validator;
 
 
