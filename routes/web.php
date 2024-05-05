@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
+use App\Http\Controllers\user\RiwayatBansonControllercd;
 use App\Http\Controllers\user\RiwayatSuratControllercd;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\User;
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get("/buat-surat/{slug}", [BuatSuratController::class, 'create'])->name('user.buat-surat.create');
 
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
+        Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');
     });
 
 

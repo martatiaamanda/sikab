@@ -35,7 +35,7 @@
               <span class="nav-link-text ms-1 {{ Request::routeIs('user.buat-surat*') ? 'text-white ' : ' text-black' }}">Buat surat</span>
             </a>
           </li>
-          {{-- belum ada list --}}
+
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('user.riwayat-surat*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('user.riwayat-surat') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.riwayat-surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
@@ -49,20 +49,21 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Bantuan Sosial</h6>
           </li>
 
+
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.buat-surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
                   <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Pengajuan Bantuan Sosial</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('user.riwayat-bansos*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('user.riwayat-bansos') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.riwayat-bansos*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('user.riwayat-bansos*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Riwayat Bantuan Sosial</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('user.riwayat-bansos*') ? 'text-white ' : ' text-black' }}">Rywayat Bantuan Sosial</span>
             </a>
           </li>
 
