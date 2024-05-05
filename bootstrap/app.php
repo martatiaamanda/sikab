@@ -15,10 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // make aliases for admin
         $middleware->alias(['admin', Admin::class]);
         $middleware->redirectUsersTo(
-            // admin: '/admin',
-            'admin', '/admin',
+            'admin', '/admin/dashboard',
         );
-        //
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

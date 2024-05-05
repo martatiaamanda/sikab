@@ -12,7 +12,6 @@
     <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">
         @if ( session('success') || session('error') )
         <x-toaster type="{{session('success') ? 'success' : 'error'}}" :message="session('success') ?? session('error')" />
-            {{session('success')}}
          @endif
         <x-layouts.sidebar-admin/>
 

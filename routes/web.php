@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\User;
 use Illuminate\Support\Facades\Route;
@@ -22,11 +23,16 @@ Route::group(['middleware' => ['auth']], function () {
             return redirect('/dashboard');
         });
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('user.dashboard');
         })->name('dashboard');
+        Route::get("/buat-surat", [BuatSuratController::class, 'index'])->name('user.buat-surat');
+        Route::get("/buat-surat/{slug}", [BuatSuratController::class, 'create'])->name('user.buat-surat.create');
     });
 
     Route::prefix('/admin')->middleware([Admin::class])->group( function () {
+        Route::get('/', function () {
+            return redirect('/admin/dashboard');
+        });
         Route::get('/dashboard', function () {
                     return view('admin.dashoard');
                 })->name('admin.dashboard');
