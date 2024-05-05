@@ -18,7 +18,7 @@
                         @csrf
                       <label>Email / NIK</label>
                       <div class="mb-3">
-                        <input name="email" id="email" type="email" class="form-control" placeholder="Email" aria-label="Email / NIK" aria-describedby="email-addon" value="{{ old('email') }}" required>
+                        <input name="email" id="email" type="text" class="form-control" placeholder="Email / NIK" aria-label="Email / NIK" aria-describedby="email-addon" value="{{ old('email') }}" required>
                       </div>
                       <label>Password</label>
                       <div class="mb-3">
@@ -30,7 +30,7 @@
                           </div>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
+                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" checked="">
                         <label class="form-check-label" for="rememberMe">Remember me</label>
                       </div>
                       @error('email')
