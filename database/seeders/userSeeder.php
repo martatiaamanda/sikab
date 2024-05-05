@@ -29,7 +29,7 @@ class userSeeder extends Seeder
 
         $admin = User::factory()->create([
             'NIK' => '01234567890123456',
-            'name' => 'Test User',
+            'name' => 'Test User Admin',
             'email' => 'test.admin@sikab.com',
             'role' => 'admin',
         ]);
