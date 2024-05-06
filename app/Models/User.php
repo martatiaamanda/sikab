@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function user_data() {
         return $this->hasOne(UserData::class, 'user_id', 'id');
     }
+
+    public function surat() {
+        return $this->hasMany(Surat::class, 'user_id', 'id');
+    }
 }

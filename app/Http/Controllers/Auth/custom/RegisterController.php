@@ -31,6 +31,7 @@ class RegisterController extends Controller
             // 'profile_ficture' => ['string', 'max:255'],
             // 'role' => ['required', 'string', 'max:255'],
         ], [
+            'name.required' => 'Nama harus diisi',
             'NIK.unique' => 'NIK sudah terdaftar',
             'NIK.required' => 'NIK harus diisi',
             'email.required' => 'Email harus diisi',

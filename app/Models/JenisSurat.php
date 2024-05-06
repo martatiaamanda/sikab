@@ -15,4 +15,12 @@ class JenisSurat extends Model
         'slug',
         'icon',
     ];
+
+    public function surats() {
+        return $this->hasMany(Surat::class, 'jenis_surat_id', 'id');
+    }
+
+    public function data_types() {
+        return $this->hasMany(DataType::class, 'jenis_surat_id', 'id');
+    }
 }

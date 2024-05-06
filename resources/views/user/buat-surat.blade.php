@@ -9,7 +9,7 @@
         {{-- {{$mail_type}} --}}
         <div class="col-md-4 col-lg-3 p-3">
 
-                <a href="#" class="card card-profile card-plain h-100">
+                <a href="{{ route('user.buat-surat.create', [$mail_type->slug])}}" class="card card-profile card-plain h-100">
                     <div class="card-body text-center bg-white shadow border-radius-lg p-3">
                       {{-- <i class="fa-solid fa-user fs-1 text-gradient"></i> --}}
                       <div class="rounded rounded-3 p-4 bg-gradient-faded-info d-inline-flex aspect-square">

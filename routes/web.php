@@ -24,13 +24,14 @@ Route::group(['middleware' => ['auth']], function () {
     // user routes
     Route::middleware(User::class)->group( function () {
         Route::get('/', function () {
-            return redirect('/dashboard');
+            return redirect()->route('user.riwayat-surat')->with('success', 'Selamat Datang');
         });
         Route::get('/dashboard', function () {
             return view('user.dashboard');
         })->name('dashboard');
         Route::get("/buat-surat", [BuatSuratController::class, 'index'])->name('user.buat-surat');
         Route::get("/buat-surat/{slug}", [BuatSuratController::class, 'create'])->name('user.buat-surat.create');
+        Route::post("/buat-surat/{slug}", [BuatSuratController::class, 'store'])->name('user.buat-surat.store');
 
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
         Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');

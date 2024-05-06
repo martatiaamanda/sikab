@@ -14,8 +14,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call([
             userSeeder::class,
-            
+
             JenisSuratSeeder::class,
+            DataTypeSeeder::class,
+            // InputFieldSeeder::class
         ]);
     }
 }

@@ -1,5 +1,5 @@
 {{-- @if (session('success') || session('error')) --}}
-<div class="alert alert-{{$type == 'success' ? 'success' : 'danger'}} alert-dismissible fade show position-absolute bottom-3 end-2 z-index-2 mx-3 my-3" role="alert">
+<div class="alert alert-{{$type == 'success' ? 'success' : 'danger'}} alert-dismissible fade show position-absolute bottom-3 end-2  mx-3 my-3" style="z-index: 20" role="alert">
     {{-- {{dd($type)}} --}}
     <span class="alert-icon"><i class="ni ni-like-2"></i></span>
     <span class="alert-text"><strong>{{ $type == 'success' ? 'Success' : 'Error' }} </strong>
