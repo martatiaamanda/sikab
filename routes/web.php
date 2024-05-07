@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     // user routes
     Route::middleware(User::class)->group( function () {
         Route::get('/', function () {
-            return redirect()->route('user.riwayat-surat')->with('success', 'Selamat Datang');
+            return redirect()->route('dashboard');
         });
         Route::get('/dashboard', function () {
             return view('user.dashboard');
@@ -34,7 +34,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post("/buat-surat/{slug}", [BuatSuratController::class, 'store'])->name('user.buat-surat.store');
 
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
+        Route::get('/riwayat-surat/{id}/detail', [RiwayatSuratControllercd::class, 'show'])->name('user.riwayat-surat.show');
+
         Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');
+
+        Route::get('/profile', function () {return 'ini profile';})->name('profile');
     });
 
 

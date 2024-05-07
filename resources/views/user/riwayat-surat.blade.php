@@ -47,7 +47,7 @@
                                     Edit
                                   </a>
                                 @endif
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-decoration-underline" data-toggle="tooltip" data-original-title="Edit user">
+                              <a href="{{ route('user.riwayat-surat.show',[$history->id]) }}" class="text-secondary font-weight-bold text-decoration-underline" data-toggle="tooltip" data-original-title="Edit user">
                                 detail
                               </a>
                             </td>

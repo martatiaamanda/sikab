@@ -18,7 +18,7 @@
                       {{-- <a href="javascript:;">
                         <img class="w-100 border-radius-md" src="assets/img/kit/pro/anastasia.jpg">
                       </a> --}}
-                      <h5 class="mt-3 mb-1 d-md-block d-none">{{ $mail_type->name }}</h5>
+                      <h5 class="mt-3 mb-1 d-md-block">{{ $mail_type->name }}</h5>
                       {{-- <p class="mb-1 d-md-none d-block text-sm font-weight-bold text-darker">Natalie Paisley</p> --}}
                       {{-- <p class="mb-0 text-xs font-weight-bolder text-warning text-gradient text-uppercase">Credit Analyst</p> --}}
                     </div>
