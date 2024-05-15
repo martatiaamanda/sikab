@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');
 
-        Route::get('/profile', function () {return 'ini profile';})->name('profile');
+
     });
 
 
@@ -51,4 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
                     return view('admin.dashoard');
                 })->name('admin.dashboard');
     });
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });

@@ -26,44 +26,46 @@ class BuatSuratController extends Controller
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
-        // $mail_types = JenisSurat::all();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
-        // dd($data_types[0]->input_fields);
 
         return view('user.surat.create', compact('data_types', 'jenis_surat'));
     }
 
-    protected function upluadFile($Key, $file, $surat_id, ) {
+    protected function uploadFile($Key, $file, $surat_id, ) {
 
         $field = InputField::where('id', $Key)->select('name')->first();
         $file_name = time() . '-' . $surat_id . '-' . $field->name . '.' . $file->getClientOriginalName();
         $file->storeAs('public/surat', $file_name);
 
         return $file_name;
-
-        // dd($file, $surat_id, $file_name);
-
     }
+
+
+
 
     public function store(Request $request, $slug) {
 
         if($slug !== 'surat-kependudukan') {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
+        // get jenis surat
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
 
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
-
+        // variable for validate request and and get request input
         $validate_scema = [];
         $validate_response_scema = [];
         $request_input = [];
+
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
+
+        // loop data types and input fields for validate request and get request input
         foreach($data_types as $data_type) {
             $fields = $data_type->input_fields;
             foreach($fields as $field) {
@@ -76,18 +78,19 @@ class BuatSuratController extends Controller
                 }
             }
         }
+        // validate request
         $request->validate($validate_scema, $validate_response_scema);
-        // dd($request_input, $request->all());
-
 
         $user = auth()->user();
+        // create surat
         $surat = surat::create([
             'user_id' => $user->id,
             'jenis_surat_id' => $jenis_surat->id,
         ]);
+        // create input value for surat
         foreach($request_input as $key => $value) {
             if(is_uploaded_file($value)) {
-                $file_name = $this->upluadFile($key, $value, $surat->id);
+                $file_name = $this->uploadFile($key, $value, $surat->id);
                 $surat->input_value()->create([
                     'input_field_id' => $key,
                     'value' => $file_name
@@ -101,6 +104,5 @@ class BuatSuratController extends Controller
         }
 
         return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil Disimpan');
-
     }
 }

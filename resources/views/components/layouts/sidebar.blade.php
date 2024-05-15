@@ -3,8 +3,12 @@
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <div class="navbar-brand m-0 d-flex align-items-center ">
         @if (Auth::user())
-            <img src="{{ Auth::user()->user_profile ? asset(Auth::user()->user_profile) : asset('assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100 aspect-square rounded-circle border border-1" alt="main_logo">
-            <div class=" ms-3">
+        <div class="col-auto">
+            <div class="avatar avatar-lg position-relative">
+              <img src="{{Auth::user()->user_data->profile_ficture ? asset('storage/profile/'.Auth::user()->user_data->profile_ficture) : asset('storage/profile/default.jpg')}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            </div>
+          </div>
+            <div class=" ms-1">
                 <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->name }}</span>
                 <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->role }}</span>
             </div>
@@ -70,14 +74,14 @@
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
           </li>
-        <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('.*') ? ' active  text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-user fs-5 {{ Request::routeIs('.*') ? 'text-info' : 'text-dark' }}"></i>
+          <li class="nav-item">
+            <a class="nav-link rounded-3  {{ Request::routeIs('profile*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('profile') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('profile*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('profile*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('.*') ? 'text-white ' : ' text-black' }}">Profile</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('profile*') ? 'text-white ' : ' text-black' }}">Profile</span>
             </a>
-        </li>
+          </li>
 
         <li method="POST" action="{{ route('logout') }}" class="nav-item">
             @csrf
