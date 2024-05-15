@@ -72,9 +72,6 @@ class ProfileController extends Controller
 
         $validator = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'password' => ['required', 'string' ],
-            // 'password_confirmation' => ['required', 'same:password'],
             'NIK' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
@@ -84,12 +81,6 @@ class ProfileController extends Controller
         ], [
             'name.required' => 'Nama harus diisi',
             'NIK.required' => 'NIK harus diisi',
-            // 'email.required' => 'Email harus diisi',
-            // 'email.unique' => 'Email sudah terdaftar',
-            // 'password_confirmation.same' => 'Password tidak sama',
-            // 'password_confirmation.required' => 'Password konfirmasi harus diisi',
-            // 'password.string' => 'Password harus berupa string',
-            // 'password_confirmation.required' => 'Password konfirmasi harus diisi',
             'alamat.required' => 'Alamat harus diisi',
             'tempat_lahir.required' => 'Tempat lahir harus diisi',
             'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
@@ -107,8 +98,6 @@ class ProfileController extends Controller
         $user->update([
             'NIK' => $request->NIK,
             'name' => $request->name,
-            // 'email' => $request->email,
-            // 'password' => Hash::make($request->password),
         ]);
 
         $user->user_data()->update([
@@ -120,7 +109,6 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('profile')->with('success', 'Data berhasil diubah');
-
     }
 
     /**

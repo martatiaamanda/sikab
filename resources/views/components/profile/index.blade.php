@@ -169,43 +169,6 @@
                 </div>
 
             </div>
-
-            {{-- data accunt --}}
-            {{-- <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Email dan Password</h6>
-
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="email">Email<span class="text-danger">*</span></label>
-                    <input name="email" id="email" type="email" class="form-control" placeholder="Email" aria-label="Email / NIK" aria-describedby="email-addon" value="{{ $user->email}}" required disabled>
-                    @error('email')
-                        <p class="text-danger p-0 m-0">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="password">Password<span class="text-danger">*</span></label>
-                    <div class="form-control d-flex justify-content-between align-items-center p-0">
-                        <input type="password" name="password" id="password" class="form-control border-0" placeholder="Password" aria-label="Password" aria-describedby="password-addon" required>
-                        <button type="button" onclick="toggleShowPassword('password')" class="input-group-text border-0">
-                            <i id="toggleIcon" class="fas fa-eye-slash"></i>
-                        </button>
-                    </div>
-                    @error('password')
-                        <p class="text-danger p-0 m-0">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="password_confirmation">Konfirmasi Password<span class="text-danger">*</span></label>
-                    <div class="form-control d-flex justify-content-between align-items-center p-0">
-                        <input type="password" name="password_confirmation" id="password_confirmation"  class="form-control border-0" placeholder="Konfirmasi Password" aria-label="Password" aria-describedby="password-addon" required>
-                        <button type="button" onclick="toggleShowPassword('password_confirmation')" class="input-group-text border-0">
-                            <i id="toggleIcon" class="fas fa-eye-slash"></i>
-                        </button>
-                    </div>
-                    @error('password_confirmation')
-                        <p class="text-danger p-0 m-0">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div> --}}
           <div class="modal-footer">
             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn bg-gradient-primary">Save changes</button>
@@ -219,19 +182,32 @@
 
 <x-slot name='scripts'>
   <script>
-      function toggleShowPassword(target) {
-          const targetInput = document.getElementById(target);
-          const targetIcon = targetInput.parentElement.querySelector('#toggleIcon');
-          if (targetInput.type === 'password') {
-              targetInput.type = 'text';
-              targetIcon.classList.remove('fa-eye-slash');
-              targetIcon.classList.add('fa-eye');
-          } else {
-              targetInput.type = 'password';
-              targetIcon.classList.remove('fa-eye');
-              targetIcon.classList.add('fa-eye-slash');
-          }
+    function toggleShowPassword(target) {
+      const targetInput = document.getElementById(target);
+      const targetIcon = targetInput.parentElement.querySelector('#toggleIcon');
+      if (targetInput.type === 'password') {
+        targetInput.type = 'text';
+        targetIcon.classList.remove('fa-eye-slash');
+        targetIcon.classList.add('fa-eye');
+      } else {
+        targetInput.type = 'password';
+        targetIcon.classList.remove('fa-eye');
+        targetIcon.classList.add('fa-eye-slash');
       }
+    }
+
+    const session = {!! json_encode($errors->all()) !!};
+    const modalData = document.getElementById('modalData');
+    const modalPhoto = document.getElementById('modalPhoto');
+
+    // console.log(session[0]);
+    if (session.length > 0 && session[0] !== 'Foto profil wajib diisi') {
+      const modal = new bootstrap.Modal(modalData);
+      modal.show();
+    } else if (session.length > 0 && session[0] === 'Foto profil wajib diisi') {
+      const modal = new bootstrap.Modal(modalPhoto);
+      modal.show();
+    }
   </script>
 </x-slot>
 
