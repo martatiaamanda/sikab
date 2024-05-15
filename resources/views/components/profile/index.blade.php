@@ -39,7 +39,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form " method="POST" enctype="multipart/form-data">
+          <form action={{ route('profile.update.photo', ['user' => $user->id] )}} method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group
@@ -106,7 +106,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form  method="POST" enctype="multipart/form-data">
+          <form action={{ route('profile.update', [ 'user' => $user->id])}}  method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -115,14 +115,14 @@
             <div class="row mb-5">
                 <div class="col-md-6 mb-3">
                     <label for="name">Nama Lengkap<span class="text-danger">*</span></label>
-                    <input name="name" id="name" type="text" class="form-control" placeholder="Nama Lengkap" aria-label="name" aria-describedby="name-addon" value="{{$user->name}}" disabled>
+                    <input name="name" id="name" type="text" class="form-control" placeholder="Nama Lengkap" aria-label="name" aria-describedby="name-addon" value="{{$user->name}}" >
                     @error('name')
                         <p class="text-danger p-0 m-0">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="NIK">NIK<span class="text-danger">*</span></label>
-                    <input name="NIK" id="NIK" type="text" class="form-control" placeholder="NIK" aria-label="NIK" value="{{$user->NIK}}" disabled>
+                    <input name="NIK" id="NIK" type="text" class="form-control" placeholder="NIK" aria-label="NIK" value="{{$user->NIK}}" readonly>
                     @error('NIK')
                         <p class="text-danger p-0 m-0">{{ $message }}</p>
                     @enderror
@@ -171,7 +171,7 @@
             </div>
 
             {{-- data accunt --}}
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Email dan Password</h6>
+            {{-- <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Email dan Password</h6>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -205,7 +205,7 @@
                         <p class="text-danger p-0 m-0">{{ $message }}</p>
                     @enderror
                 </div>
-            </div>
+            </div> --}}
           <div class="modal-footer">
             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" class="btn bg-gradient-primary">Save changes</button>

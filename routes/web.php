@@ -53,4 +53,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('/profile', [ProfileController::class, 'update_data'])->name('profile.update');
+    Route::put('/profile/photo', [ProfileController::class, 'update_foto'])->name('profile.update.photo');
 });
