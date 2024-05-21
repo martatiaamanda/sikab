@@ -9,8 +9,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    {{ Auth::user()}}
-                    {{ Auth::user()->user_data}}
+                    {{ Auth::user() }}
+                    {{ Auth::user()->user_data }}
 
 
                     {{ __("You're logged in!") }}
@@ -19,4 +19,3 @@
         </div>
     </div>
 </x-app-layout>
-

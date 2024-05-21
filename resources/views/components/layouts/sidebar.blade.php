@@ -1,26 +1,30 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white" id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-white"
+    id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <div class="navbar-brand m-0 d-flex align-items-center ">
-        @if (Auth::user())
-        <div class="col-auto">
-            <div class="avatar avatar-lg position-relative">
-              <img src="{{Auth::user()->user_data->profile_ficture ? asset('storage/profile/'.Auth::user()->user_data->profile_ficture) : asset('storage/profile/default.jpg')}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
-            </div>
-          </div>
-            <div class=" ms-1">
-                <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->name }}</span>
-                <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->role }}</span>
-            </div>
-        @endif
-      </div>
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+            aria-hidden="true" id="iconSidenav"></i>
+        <div class="navbar-brand m-0 d-flex align-items-center ">
+            @if (Auth::user())
+                <div class="col-auto">
+                    <div class="avatar avatar-lg position-relative">
+                        <img src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('storage/profile/default.jpg') }}"
+                            alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    </div>
+                </div>
+                <div class=" ms-1">
+                    <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->name }}</span>
+                    <span class="ms-1 font-weight-bold d-block">{{ Auth::user()->role }}</span>
+                </div>
+            @endif
+        </div>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse w-auto " style="height: min-content!important" id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-faded-info    text-white ' : '' }} " href={{ route('dashboard') }}>
-            <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-faded-info' }}"  ">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link rounded-3  {{ Request::routeIs('dashboard') ? 'bg-gradient-faded-info    text-white ' : '' }} "
+                    href={{ route('dashboard') }}>
+                    <div class="icon icon-shape icon-sm shadow border-radius-md  text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('dashboard') ? 'bg-white' : 'bg-gradient-faded-info' }}" ">
                 <i class="fa-solid fa-house fs-5 text-gradient  {{ Request::routeIs('dashboard') ? 'text-info' : 'text-dark ' }}"></i>
             </div>
             <span class="nav-link-text ms-1 {{ Request::routeIs('dashboard') ? 'text-white ' : ' text-black' }}">Dashboard</span>
@@ -85,7 +89,7 @@
 
         <li method="POST" action="{{ route('logout') }}" class="nav-item">
             @csrf
-            <a type="submit" class="nav-link rounded-3 "  href={{ (route( 'logout' ))}}  >
+            <a type="submit" class="nav-link rounded-3 "  href={{ route('logout') }}  >
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center bg-gradient-faded-info ">
                 <i class="fa-solid fa-right-from-bracket fs-5 text-danger"></i>
               </div>
