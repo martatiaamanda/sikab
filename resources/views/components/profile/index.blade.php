@@ -8,17 +8,17 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{ $user->user_data->profile_ficture ? asset('storage/profile/' . $user->user_data->profile_ficture) : asset('storage/profile/default.jpg') }}"
+                    <img src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('storage/profile/default.jpg') }}"
                         alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                 </div>
             </div>
             <div class="col-auto my-auto">
                 <div class="h-100">
                     <h5 class="mb-1">
-                        {{ $user->name }}
+                        {{ Auth::user()->name }}
                     </h5>
                     <p class="mb-0 font-weight-bold text-sm">
-                        {{ $user->role }}
+                        {{ Auth::user()->role }}
                     </p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action={{ route('profile.update.photo', ['user' => $user->id]) }} method="POST"
+                <form action={{ route('profile.update.photo', ['user' => Auth::user()->id]) }} method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -86,21 +86,21 @@
                     <div class="">
                         <ul class="list-group">
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nama
-                                    Lenglkap :</strong> &nbsp; {{ $user->name }} </li>
+                                    Lenglkap :</strong> &nbsp; {{ Auth::user()->name }} </li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">NIK
-                                    :</strong> &nbsp; {{ $user->NIK }} </li>
+                                    :</strong> &nbsp; {{ Auth::user()->NIK }} </li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Alamat
-                                    :</strong> &nbsp; {{ $user->user_data->alamat }} </li>
+                                    :</strong> &nbsp; {{ Auth::user()->user_data->alamat }} </li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Tempat
-                                    Tanggal Lahir :</strong> &nbsp; {{ $user->user_data->tempat_lahir }} ,
-                                {{ $user->user_data->tanggal_lahir }}</li>
+                                    Tanggal Lahir :</strong> &nbsp; {{ Auth::user()->user_data->tempat_lahir }} ,
+                                {{ Auth::user()->user_data->tanggal_lahir }}</li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Jenis
                                     Kelamin :</strong> &nbsp;
-                                {{ $user->user_data->jenis_kelamin === 'L' ? 'laki laki' : 'Perempuan' }} </li>
+                                {{ Auth::user()->user_data->jenis_kelamin === 'L' ? 'laki laki' : 'Perempuan' }} </li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Email
-                                    :</strong> &nbsp; {{ $user->email }} </li>
+                                    :</strong> &nbsp; {{ Auth::user()->email }} </li>
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">No
-                                    Handphone :</strong> &nbsp; {{ $user->user_data->no_hp }} </li>
+                                    Handphone :</strong> &nbsp; {{ Auth::user()->user_data->no_hp }} </li>
                         </ul>
                     </div>
                 </div>
