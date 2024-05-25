@@ -8,7 +8,7 @@
         <div class="row gx-4">
             <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                    <img src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('storage/profile/default.jpg') }}"
+                    <img src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('static/img/default.jpg') }}"
                         alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                 </div>
             </div>
