@@ -9,13 +9,11 @@ use Illuminate\View\Component;
 class index extends Component
 {
 
-    public $user;
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        $this->user = auth()->user();
     }
 
     /**
@@ -23,7 +21,8 @@ class index extends Component
      */
     public function render(): View|Closure|string
     {
+        $user = auth()->user();
         // dd($this->user);
-        return view('components.profile.index');
+        return view('components.profile.index', compact('user'));
     }
 }
