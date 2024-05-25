@@ -38,7 +38,7 @@ class BuatSuratController extends Controller
     protected function uploadFile($Key, $file, $surat_id, ) {
 
         $field = InputField::where('id', $Key)->select('name')->first();
-        $file_name = time() . '-' . $surat_id . '-' . $field->name . '.' . $file->getClientOriginalName();
+        $file_name = time() . '-' . $surat_id . '-' . $field->name . '_' . $file->getClientOriginalName();
         $file->storeAs('public/surat', $file_name);
 
         return $file_name;
