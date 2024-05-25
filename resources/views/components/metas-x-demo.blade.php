@@ -1,3 +1,6 @@
+<!-- favicon -->
+<link rel="icon" type="image/png" href="{{asset('/assets/img/favicon.png')}}">
+
 <!-- Nucleo Icons -->
 <link href="{{asset('assets/css/nucleo-icons.css')}}" rel="stylesheet" />
 <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
