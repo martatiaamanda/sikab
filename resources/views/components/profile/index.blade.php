@@ -121,7 +121,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action={{ route('profile.update', ['user' => $user->id]) }} method="POST"
+                <form action={{ route('profile.update', ['user' => Auth::user()->id]) }} method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -133,7 +133,7 @@
                             <label for="name">Nama Lengkap<span class="text-danger">*</span></label>
                             <input name="name" id="name" type="text" class="form-control"
                                 placeholder="Nama Lengkap" aria-label="name" aria-describedby="name-addon"
-                                value="{{ $user->name }}">
+                                value="{{ Auth::user()->name }}">
                             @error('name')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -141,7 +141,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="NIK">NIK<span class="text-danger">*</span></label>
                             <input name="NIK" id="NIK" type="text" class="form-control"
-                                placeholder="NIK" aria-label="NIK" value="{{ $user->NIK }}" readonly>
+                                placeholder="NIK" aria-label="NIK" value="{{ Auth::user()->NIK }}" readonly>
                             @error('NIK')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -150,7 +150,7 @@
                             <label for="alamat">Alamat Lengkap<span class="text-danger">*</span></label>
                             <input name="alamat" id="alamat" type="text" class="form-control"
                                 placeholder="Alamat Lengkap" aria-label="alamat"
-                                value="{{ $user->user_data->alamat }}">
+                                value="{{ Auth::user()->user_data->alamat }}">
                             @error('alamat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -159,7 +159,7 @@
                             <label for="tempat_lahir">Tempat Lahir<span class="text-danger">*</span></label>
                             <input name="tempat_lahir" id="tempat_lahir" type="text" class="form-control"
                                 placeholder="Tempat Lahir" aria-label="tempat_lahir"
-                                value="{{ $user->user_data->tempat_lahir }}">
+                                value="{{ Auth::user()->user_data->tempat_lahir }}">
                             @error('tempat_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -168,7 +168,7 @@
                             <label for="tanggal_lahir">Tanggal Lahir<span class="text-danger">*</span></label>
                             <input name="tanggal_lahir" id="tanggal_lahir" type="date" class="form-control"
                                 placeholder="Tanggal Lahir" aria-label="tanggal_lahir"
-                                value="{{ $user->user_data->tanggal_lahir }}">
+                                value="{{ Auth::user()->user_data->tanggal_lahir }}">
                             @error('tanggal_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -177,9 +177,9 @@
                             <label for="jenis_kelamin">Jenis Kelamin<span class="text-danger">*</span></label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
                                 <option value="">Pilih Jenis Kelamin</option>
-                                <option value=" L" {{ $user->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                <option value=" L" {{ Auth::user()->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>
                                     Laki-laki</option>
-                                <option value="P" {{ $user->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                <option value="P" {{ Auth::user()->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>
                                     Perempuan</option>
                             </select>
                             {{-- <input name="NIK" id="NIK" type="text" class="form-control" placeholder="NIK" aria-label="NIK" value="{{ old('NIK') }}"> --}}
@@ -191,7 +191,7 @@
                             <label for="no_hp">Nomor Handphone<span class="text-danger">*</span></label>
                             <input name="no_hp" id="no_hp" type="text" class="form-control"
                                 placeholder="Nomor Handphone" aria-label="no_hp"
-                                value="{{ $user->user_data->no_hp }}">
+                                value="{{ Auth::user()->user_data->no_hp }}">
                             @error('no_hp')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
