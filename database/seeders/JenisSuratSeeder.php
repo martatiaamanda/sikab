@@ -15,8 +15,8 @@ class JenisSuratSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Surat Keterangan Kependudukan',
-                'slug' => 'surat-kependudukan',
+                'name' => 'Surat Keterangan Domisili',
+                'slug' => 'surat-domisili',
                 'icon' => 'fa-people-group'
             ],
             [
@@ -30,14 +30,9 @@ class JenisSuratSeeder extends Seeder
                 'icon' => 'fa-bed-pulse'
             ],
             [
-                'name' => 'Surat Usaha',
-                'slug' => 'surat-usaha',
+                'name' => 'Surat Keterangan ',
+                'slug' => 'surat-keterangan',
                 'icon' => 'fa-shop'
-            ],
-            [
-                'name' => 'Surat Keterangan Belum Menikah',
-                'slug' => 'surat-belum-menikah',
-                'icon' => 'fa-heart-circle-xmark'
             ],
             [
                 'name' => 'Surat Keterangan Sudah Menikah',
@@ -45,24 +40,14 @@ class JenisSuratSeeder extends Seeder
                 'icon' => 'fa-heart-circle-check'
             ],
             [
-                'name' => 'Surat Keterangan Pengantar Nikah',
-                'slug' => 'surat-pengantar-nikah',
-                'icon' => 'fa-hand-holding-heart'
-            ],
-            [
-                'name' => 'Surat Keterangan Kelahiran',
-                'slug' => 'surat-kelahiran',
-                'icon' => 'fa-baby'
-            ],
-            [
-                'name' => 'Surat Pengantar SKCK',
-                'slug' => 'surat-skck',
-                'icon' => 'fa-file-invoice'
-            ],
-            [
                 'name' => 'Surat Keterangan Bersih Diri',
                 'slug' => 'surat-bersih-diri',
                 'icon' => 'fa-hand-sparkles'
+            ],
+            [
+                'name' => 'Surat Keterangan Usaha',
+                'slug' => 'surat-keterangan-usaha',
+                'icon' => 'fa-shop'
             ],
             [
                 'name' => 'Surat Keterangan pindah',
@@ -70,10 +55,47 @@ class JenisSuratSeeder extends Seeder
                 'icon' => 'fa-suitcase-rolling'
             ],
             [
-                'name' => 'Surat Keterangan Domisili',
-                'slug' => 'surat-domisili',
-                'icon' => 'fa-map-location-dot'
+                'name' => 'Surat Keterangan penghasilan',
+                'slug' => 'surat-penghasilan',
+                'icon' => 'fa-hand-holding-dollar'
             ],
+            [
+                'name' => 'Surat Pengantar SKCK',
+                'slug' => 'surat-skck',
+                'icon' => 'fa-file-invoice'
+            ],
+
+            // [
+            //     'name' => 'Surat Keterangan Belum Menikah',
+            //     'slug' => 'surat-belum-menikah',
+            //     'icon' => 'fa-heart-circle-xmark'
+            // ],
+            // [
+            //     'name' => 'Surat Keterangan Sudah Menikah',
+            //     'slug' => 'surat-sudah-menikah',
+            //     'icon' => 'fa-heart-circle-check'
+            // ],
+            // [
+            //     'name' => 'Surat Keterangan Pengantar Nikah',
+            //     'slug' => 'surat-pengantar-nikah',
+            //     'icon' => 'fa-hand-holding-heart'
+            // ],
+            // [
+            //     'name' => 'Surat Keterangan Kelahiran',
+            //     'slug' => 'surat-kelahiran',
+            //     'icon' => 'fa-baby'
+            // ],
+            // [
+            //     'name' => 'Surat Pengantar SKCK',
+            //     'slug' => 'surat-skck',
+            //     'icon' => 'fa-file-invoice'
+            // ],
+            
+            // [
+            //     'name' => 'Surat Keterangan Domisili',
+            //     'slug' => 'surat-domisili',
+            //     'icon' => 'fa-map-location-dot'
+            // ],
         ];
 
         JenisSurat::insert($data);

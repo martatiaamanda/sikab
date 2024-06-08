@@ -19,4 +19,9 @@ class DataType extends Model
     public function input_fields() {
         return $this->hasMany(InputField::class, 'data_type_id', 'id');
     }
+
+    public function sub_input_fields () {
+        return $this->hasOne(SubInputFields::class, 'data_type_id', 'id');
+    }
+    
 }

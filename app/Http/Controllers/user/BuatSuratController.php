@@ -22,9 +22,9 @@ class BuatSuratController extends Controller
 
     public function create($slug) {
 
-        if($slug !== 'surat-kependudukan') {
-            return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
-        }
+        // if($slug !== 'surat-kependudukan') {
+        //     return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
+        // }
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
@@ -49,9 +49,9 @@ class BuatSuratController extends Controller
 
     public function store(Request $request, $slug) {
 
-        if($slug !== 'surat-kependudukan') {
-            return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
-        }
+        // if($slug !== 'surat-kependudukan') {
+        //     return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
+        // }
         // get jenis surat
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
 

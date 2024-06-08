@@ -5,29 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InputField extends Model
+class SubInputFields extends Model
 {
     use HasFactory;
 
-    public $table = "input_fields";
-
-    public $fillable = [
+    protected $table = 'sub_input_fields';
+    protected $fillable = [
         'data_type_id',
-        'name',
-        'type',
-        'title',
-        'validate'
+        'input_type_id',
     ];
 
     public $timestamps = false;
-
 
     public function data_type() {
         return $this->belongsTo(DataType::class, 'data_type_id', 'id');
     }
 
-    public function sub_input_fields() {
-        return $this->hasMany(SubInputFields::class, 'input_type_id', 'id');
+    public function input_field() {
+        return $this->belongsTo(InputField::class, 'input_type_id', 'id');
     }
-
 }

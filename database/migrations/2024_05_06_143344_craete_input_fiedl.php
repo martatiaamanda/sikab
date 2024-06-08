@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('input_fields', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('data_type_id')->references('id')->on('data_types')->onDelete('cascade');
+            $table->foreignId('data_type_id')->references('id')->on('data_types')->onDelete('cascade')->nullable(true);
             $table->string('name');
             $table->string('type');
             $table->string('title');
