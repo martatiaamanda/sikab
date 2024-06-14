@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
@@ -50,6 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', function () {
                     return view('admin.dashoard');
                 })->name('admin.dashboard');
+
+        Route::get('/user', [userController::class, 'index'])->name('admin.user');
+        Route::get('/user/{id}/show', [userController::class, 'show'])->name('admin.user.show');
+        Route::get('/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/user/{id}/update', [userController::class, 'update'])->name('admin.user.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

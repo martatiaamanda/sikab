@@ -14,7 +14,6 @@ class UserData extends Model
 
     protected $fillable = [
         'user_id',
-        'NIK',
         'alamat',
         'tempat_lahir',
         'tanggal_lahir',
