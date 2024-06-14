@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DataTypeSeeder::class,
             // InputFieldSeeder::class
             LurahSeeder::class,
+            NomorSuratSeeder::class,
         ]);
     }
 }

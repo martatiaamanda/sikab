@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\LurahController;
+use App\Http\Controllers\NomorSuratController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
@@ -61,6 +62,9 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/lurah', [LurahController::class, 'index'])->name('admin.lurah');
         Route::put('/lurah/{id}', [LurahController::class, 'update'])->name('admin.lurah.update');
+
+        Route::get('/nomor-surat', [NomorSuratController::class, 'index'])->name('admin.nomor-surat');
+        Route::put('/nomor-surat/{id}', [NomorSuratController::class, 'update'])->name('admin.nomor-surat.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

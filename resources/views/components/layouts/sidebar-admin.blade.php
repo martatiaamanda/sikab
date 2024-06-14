@@ -52,6 +52,14 @@
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.lurah*') ? 'text-white ' : ' text-black' }}">Kepala Kelurahan</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.nomor-surat*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.nomor-surat') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.nomor-surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.nomor-surat*') ? 'text-info' : 'text-dark' }}"></i>
+              </div>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.nomor-surat*') ? 'text-white ' : ' text-black' }}">Nomor Surat</span>
+            </a>
+          </li>
 
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Persurtan</h6>
