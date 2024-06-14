@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\Auth\custom\RegisterController;
+use App\Http\Controllers\LurahController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
@@ -56,6 +57,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user/{id}/show', [userController::class, 'show'])->name('admin.user.show');
         Route::get('/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
         Route::put('/user/{id}/update', [userController::class, 'update'])->name('admin.user.update');
+
+
+        Route::get('/lurah', [LurahController::class, 'index'])->name('admin.lurah');
+        Route::put('/lurah/{id}', [LurahController::class, 'update'])->name('admin.lurah.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

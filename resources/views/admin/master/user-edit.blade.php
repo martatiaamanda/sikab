@@ -1,10 +1,10 @@
 <x-admin-layout>
-    <x-slot name="title">User</x-slot>
+    <x-slot name="title">Edit User {{$user->name}}</x-slot>
     <section>
         <div class="page-header">
             {{-- <div class="container"> --}}
             <div class="row">
-                <div class="col-xl-10 col-lg-10 col-md-10 d-flex flex-column">
+                <div class="col-xl-11 col-lg-11 col-md-11 d-flex flex-column">
                     <div class="card">
 
                         <div class="card-body">
@@ -127,7 +127,7 @@
                                 <div class="text-end ">
                                     <button type="submit"
                                         class="btn bg-gradient-faded-info mt-4 mb-0 text-white">simpan</button>
-                                    <a href="{{ url()->previous() }}"
+                                    <a href="{{ route('admin.user') }}"
                                         class="btn bg-gradient-faded-danger mt-4 mb-0 text-white">Batal</a>
                                 </div>
                             </form>

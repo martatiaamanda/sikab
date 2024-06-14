@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             JenisSuratSeeder::class,
             DataTypeSeeder::class,
             // InputFieldSeeder::class
+            LurahSeeder::class,
         ]);
     }
 }
