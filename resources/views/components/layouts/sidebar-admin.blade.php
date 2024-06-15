@@ -38,7 +38,7 @@
         <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.user*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.user') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.user*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.user*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-users fs-5 text-gradient {{ Request::routeIs('admin.user*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.user*') ? 'text-white ' : ' text-black' }}">Pengguna</span>
             </a>
@@ -47,7 +47,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.lurah*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.lurah') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.lurah*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.lurah*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid  fa-user-tie fs-5 text-gradient {{ Request::routeIs('admin.lurah*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.lurah*') ? 'text-white ' : ' text-black' }}">Kepala Kelurahan</span>
             </a>
@@ -55,7 +55,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.nomor-surat*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.nomor-surat') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.nomor-surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.nomor-surat*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-file fs-5 text-gradient {{ Request::routeIs('admin.nomor-surat*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.nomor-surat*') ? 'text-white ' : ' text-black' }}">Nomor Surat</span>
             </a>
@@ -68,7 +68,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.surat*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.surat') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.surat*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-envelopes-bulk fs-5 text-gradient {{ Request::routeIs('admin.surat*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.surat*') ? 'text-white ' : ' text-black' }}">Kelola Surat</span>
             </a>
@@ -76,7 +76,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.pengajuan*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.pengajuan') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.pengajuan*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.pengajuan*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-envelope fs-5 text-gradient {{ Request::routeIs('admin.pengajuan*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.pengajuan*') ? 'text-white ' : ' text-black' }}">Permohonan Surat</span>
             </a>
@@ -84,7 +84,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.done*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.done') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.done*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.done*') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-envelope-circle-check fs-5 text-gradient {{ Request::routeIs('admin.done*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('admin.done*') ? 'text-white ' : ' text-black' }}">surat Selesai</span>
             </a>
@@ -97,7 +97,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Permohonan Bansos</span>
             </a>
@@ -105,7 +105,7 @@
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+                  <i class="fa-solid  fa-receipt fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Bansos Selesai</span>
             </a>
@@ -119,7 +119,7 @@
         <li class="nav-item">
           <a class="nav-link rounded-3  {{ Request::routeIs('profile*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('profile') }}>
             <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('profile*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('profile*') ? 'text-info' : 'text-dark' }}"></i>
+                <i class="fa-solid fa-user fs-5 text-gradient {{ Request::routeIs('profile*') ? 'text-info' : 'text-dark' }}"></i>
             </div>
             <span class="nav-link-text ms-1 {{ Request::routeIs('profile*') ? 'text-white ' : ' text-black' }}">Profile</span>
           </a>
