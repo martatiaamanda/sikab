@@ -73,6 +73,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/surat', [AdminSuratController::class, 'index'])->name('admin.surat');
         Route::get('/surat/pengajuan', [AdminSuratController::class, 'pengajuan'])->name('admin.pengajuan');
         Route::get('/surat/done', [AdminSuratController::class, 'done'])->name('admin.done');
+
+        Route::get('/surat/{id}/show', [AdminSuratController::class, 'show'])->name('admin.surat.show');
+        Route::get('/surat/{id}/edit', [AdminSuratController::class, 'edit'])->name('admin.surat.edit');
+
+        Route::put('/surat/{id}/konfirmasi', [AdminSuratController::class, 'konfirmasi'])->name('admin.surat.konfirmasi');
+        Route::get('/surat/{id}/cetak', function() {
+            dd('cetak');
+        })->name('admin.surat.cetak');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

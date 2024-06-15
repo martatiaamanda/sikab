@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class metas-x-demo extends Component
+class metasxdemo extends Component
 {
     /**
      * Create a new component instance.

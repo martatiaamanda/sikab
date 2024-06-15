@@ -36,7 +36,7 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{ $user->user_data->profile_ficture ? asset('storage/profile' . $user->user_data->profile_ficture) : asset('static/img/default.png') }}"
+                                                        <img src="{{ $user->user_data->profile_ficture ? asset('storage/profile/' . $user->user_data->profile_ficture) : asset('static/img/default.png') }}"
                                                             class="avatar avatar-sm me-3" alt="user1">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">

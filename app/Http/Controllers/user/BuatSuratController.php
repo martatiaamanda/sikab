@@ -121,6 +121,9 @@ class BuatSuratController extends Controller
         $surat = surat::where('id', $id)->first();
         $jenis_surat = JenisSurat::where('id', $surat->jenis_surat_id)->first();
 
+        $surat->status = 'diproses';
+        $surat->save();
+
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }

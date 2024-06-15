@@ -57,7 +57,30 @@ class AdminSuratController extends Controller
             $surat_value[$value->input_field->id] = $value->value;
         }
 
-        return view('user.surat.show', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
+        return view('admin.surat.show', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
+    }
+
+
+    public function konfirmasi(Request $request, $id)
+    {
+        $surat = surat::where('id', $id)->first();
+        if (!$surat) {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+        }
+
+        // dd($request);
+
+        $request->validate([
+            'status' => 'required',
+            'catatan' => 'nullable',
+        ]);
+
+        $surat->status = $request->status;
+        $surat->catatan = $request->catatan;
+        $surat->tanggal_disetujui = now();
+        $surat->save();
+
+        return redirect()->route('admin.surat.show', [$id])->with('success', 'Surat Berhasil Dikonfirmasi');
     }
 
     public function edit($id)
