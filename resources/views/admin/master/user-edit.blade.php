@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="title">Edit User {{$user->name}}</x-slot>
     <section>
         <div class="page-header">
@@ -159,4 +159,4 @@
         </script>
     </x-slot>
 
-</x-admin-layout>
+</x-app-layout>

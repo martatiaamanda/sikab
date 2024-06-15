@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataType;
@@ -9,15 +9,30 @@ use App\Models\surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class RiwayatSuratControllercd extends Controller
+class AdminSuratController extends Controller
 {
     public function index()
     {
-        $histories = surat::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
+        $histories = surat::orderByDesc('id')->paginate(10);
+        $page_title = 'Kelola Surat';
 
-        // dd ($surats[0]->input_value);
-        // $histories = JenisSurat::paginate(10);
-        return view('user.riwayat-surat', compact('histories'));
+        return view('admin.surat.riwayat', compact('histories', 'page_title'));
+    }
+
+    public function pengajuan()
+    {
+        $histories = surat::where('status', '!=', 'diterima')->orderByDesc('id')->paginate(10);
+        $page_title = 'Permohonan Surat';
+
+        return view('admin.surat.riwayat', compact('histories', 'page_title'));
+    }
+
+    public function done()
+    {
+        $histories = surat::where('status', 'diterima')->orderByDesc('id')->paginate(10);
+        $page_title = 'Surat Selesai';
+
+        return view('admin.surat.riwayat', compact('histories', 'page_title'));
     }
 
     public function show($id)
@@ -71,3 +86,5 @@ class RiwayatSuratControllercd extends Controller
     
     }
 }
+
+

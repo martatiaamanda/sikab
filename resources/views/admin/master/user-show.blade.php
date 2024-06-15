@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="title">User {{$user->name}}</x-slot>
     <section>
 
@@ -117,4 +117,4 @@
         </div>
     </section>
 
-</x-admin-layout>
+</x-app-layout>

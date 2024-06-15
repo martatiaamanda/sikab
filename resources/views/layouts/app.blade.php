@@ -15,7 +15,13 @@
     @if (session('success') || session('error'))
         <x-toaster type="{{ session('success') ? 'success' : 'error' }}" :message="session('success') ?? session('error')" />
     @endif
-    <x-layouts.sidebar />
+
+    @if (Auth::user()->role == 'admin')
+        <x-layouts.sidebar-admin />
+    @else
+        <x-layouts.sidebar />
+    @endif
+    {{-- <x-layouts.sidebar /> --}}
 
 
 

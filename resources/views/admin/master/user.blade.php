@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="title">User</x-slot>
 
     <section class="m-3">
@@ -86,4 +86,4 @@
                 </div>
             </div>
         </div>
-    </section </x-admin-layout>
+    </section </x-app-layout>

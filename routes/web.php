@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\admin\userController;
+use App\Http\Controllers\admin\AdminSuratController;
 use App\Http\Controllers\Auth\custom\RegisterController;
-use App\Http\Controllers\LurahController;
+use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\NomorSuratController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
@@ -38,9 +39,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
         Route::get('/riwayat-surat/{id}/detail', [RiwayatSuratControllercd::class, 'show'])->name('user.riwayat-surat.show');
+        Route::get('/riwayat-surat/{id}/edit', [RiwayatSuratControllercd::class, 'edit'])->name('user.riwayat-surat.edit');
+        Route::put('/riwayat-surat/{id}/upedate', [BuatSuratController::class, 'update'])->name('user.surat.update');
 
         Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');
-
 
     });
 
@@ -65,6 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/nomor-surat', [NomorSuratController::class, 'index'])->name('admin.nomor-surat');
         Route::put('/nomor-surat/{id}', [NomorSuratController::class, 'update'])->name('admin.nomor-surat.update');
+
+        Route::get('/surat', [AdminSuratController::class, 'index'])->name('admin.surat');
+        Route::get('/surat/pengajuan', [AdminSuratController::class, 'pengajuan'])->name('admin.pengajuan');
+        Route::get('/surat/done', [AdminSuratController::class, 'done'])->name('admin.done');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

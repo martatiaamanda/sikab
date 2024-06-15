@@ -66,27 +66,27 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.buat-surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.surat*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.surat') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.surat*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.surat*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Kelola Surat</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.surat*') ? 'text-white ' : ' text-black' }}">Kelola Surat</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.pengajuan*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.pengajuan') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.pengajuan*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.pengajuan*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Permohonan Surat</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.pengajuan*') ? 'text-white ' : ' text-black' }}">Permohonan Surat</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.done*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.done') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.done*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('admin.done*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">surat Selesai</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.done*') ? 'text-white ' : ' text-black' }}">surat Selesai</span>
             </a>
           </li>
           <li class="nav-item mt-3">

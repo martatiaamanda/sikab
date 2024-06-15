@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="title">Nomor Surat</x-slot>
 
     <section>
@@ -118,4 +118,4 @@
         </script>
     </x-slot>
 
-</x-admin-layout>
+</x-app-layout>

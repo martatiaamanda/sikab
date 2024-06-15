@@ -7,7 +7,9 @@
                 <h3 class="font-weight-bolder text-info text-gradient">{{ $jenis_surat->name }}</h3>
                 {{-- <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p> --}}
             </div>
-            <form>
+            <form method="POST" action="{{route('user.surat.update', [$history->id])}}">
+                @csrf
+                @method('PUT')
                 {{-- @csrf --}}
                 <div class="row align-items-center">
 
@@ -27,7 +29,7 @@
                             {{ \Carbon\Carbon::parse($history->tanggal_surat)->format('d F Y') }}</p>
                     </div>
 
-                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                    {{-- <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                         <label class="fs-6 m-0 ps-2">Status</label>
                     </div>
                     <div class="col-md-6 col-lg-7 col-sm-6">
@@ -35,7 +37,7 @@
                             <span
                                 class="badge badge-sm bg-gradient-{{ $history->status == 'diterima' ? 'success' : ($history->status == 'ditolak' ? 'danger' : 'warning') }}">{{ $history->status }}</span>
                         </p>
-                    </div>
+                    </div> --}}
 
                     @if ($history->status == 'ditolak')
                         <div class="col-md-6 col-lg-4 col-sm-6 my-1">
@@ -78,7 +80,7 @@
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
                                         <select id="{{ $input_field->name }}" name="{{ $input_field->name }}"
-                                            class="form-control" disabled>
+                                            class="form-control" >
                                             <option {{ $surat_value[$input_field->id] == 'L' ? 'selected' : '' }}
                                                 value="L">Laki-laki</option>
                                             <option {{ $surat_value[$input_field->id] == 'P' ? 'selected' : '' }}
@@ -131,7 +133,7 @@
                                         <input type="{{ $input_field->type }}" class="form-control"
                                             id="{{ $input_field->name }}" name="{{ $input_field->name }}"
                                             placeholder="{{ $input_field->title }}"
-                                            value="{{ $surat_value[$input_field->id] }}" disabled>
+                                            value="{{ $surat_value[$input_field->id] }}" >
                                         @error($input_field->name)
                                             <p class="text-danger p-0 m-0">{{ $message }}</p>
                                         @enderror
@@ -144,8 +146,8 @@
                 <div class="col-md-11 ">
                     <div class="d-flex justify-content-end">
                         @if ($history->status != 'diterima')
-                            <a href="{{ route('user.riwayat-surat.edit', [$history->id]) }}"
-                                class="btn bg-gradient-faded-success mt-4 mb-0 px-5 text-white me-5">Edit</a>
+                            <button type="submit" 
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">simpan</button>
                         @endif
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a>
