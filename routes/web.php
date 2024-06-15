@@ -4,7 +4,7 @@ use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\admin\AdminSuratController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
-use App\Http\Controllers\NomorSuratController;
+use App\Http\Controllers\admin\NomorSuratController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
