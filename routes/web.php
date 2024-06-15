@@ -56,7 +56,9 @@ Route::group(['middleware' => ['auth']], function () {
                     return view('admin.dashoard');
                 })->name('admin.dashboard');
 
-        Route::get('/user', [userController::class, 'index'])->name('admin.user.index');
+        // Route::get('/user', [userController::class, 'index'])->name('admin.user.index');
+
+        Route::get('/user', [userController::class, 'index'])->name('user.admin.index');
         Route::get('/user/{id}/show', [userController::class, 'show'])->name('admin.user.show');
         Route::get('/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
         Route::put('/user/{id}/update', [userController::class, 'update'])->name('admin.user.update');
