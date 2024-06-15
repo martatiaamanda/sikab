@@ -35,14 +35,14 @@
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data</h6>
         </li>
 
-        {{-- <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('user.admin.index') }}>
+        <li class="nav-item">
+            <a class="nav-link rounded-3  {{ Request::routeIs('*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.user') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
                   <i class="fa-solid fa-house fs-5 text-gradient {{ Request::routeIs('*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
               <span class="nav-link-text ms-1 {{ Request::routeIs('*') ? 'text-white ' : ' text-black' }}">Pengguna</span>
             </a>
-          </li> --}}
+          </li>
           {{-- belum ada list --}}
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.lurah*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.lurah') }}>
