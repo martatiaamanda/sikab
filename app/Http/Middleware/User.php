@@ -19,6 +19,12 @@ class User
         if (Auth::check() && Auth::user()->role === 'user') {
             return $next($request);
             }
+
+        // dd($request->path());
+
+        if ($request->path() === '/dashboard' || $request->path() === '/') {
+            return redirect()->route('admin.dashboard');
+        }
         return redirect()->back()->with('error', 'anda tidak memiliki akses');
     }
 }

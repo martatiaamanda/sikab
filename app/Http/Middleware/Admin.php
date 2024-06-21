@@ -20,6 +20,12 @@ class Admin
         if (Auth::check() && Auth::user()->role === 'admin') {
         return $next($request);
         }
+
+        // dd($request->path());
+
+        if($request->path() === 'admin/dashboard' || $request->path() === 'admin') {
+            return redirect()->route('dashboard');
+        }
         return redirect()->back()->with('error', 'anda tidak memiliki akses');
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -29,11 +30,22 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // dd(Auth::user()->role);
+        $intended = $request->session()->get('url.intended', '');
+        // dd($intended);
+
 
 
         if (Auth::user()->role === 'admin') {
-            return redirect()->intended(route('admin.dashboard', absolute: false));
+            if (Str::contains($intended, '/admin')) {
+                // dd($intended);
+                return redirect()->intended(route('admin.dashboard', absolute: false));
+            }
+            return redirect()->route('admin.dashboard');
         } 
+
+        if (Str::contains($intended, '/admin')) {
+            return redirect()->route('dashboard');
+        }
         return redirect()->intended(route('dashboard', absolute: false));
 
 
