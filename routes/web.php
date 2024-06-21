@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\BansosController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
 use App\Http\Controllers\user\RiwayatSuratControllercd;
@@ -42,7 +43,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/riwayat-surat/{id}/edit', [RiwayatSuratControllercd::class, 'edit'])->name('user.riwayat-surat.edit');
         Route::put('/riwayat-surat/{id}/upedate', [BuatSuratController::class, 'update'])->name('user.surat.update');
 
-        Route::get('/riwayat-bansos', [RiwayatBansonControllercd::class, 'index'])->name('user.riwayat-bansos');
+        Route::get('/riwayat-bansos', [BansosController::class, 'index'])->name('user.riwayat-bansos');
+
+        Route::get('/bansos/create', [BansosController::class, 'create'])->name('user.bansos.create');
+        Route::post('/bansos/create', [BansosController::class, 'store'])->name('user.bansos.store');
 
     });
 

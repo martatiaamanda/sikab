@@ -59,11 +59,11 @@
 
 
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-coins fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('user.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('user.bansos.create') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.bansos.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-coins fs-5 text-gradient {{ Request::routeIs('user.bansos.*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Pengajuan Bantuan Sosial</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('user.bansos.*') ? 'text-white ' : ' text-black' }}">Pengajuan Bantuan Sosial</span>
             </a>
           </li>
           <li class="nav-item">

@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function surat() {
         return $this->hasMany(Surat::class, 'user_id', 'id');
     }
+
+    public function bansos() {
+        return $this->hasMany(Bansos::class, 'user_id', 'id');
+    }
 }
