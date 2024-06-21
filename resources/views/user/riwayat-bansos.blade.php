@@ -13,49 +13,54 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Author</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Function</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
+                                        <th class="text-uppercase text-info   font-weight-bolder opacity-7 ps-2">Nomor
+                                            Surat</th>
+                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                            Perihal</th>
+                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                            Tgl Pengajuan</th>
+                                        <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Status</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Employed</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        <th class="text-info opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($histories as $history)
                                         <tr>
+
                                             <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">John Michael</h6>
-                                                        <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                                                    </div>
-                                                </div>
+                                                <p class=" ps-3 text-secondary  font-weight-bold">{{ $loop->iteration }}
+                                                </p>
                                             </td>
                                             <td>
-                                                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                                                <p class="text-xs text-secondary mb-0">Organization</p>
+                                                <p class=" text-secondary  font-weight-bold">
+                                                    {{ $history->nomor_bansos ?? 'belum ada nomornya' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
-                                                <span class="badge badge-sm bg-gradient-success">Online</span>
+                                                <span
+                                                    class="text-secondary  font-weight-bold">{{ $history->perihal }}</span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                                                <span
+                                                    class="text-secondary  font-weight-bold">{{ $history->tanggal_bansos }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="badge badge-sm bg-gradient-{{ $history->status == 'diterima' ? 'success' : ($history->status == 'ditolak' ? 'danger' : 'warning') }}">{{ $history->status }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
+                                                @if ($history->status != 'diterima')
+                                                    <a href="{{ route('user.riwayat-bansos.edit', [$history->id]) }}"
+                                                        class="text-secondary font-weight-bold text-decoration-underline pe-3"
+                                                        data-toggle="tooltip" data-original-title="Edit user">
+                                                        Edit
+                                                    </a>
+                                                @endif
+                                                <a href="{{ route('user.riwayat-bansos.show', [$history->id]) }}"
+                                                    class="text-secondary font-weight-bold text-decoration-underline"
                                                     data-toggle="tooltip" data-original-title="Edit user">
-                                                    Edit
+                                                    detail
                                                 </a>
                                             </td>
                                         </tr>

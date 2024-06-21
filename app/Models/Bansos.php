@@ -13,6 +13,7 @@ class Bansos extends Model
     protected $fillable = [
         'nomor_bansos',
         'user_id',
+        'perihal',
         'status',
         'tanggal_bansos',
         'tanggal_disetujui',

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomor_bansos')->nullable(true);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('perihal')->default('Bantuan Sosial');
             $table->enum('status', ['diproses', 'diterima', 'ditolak'])->default('diproses');
             $table->date('tanggal_bansos')->default(date('Y-m-d'));
             $table->date('tanggal_disetujui')->nullable(true);

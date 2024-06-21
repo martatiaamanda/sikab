@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/riwayat-surat/{id}/upedate', [BuatSuratController::class, 'update'])->name('user.surat.update');
 
         Route::get('/riwayat-bansos', [BansosController::class, 'index'])->name('user.riwayat-bansos');
+        Route::get('/riwayat-bansos/{id}/detail', [BansosController::class, 'show'])->name('user.riwayat-bansos.show');
+        Route::get('/riwayat-bansos/{id}/edit', [BansosController::class, 'edit'])->name('user.riwayat-bansos.edit');
+        Route::put('/riwayat-bansos/{id}/update', [BansosController::class, 'update'])->name('user.bansos.update');
 
         Route::get('/bansos/create', [BansosController::class, 'create'])->name('user.bansos.create');
         Route::post('/bansos/create', [BansosController::class, 'store'])->name('user.bansos.store');
