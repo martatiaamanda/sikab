@@ -48,7 +48,7 @@
                         </div>
                     @endif
 
-                    @if ($history->status != 'diproses')
+                    @if ($history->catatan != null)
                         <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                             <label class="fs-6 m-0 ps-2">Catatan</label>
                         </div>
@@ -155,10 +155,10 @@
                                 class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
                         @endif
 
-                        @if ($history->status == 'diterima')
+                        {{-- @if ($history->status == 'diterima')
                             <a href="{{ route('admin.surat.cetak', [$history->id]) }}"
                                 class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Cetak</a>
-                        @endif
+                        @endif --}}
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-secondary mt-4 mb-0 px-5 text-white">Kembali</a>
                         {{-- class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button> --}}
@@ -173,7 +173,7 @@
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalOkLabel">ubah data Kelapa Kelurahan</h5>
+                        <h5 class="modal-title" id="modalOkLabel">catatan surat</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
                             aria-label="Close">
                             <span aria-hidden="true">&times;</span>

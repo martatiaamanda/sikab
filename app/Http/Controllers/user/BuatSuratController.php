@@ -84,14 +84,13 @@ class BuatSuratController extends Controller
 
         $user = auth()->user();
 
-        $nomor_surat = NomorSurat::first();
         // create surat
         $surat = surat::create([
             'user_id' => $user->id,
             'jenis_surat_id' => $jenis_surat->id,
         ]);
 
-        $surat->nomor_surat = $nomor_surat->awal .' '. $surat->id . $nomor_surat->akhir . '/'. $nomor_surat->tahun;
+        
 
         // dd($surat->nomor_surat);
         $surat->save();

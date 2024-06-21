@@ -5,7 +5,6 @@
         <div class=" bg-white shadow border-radius-lg p-4">
             <div class="card-header pb-0 text-left bg-transparent">
                 <h3 class="font-weight-bolder text-info text-gradient">Bantuan Sosial</h3>
-                {{-- <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p> --}}
             </div>
             <form>
 
@@ -36,7 +35,7 @@
                         </p>
                     </div>
 
-                    @if ($bansos->status == 'ditolak')
+                    @if ($bansos->catatan != null)
                         <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                             <label class="fs-6 m-0 ps-2">Catatan</label>
                         </div>
@@ -51,7 +50,8 @@
                         </div>
                         <div class="col-md-6 col-lg-7 col-sm-6">
                             <p class=" text-secondary fs-6  font-weight-bold">:
-                                {{ \Carbon\Carbon::parse($bansos->tanggal_disetujui)->format('d F Y') }}</p>
+                                {{ $bansos->tanggal_disetujui != null ? \Carbon\Carbon::parse($bansos->tanggal_disetujui)->format('d F Y') : '-' }}
+                                {{-- {{ \Carbon\Carbon::parse($bansos->tanggal_disetujui)->format('d F Y') }}</p> --}}
                         </div>
                     @endif
                     {{-- @foreach ($data_types as $data_type) --}}
@@ -405,13 +405,21 @@
 
                 </div>
                 <div class="col-md-11 ">
-                    <div class="d-flex justify-content-end">
-                        @if ($bansos->status != 'diterima')
-                            <a href="{{ route('user.riwayat-bansos.edit', [$bansos->id]) }}"
-                                class="btn bg-gradient-faded-success mt-4 mb-0 px-5 text-white me-5">Edit</a>
+                    <div class="d-flex justify-content-end gap-3">
+                        @if ($bansos->status == 'diproses')
+                            <button type="button" data-bs-toggle="modal" id="ButtonOk"
+                                onclick="showmodal('diterima')"
+                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white">Terima</button>
+                            <button type="button" data-bs-toggle="modal" id="ButtonOk"
+                                onclick="showmodal('ditolak')"
+                                class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
                         @endif
+                        {{-- @if ($bansos->status == 'diterima')
+                            <a href="{{ route('admin.bansos.cetak', [$bansos->id]) }}"
+                                class="btn bg-gradient-faded-success mt-4 mb-0 px-5 text-white me-5">Cetak</a>
+                        @endif --}}
                         <a href="{{ back()->getTargetUrl() }}"
-                            class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a>
+                            class="btn bg-gradient-faded-secondary mt-4 mb-0 px-5 text-white">Kembali</a>
                         {{-- class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button> --}}
                     </div>
                 </div>
@@ -421,7 +429,99 @@
             </form>
         </div>
 
+        <div class="modal fade " id="modalOk" tabindex="-1" role="dialog" aria-labelledby="modalOkLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalOkLabel">catatan bantuan sosial</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action='{{ route('admin.bansos.konfirmasi', [$bansos->id]) }}' method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row mb-5">
+                                <div class=" mb-3" id="input_nomor_bansos">
+                                    <label for="nomor_bansos">Nomor_bansos</label>
+                                    <input type="text" class="form-control" id="nomor_bansos" name="nomor_bansos"
+                                        placeholder="Nomor Bantuan Sosial" value="{{ old('nomor_bansos') }}">
+                                    {{-- <textarea class="form-control" name="nomor_bansos" id="nomor_bansos" aria-label="With textarea"></textarea> --}}
+                                    @error('nomor_bansos')
+                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class=" mb-3">
+                                    <label for="catatan">Caratan</label>
+                                    <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>
+                                    @error('catatan')
+                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3" style="display: none">
+                                    <label for="status">status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="diterima">ok
+                                        </option>
+                                        <option value="ditolak">
+                                            no
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-gradient-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </section>
+
+    <x-slot name='scripts'>
+        <script>
+            const inputStatus = document.getElementById('status');
+            const inputNomorBansos = document.getElementById('input_nomor_bansos');
+
+
+            const showmodal = (status) => {
+                if (status == 'ditolak') {
+                    inputNomorBansos.style.display = 'none';
+                } else {
+                    inputNomorBansos.style.display = 'block';
+                }
+                const data = status
+                console.log(data);
+                inputStatus.value = data;
+                const modal = new bootstrap.Modal(document.getElementById('modalOk'));
+                modal.show();
+            }
+            // const btnOk = document.getElementById('ButtonOk');
+            btnOk.addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('modalOk'));
+                modal.show();
+            });
+            const session = {!! json_encode($errors->all()) !!};
+            const modalOk = document.getElementById('modalOK');
+
+            if (session.length > 0) {
+                const modal = new bootstrap.Modal(modalOk);
+                modal.show();
+            }
+        </script>
+    </x-slot>
 
 
 </x-app-layout>

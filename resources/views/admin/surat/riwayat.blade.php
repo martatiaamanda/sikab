@@ -41,7 +41,7 @@
                                             </td>
                                             <td>
                                                 <p class=" text-secondary  font-weight-bold">
-                                                    {{ $history->nomor_surat ?? 'belum ada nomornya' }}</p>
+                                                    {{ $history->nomor_surat ?? '-' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <span

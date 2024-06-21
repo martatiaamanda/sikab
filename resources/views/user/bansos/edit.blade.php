@@ -7,8 +7,9 @@
                 <h3 class="font-weight-bolder text-info text-gradient">Permohonan Bantuan Sosial</h3>
                 <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p>
             </div>
-            <form action="{{ route('user.bansos.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.bansos.update', [$bansos->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row align-items-center">
                     {{-- @foreach ($data_types as $data_type) --}}
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">

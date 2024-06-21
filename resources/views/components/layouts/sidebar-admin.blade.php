@@ -95,19 +95,27 @@
 
  
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.bansos.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('admin.bansos.*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Permohonan Bansos</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.bansos.*') ? 'text-white ' : ' text-black' }}">Kelola Bansos</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('dashboard') }}>
-              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('') ? 'bg-white' : 'bg-gradient-faded-info' }}">
-                  <i class="fa-solid  fa-receipt fs-5 text-gradient {{ Request::routeIs('') ? 'text-info' : 'text-dark' }}"></i>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos-pengajuan') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos-pengajuan') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.bansos-pengajuan') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('admin.bansos-pengajuan') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('') ? 'text-white ' : ' text-black' }}">Bansos Selesai</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.bansos-pengajuan') ? 'text-white ' : ' text-black' }}">Permohonan Bansos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos-done') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos-done') }}>
+              <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.bansos-done') ? 'bg-white' : 'bg-gradient-faded-info' }}">
+                  <i class="fa-solid  fa-receipt fs-5 text-gradient {{ Request::routeIs('admin.bansos-done') ? 'text-info' : 'text-dark' }}"></i>
+              </div>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.bansos-done') ? 'text-white ' : ' text-black' }}">Bansos Selesai</span>
             </a>
           </li>
 

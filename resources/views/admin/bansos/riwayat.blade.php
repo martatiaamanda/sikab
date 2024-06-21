@@ -1,12 +1,14 @@
 <x-app-layout>
-    <x-slot name="title">Riwayat Bantuan Sosial</x-slot>
+    <x-slot name="title">Riwayat Surat</x-slot>
+
+
 
     <section class="m-3">
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Riwayat Pengajuan Bantuan Sosial</h6>
+                        <h6>{{ $page_title }}</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -16,8 +18,13 @@
                                         <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
                                         <th class="text-uppercase text-info   font-weight-bolder opacity-7 ps-2">Nomor
                                             Surat</th>
+                                        <th
+                                            class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
+                                            Yang
+                                            Mengajukan
+                                        </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
-                                            Perihal</th>
+                                            Jenis Surat</th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Tgl Pengajuan</th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
@@ -28,7 +35,6 @@
                                 <tbody>
                                     @foreach ($histories as $history)
                                         <tr>
-
                                             <td>
                                                 <p class=" ps-3 text-secondary  font-weight-bold">{{ $loop->iteration }}
                                                 </p>
@@ -36,6 +42,10 @@
                                             <td>
                                                 <p class=" text-secondary  font-weight-bold">
                                                     {{ $history->nomor_bansos ?? '-' }}</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span
+                                                    class="text-secondary  font-weight-bold">{{ $history->user->name }}</span>
                                             </td>
                                             <td class="align-middle text-center text-sm">
                                                 <span
@@ -49,15 +59,15 @@
                                                 <span
                                                     class="badge badge-sm bg-gradient-{{ $history->status == 'diterima' ? 'success' : ($history->status == 'ditolak' ? 'danger' : 'warning') }}">{{ $history->status }}</span>
                                             </td>
-                                            <td class="align-middle">
-                                                @if ($history->status != 'diterima')
-                                                    <a href="{{ route('user.riwayat-bansos.edit', [$history->id]) }}"
+                                            <td class="align-middle text-center">
+                                                {{-- @if ($history->status != 'diterima')
+                                                    <a href="{{ route('user.riwayat-surat.edit', [$history->id]) }}"
                                                         class="text-secondary font-weight-bold text-decoration-underline pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
                                                         Edit
                                                     </a>
-                                                @endif
-                                                <a href="{{ route('user.riwayat-bansos.show', [$history->id]) }}"
+                                                @endif --}}
+                                                <a href="{{ route('admin.bansos.show', [$history->id]) }}"
                                                     class="text-secondary font-weight-bold text-decoration-underline"
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     detail

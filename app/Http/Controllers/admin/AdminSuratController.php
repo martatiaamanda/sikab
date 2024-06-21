@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\DataType;
 use App\Models\JenisSurat;
+use App\Models\NomorSurat;
 use App\Models\surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -39,7 +40,7 @@ class AdminSuratController extends Controller
     {
         $history = surat::where('id', $id)->first();
         if (!$history) {
-            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+            return redirect()->route('admin.surat')->with('error', 'Surat Tidak Ditemukan');
         }
 
         $jenis_surat = JenisSurat::where('id', $history->jenis_surat->id)->first();
@@ -65,19 +66,26 @@ class AdminSuratController extends Controller
     {
         $surat = surat::where('id', $id)->first();
         if (!$surat) {
-            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+            return redirect()->route('admin.surat')->with('error', 'Surat Tidak Ditemukan');
         }
-
+        
         // dd($request);
-
+        
         $request->validate([
             'status' => 'required',
             'catatan' => 'nullable',
         ]);
 
+        if($request->status == 'diterima') {
+
+            $nomor_surat = NomorSurat::first();
+            $surat->nomor_surat = $nomor_surat->awal .' '. $surat->id . $nomor_surat->akhir . '/'. $nomor_surat->tahun;
+            $surat->tanggal_disetujui = now();
+        }
+        
         $surat->status = $request->status;
         $surat->catatan = $request->catatan;
-        $surat->tanggal_disetujui = now();
+        // $surat->tanggal_disetujui = now();
         $surat->save();
 
         return redirect()->route('admin.surat.show', [$id])->with('success', 'Surat Berhasil Dikonfirmasi');

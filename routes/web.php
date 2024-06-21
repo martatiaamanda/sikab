@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\admin\AdminSuratController;
+use App\Http\Controllers\admin\bansosController as AdminBansosController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
@@ -57,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
     // admin routes
     Route::prefix('/admin')->middleware([Admin::class])->group( function () {
         Route::get('/', function () {
-            return redirect('/admin/dashboard');
+            return redirect()->route('admin.dashboard');
         });
         Route::get('/dashboard', function () {
                     return view('admin.dashoard');
@@ -82,12 +83,26 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/surat/done', [AdminSuratController::class, 'done'])->name('admin.done');
 
         Route::get('/surat/{id}/show', [AdminSuratController::class, 'show'])->name('admin.surat.show');
-        Route::get('/surat/{id}/edit', [AdminSuratController::class, 'edit'])->name('admin.surat.edit');
+        // Route::get('/surat/{id}/edit', [AdminSuratController::class, 'edit'])->name('admin.surat.edit');
 
         Route::put('/surat/{id}/konfirmasi', [AdminSuratController::class, 'konfirmasi'])->name('admin.surat.konfirmasi');
-        Route::get('/surat/{id}/cetak', function() {
-            dd('cetak');
-        })->name('admin.surat.cetak');
+        // Route::get('/surat/{id}/cetak', function() {
+        //     dd('cetak');
+        // })->name('admin.surat.cetak');
+
+        //
+
+        Route::get('/bansos', [AdminBansosController::class, 'index'])->name('admin.bansos');
+        Route::get('/bansos/pengajuan', [AdminBansosController::class, 'pengajuan'])->name('admin.bansos-pengajuan');
+        Route::get('/bansos/done', [AdminBansosController::class, 'done'])->name('admin.bansos-done');
+
+        Route::get('/bansos/{id}/show', [AdminBansosController::class, 'show'])->name('admin.bansos.show');
+        // Route::get('/bansos/{id}/edit', [AdminBansosController::class, 'edit'])->name('admin.bansos.edit');
+
+        Route::put('/bansos/{id}/konfirmasi', [AdminBansosController::class, 'konfirmasi'])->name('admin.bansos.konfirmasi');
+        // Route::get('/bansos/{id}/cetak', function() {
+        //     dd('cetak');
+        // })->name('admin.bansos.cetak');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
