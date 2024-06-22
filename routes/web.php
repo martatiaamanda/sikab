@@ -7,12 +7,14 @@ use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuratPindahController;
 use App\Http\Controllers\user\BansosController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
 use App\Http\Controllers\user\RiwayatSuratControllercd;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\User;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 // auth routes
@@ -36,8 +38,14 @@ Route::group(['middleware' => ['auth']], function () {
             return view('user.dashboard');
         })->name('dashboard');
         Route::get("/buat-surat", [BuatSuratController::class, 'index'])->name('user.buat-surat');
+        Route::get("/buat-surat/pindah", [SuratPindahController::class, 'create'])->name('user.buat-surat.pindah.create');
+        Route::post("/buat-surat/pindah", [SuratPindahController::class, 'store'])->name('user.buat-surat.pindah.store');
         Route::get("/buat-surat/{slug}", [BuatSuratController::class, 'create'])->name('user.buat-surat.create');
         Route::post("/buat-surat/{slug}", [BuatSuratController::class, 'store'])->name('user.buat-surat.store');
+
+
+
+
 
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
         Route::get('/riwayat-surat/{id}/detail', [RiwayatSuratControllercd::class, 'show'])->name('user.riwayat-surat.show');
@@ -51,7 +59,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/bansos/create', [BansosController::class, 'create'])->name('user.bansos.create');
         Route::post('/bansos/create', [BansosController::class, 'store'])->name('user.bansos.store');
-
     });
 
 

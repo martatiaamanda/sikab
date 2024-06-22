@@ -21,6 +21,7 @@ class SuratPindahController extends Controller
     public function create()
     {
         //
+        return view('user.surat.pindah.create');
     }
 
     /**
@@ -29,6 +30,7 @@ class SuratPindahController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->all());
     }
 
     /**

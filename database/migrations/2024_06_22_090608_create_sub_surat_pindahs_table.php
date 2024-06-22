@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('sub_surat_pindahs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('surat_pindah_id')->references('id')->on('surat_pindahs')->onDelete('cascade');
+            $table->string('nama');
+            $table->string('jenis_kelamin');
+            $table->string('hubungan');
+            $table->string('keterangan');
+            // $table->timestamps();
         });
     }
 

@@ -32,4 +32,8 @@ class surat extends Model
     public function input_value() {
         return $this->hasMany(InputValue::class, 'surat_id', 'id');
     }
+
+    public function surat_pindah() {
+        return $this->hasMany(SuratPindah::class, 'surat_id', 'id');
+    }
 }

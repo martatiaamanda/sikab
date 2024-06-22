@@ -13,7 +13,25 @@ return new class extends Migration
     {
         Schema::create('surat_pindahs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('surat_id')->references('id')->on('surats')->onDelete('cascade');
+            $table->foreignId('jenis_surat_id')->references('id')->on('jenis_surats')->onDelete('cascade');
+            $table->string('nama');
+            $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->string('kewarganegaraan');
+            $table->string('agama');
+            $table->string('perkawinan');
+            $table->string('pekerjaan');
+            $table->string('pendidikan');
+            $table->string('no_kk');
+            $table->string('alamat_asal');
+            $table->string('alamat_tujuan');
+            $table->string('desa_tujuan');
+            $table->string('kecamatan_tujuan');
+            $table->string('kabupaten_tujuan');
+            $table->string('provinsi_tujuan');
+            $table->string('alasan_pindah');
         });
     }
 
