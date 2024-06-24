@@ -43,18 +43,21 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get("/buat-surat/{slug}", [BuatSuratController::class, 'create'])->name('user.buat-surat.create');
         Route::post("/buat-surat/{slug}", [BuatSuratController::class, 'store'])->name('user.buat-surat.store');
 
-
-
-
-
         Route::get('/riwayat-surat', [RiwayatSuratControllercd::class, 'index'])->name('user.riwayat-surat');
         Route::get('/riwayat-surat/{id}/detail', [RiwayatSuratControllercd::class, 'show'])->name('user.riwayat-surat.show');
         Route::get('/riwayat-surat/{id}/edit', [RiwayatSuratControllercd::class, 'edit'])->name('user.riwayat-surat.edit');
+
+        Route::get('/riwayat-surat/pindah/{id}/detail', [SuratPindahController::class, 'show'])->name('user.riwayat-surat.pindah.show');
+        Route::get('/riwayat-surat/pindah/{id}/edit', [SuratPindahController::class, 'edit'])->name('user.riwayat-surat.pindah.edit');
+        Route::put('/riwayat-surat/pindah/{id}/update', [SuratPindahController::class, 'update'])->name('user.riwayat-surat.pindah.update');
+
+        Route::delete('/riwayat-surat/{id}/delete', [RiwayatSuratControllercd::class, 'destroy'])->name('user.riwayat-surat.delete');
         Route::put('/riwayat-surat/{id}/upedate', [BuatSuratController::class, 'update'])->name('user.surat.update');
 
         Route::get('/riwayat-bansos', [BansosController::class, 'index'])->name('user.riwayat-bansos');
         Route::get('/riwayat-bansos/{id}/detail', [BansosController::class, 'show'])->name('user.riwayat-bansos.show');
         Route::get('/riwayat-bansos/{id}/edit', [BansosController::class, 'edit'])->name('user.riwayat-bansos.edit');
+        Route::delete('/riwayat-bansos/{id}/delete', [BansosController::class, 'destroy'])->name('user.riwayat-bansos.delete');
         Route::put('/riwayat-bansos/{id}/update', [BansosController::class, 'update'])->name('user.bansos.update');
 
         Route::get('/bansos/create', [BansosController::class, 'create'])->name('user.bansos.create');

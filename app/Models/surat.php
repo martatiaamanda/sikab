@@ -34,6 +34,6 @@ class surat extends Model
     }
 
     public function surat_pindah() {
-        return $this->hasMany(SuratPindah::class, 'surat_id', 'id');
+        return $this->hasOne(SuratPindah::class, 'surat_id', 'id');
     }
 }

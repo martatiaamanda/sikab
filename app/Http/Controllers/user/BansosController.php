@@ -220,9 +220,12 @@ class BansosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bansos $bansos)
+    public function destroy( $id)
     {
         //
-        
+        $bansos = Bansos::findOrFail($id);
+        $bansos->delete();
+
+        return redirect()->route('user.riwayat-bansos')->with('success', 'Bansos Berhasil Dihapus');
     }
 }

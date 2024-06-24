@@ -50,18 +50,33 @@
                                                     class="badge badge-sm bg-gradient-{{ $history->status == 'diterima' ? 'success' : ($history->status == 'ditolak' ? 'danger' : 'warning') }}">{{ $history->status }}</span>
                                             </td>
                                             <td class="align-middle">
-                                                @if ($history->status != 'diterima')
-                                                    <a href="{{ route('user.riwayat-bansos.edit', [$history->id]) }}"
+                                                <div class="d-flex">
+                                                    @if ($history->status != 'diterima')
+                                                        <a href="{{ route('user.riwayat-bansos.edit', [$history->id]) }}"
+                                                            class="text-secondary font-weight-bold text-decoration-underline pe-3"
+                                                            data-toggle="tooltip" data-original-title="Edit user">
+                                                            Edit
+                                                        </a>
+                                                    @endif
+                                                    <a href="{{ route('user.riwayat-bansos.show', [$history->id]) }}"
                                                         class="text-secondary font-weight-bold text-decoration-underline pe-3"
                                                         data-toggle="tooltip" data-original-title="Edit user">
-                                                        Edit
+                                                        detail
                                                     </a>
-                                                @endif
-                                                <a href="{{ route('user.riwayat-bansos.show', [$history->id]) }}"
-                                                    class="text-secondary font-weight-bold text-decoration-underline"
-                                                    data-toggle="tooltip" data-original-title="Edit user">
-                                                    detail
-                                                </a>
+                                                    @if ($history->status != 'diterima')
+                                                        <form
+                                                            action="{{ route('user.riwayat-bansos.delete', [$history->id]) }}"
+                                                            method="POST" class="p-0">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
+                                                                data-toggle="tooltip" data-original-title="Edit user">
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

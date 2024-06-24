@@ -70,4 +70,18 @@ class RiwayatSuratControllercd extends Controller
         return view('user.surat.edit', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
     
     }
+
+    public function destroy($id)
+    {
+        $history = surat::where('id', $id)->first();
+        if (!$history) {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+        }
+
+        $history->delete();
+
+        return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil Dihapus');
+    }
+
+    
 }
