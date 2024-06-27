@@ -5,10 +5,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\surat\BelumMenikah;
 use Database\Seeders\surat\BersihDiri;
 use Database\Seeders\surat\Domisili;
 use Database\Seeders\surat\Kematian;
 use Database\Seeders\surat\Ket;
+use Database\Seeders\surat\Lahir;
 use Database\Seeders\surat\Menikah;
 use Database\Seeders\surat\Penghasilan;
 use Database\Seeders\surat\Skck;
@@ -35,6 +37,8 @@ class DataTypeSeeder extends Seeder
             //pindah
             Penghasilan::class,
             Skck::class,
+            BelumMenikah::class,
+            Lahir::class,
             // KependudukanSeeder::class,
         ]);
 

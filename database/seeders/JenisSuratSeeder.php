@@ -64,26 +64,26 @@ class JenisSuratSeeder extends Seeder
                 'slug' => 'surat-skck',
                 'icon' => 'fa-file-invoice'
             ],
+            [
+                'name' => 'Surat Keterangan Pengantar Nikah',
+                'slug' => 'surat-pengantar-nikah',
+                'icon' => 'fa-hand-holding-heart'
+            ],
 
-            // [
-            //     'name' => 'Surat Keterangan Belum Menikah',
-            //     'slug' => 'surat-belum-menikah',
-            //     'icon' => 'fa-heart-circle-xmark'
-            // ],
+            [
+                'name' => 'Surat Keterangan Belum Menikah',
+                'slug' => 'surat-belum-menikah',
+                'icon' => 'fa-heart-circle-xmark'
+            ],
+            [
+                'name' => 'Surat Keterangan Kelahiran',
+                'slug' => 'surat-kelahiran',
+                'icon' => 'fa-baby'
+            ],
             // [
             //     'name' => 'Surat Keterangan Sudah Menikah',
             //     'slug' => 'surat-sudah-menikah',
             //     'icon' => 'fa-heart-circle-check'
-            // ],
-            // [
-            //     'name' => 'Surat Keterangan Pengantar Nikah',
-            //     'slug' => 'surat-pengantar-nikah',
-            //     'icon' => 'fa-hand-holding-heart'
-            // ],
-            // [
-            //     'name' => 'Surat Keterangan Kelahiran',
-            //     'slug' => 'surat-kelahiran',
-            //     'icon' => 'fa-baby'
             // ],
             // [
             //     'name' => 'Surat Pengantar SKCK',

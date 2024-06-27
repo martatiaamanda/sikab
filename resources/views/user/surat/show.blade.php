@@ -147,6 +147,10 @@
                             <a href="{{ route('user.riwayat-surat.edit', [$history->id]) }}"
                                 class="btn bg-gradient-faded-success mt-4 mb-0 px-5 text-white me-5">Edit</a>
                         @endif
+                        @if ($history->status == 'diterima')
+                            <button type="button" onclick="printContent()"
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">Cetak</button>
+                        @endif
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a>
                         {{-- class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button> --}}
@@ -157,6 +161,37 @@
         </div>
 
     </section>
+
+    <x-slot name='scripts'>
+        <script>
+            function printContent() {
+                console.log('ini');
+                fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(html);
+                        iframeDoc.close();
+                        iframe.onload = () => {
+                            iframe.contentWindow.focus();
+                            iframe.contentWindow.print();
+                            document.body.removeChild(iframe);
+                        };
+
+                    });
+            }
+        </script>
+    </x-slot>
+
+
 
 
 </x-app-layout>

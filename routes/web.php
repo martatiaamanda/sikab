@@ -115,6 +115,13 @@ Route::group(['middleware' => ['auth']], function () {
         // })->name('admin.bansos.cetak');
     });
 
+    
+    Route::get('/riwayat-surat/{id}/cetak', [RiwayatSuratControllercd::class, 'print'])->name('user.riwayat-surat.cetak');
+
+    Route::get('/riwayat-surat/cetak', function() {
+        return view('user.surat.cetak');
+    });
+
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update_data'])->name('profile.update');
     Route::put('/profile/photo', [ProfileController::class, 'update_foto'])->name('profile.update.photo');

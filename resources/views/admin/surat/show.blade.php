@@ -155,10 +155,10 @@
                                 class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
                         @endif
 
-                        {{-- @if ($history->status == 'diterima')
-                            <a href="{{ route('admin.surat.cetak', [$history->id]) }}"
-                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Cetak</a>
-                        @endif --}}
+                        @if ($history->status == 'diterima')
+                            <button type="button" onclick="printContent()"
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Cetak</button>
+                        @endif
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-secondary mt-4 mb-0 px-5 text-white">Kembali</a>
                         {{-- class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button> --}}
@@ -232,16 +232,41 @@
                 modal.show();
             }
             // const btnOk = document.getElementById('ButtonOk');
-            btnOk.addEventListener('click', function() {
-                const modal = new bootstrap.Modal(document.getElementById('modalOk'));
-                modal.show();
-            });
+            // btnOk.addEventListener('click', function() {
+            //     const modal = new bootstrap.Modal(document.getElementById('modalOk'));
+            //     modal.show();
+            // });
             const session = {!! json_encode($errors->all()) !!};
             const modalOk = document.getElementById('modalOK');
 
             if (session.length > 0) {
                 const modal = new bootstrap.Modal(modalOk);
                 modal.show();
+            }
+
+            function printContent() {
+                console.log('ini');
+                fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(html);
+                        iframeDoc.close();
+                        iframe.onload = () => {
+                            iframe.contentWindow.focus();
+                            iframe.contentWindow.print();
+                            document.body.removeChild(iframe);
+                        };
+
+                    });
             }
         </script>
     </x-slot>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\DataType;
 use App\Models\JenisSurat;
+use App\Models\lurah;
 use App\Models\surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -83,5 +84,27 @@ class RiwayatSuratControllercd extends Controller
         return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil Dihapus');
     }
 
-    
+    public function print($id)
+    {
+        $lurah = lurah::first();
+        if ($lurah->tanda_tangan == null) {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Tanda Tangan Lurah Belum Diatur');
+        }
+        $surat  = surat::where('id', $id)->first();
+        if (!$surat && $surat->jenis_surat->slug != 'surat-domisili'){
+            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+        }
+
+        if($surat->status != 'diterima') {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Surat belum disetujui');
+        }
+
+        $surat_value = new Collection(); // Inisialisasi koleksi objek
+        foreach ($surat->input_value as $value) {
+            $surat_value[$value->input_field->name] = $value->value;
+        }
+        $view = 'user.surat.cetak.' . $surat->jenis_surat->slug;
+        return view( $view, compact( 'lurah', 'surat','surat_value'));
+        // dd($surat_value);
+    }
 }
