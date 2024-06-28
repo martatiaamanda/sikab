@@ -36,7 +36,7 @@ class RiwayatSuratControllercd extends Controller
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
 
-        $surat_value = new Collection(); // Inisialisasi koleksi objek
+        $surat_value = new Collection(); 
 
         $surat_value = [];
         foreach ($history->input_value as $value) {
@@ -54,14 +54,13 @@ class RiwayatSuratControllercd extends Controller
         }
 
         $jenis_surat = JenisSurat::where('id', $history->jenis_surat->id)->first();
-        // $mail_types = JenisSurat::all();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
 
-        $surat_value = new Collection(); // Inisialisasi koleksi objek
+        $surat_value = new Collection();
 
         $surat_value = [];
         foreach ($history->input_value as $value) {
@@ -91,7 +90,7 @@ class RiwayatSuratControllercd extends Controller
             return redirect()->route('user.riwayat-surat')->with('error', 'Tanda Tangan Lurah Belum Diatur');
         }
         $surat  = surat::where('id', $id)->first();
-        if (!$surat && $surat->jenis_surat->slug != 'surat-domisili'){
+        if (!$surat){
             return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
         }
 
@@ -99,12 +98,11 @@ class RiwayatSuratControllercd extends Controller
             return redirect()->route('user.riwayat-surat')->with('error', 'Surat belum disetujui');
         }
 
-        $surat_value = new Collection(); // Inisialisasi koleksi objek
+        $surat_value = new Collection(); 
         foreach ($surat->input_value as $value) {
             $surat_value[$value->input_field->name] = $value->value;
         }
         $view = 'user.surat.cetak.' . $surat->jenis_surat->slug;
         return view( $view, compact( 'lurah', 'surat','surat_value'));
-        // dd($surat_value);
     }
 }

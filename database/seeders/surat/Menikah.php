@@ -77,49 +77,49 @@ class Menikah extends Seeder
 
         $data_istri->input_fields()->createMany([
             [
-                'name' => 'nama',
+                'name' => 'nama_istri',
                 'type' => 'text',
                 'title' => 'Nama Lengkap',
                 'validate' => 'required'
             ],
             [
-                'name' => 'jenis_kelamin',
+                'name' => 'jenis_kelamin_istri',
                 'type' => 'option',
                 'title' => 'Jenis Kelamin',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tempat_lahir',
+                'name' => 'tempat_lahir_istri',
                 'type' => 'text',
                 'title' => 'Tempat Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tanggal_lahir',
+                'name' => 'tanggal_lahir_istri',
                 'type' => 'date',
                 'title' => 'Tanggal Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'kewarganegaraan',
+                'name' => 'kewarganegaraan_istri',
                 'type' => 'text',
                 'title' => 'Kewarganegaraan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'agama',
+                'name' => 'agama_istri',
                 'type' => 'text',
                 'title' => 'Agama',
                 'validate' => 'required'
             ],
             [
-                'name' => 'pekerjaan',
+                'name' => 'pekerjaan_istri',
                 'type' => 'text',
                 'title' => 'Pekerjaan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'alamat',
+                'name' => 'alamat_istri',
                 'type' => 'text-large',
                 'title' => 'Almat Lengkap',
                 'validate' => 'required'

@@ -51,6 +51,7 @@
         .content .paragraph {
             margin: 8mm 0;
             text-indent: 20px;
+            text-align: justify;
         }
 
         .content .section-title {
@@ -71,8 +72,7 @@
         .signature {
             text-align: center;
             font-weight: bold;
-            width: 100%;
-            /* margin-top: 50px; */
+            /* margin-top: 30px; */
             margin-right: 50px;
         }
 
@@ -111,14 +111,14 @@
 
         <div class="inner">
             <div class="header">
-                <h3>SURAT KETERANGAN DOMISILI</h3>
+                <h3>SURAT KETERANGAN</h3>
                 <p>NOMOR: {{ $surat->nomor_surat }}</p>
             </div>
 
             <div class="content">
                 <p class="paragraph">
                     Yang bertanda tangan dibawah ini , Lurah Bakung Kecamatan Telukbetung Barat Kota Bandar Lampung ,
-                    menerangkan bahwa:
+                    menerangkan bahwa :
                 </p>
 
                 <div class="details">
@@ -126,10 +126,10 @@
                         <tr>
                             <td style="width: 180px">Nama</td>
                             <td>:</td>
-                            <td>{{ $surat_value['nama'] }}</td>
+                            <td style="font-weight: bold">{{ $surat_value['nama'] }}</td>
                         </tr>
                         <tr>
-                            <td>Tempat/Tgl. Lahir</td>
+                            <td>Tempat Tanggal Lahir</td>
                             <td>:</td>
                             <td>{{ $surat_value['tempat_lahir'] }},
                                 {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}</td>
@@ -147,12 +147,20 @@
                         <tr>
                             <td>Bangsa/ Agama</td>
                             <td>:</td>
-                            <td>{{ $surat_value['kewarganegaraan'] }}, {{ $surat_value['agama'] }}</td>
+                            <td>{{ $surat_value['kewarganegaraan'] }} / {{ $surat_value['agama'] }}</td>
                         </tr>
                         <tr>
-                            <td>Masa Berlaku s/d</td>
+                            <td>No. KK</td>
                             <td>:</td>
-                            <td>{{ $surat_value['masa_berlaku'] }}</td>
+                            <td>{{ $surat_value['no_kk'] }}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Penduduk Kelurahan</td>
+                            <td>:</td>
+                            <td>
+                                {{ $surat_value['kelurahan'] }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
@@ -165,56 +173,31 @@
                 </div>
 
                 <p class="paragraph">
-                    Bahwa benar nama tersebut diatas adalah penduduk Kelurahan Bakung Kecamatan Telukbetung Barat Kota
-                    Bandar Lampung yang berdomisili pada alamat tersebut diatas.
+                    Menerangkan bahwa benar nama tersebut diatas {{ $surat_value['keperluan'] }}.
                 </p>
-
                 <p class="paragraph">
-                    Demikian Surat keterangan Domisili ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana
-                    mestinya .
+                    Demikian Surat keterangan ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana mestinya
+                    .
                 </p>
             </div>
 
             <div class="footer">
                 <div class="inner-footer">
-
                     <table>
                         <tr>
-                            <td style="vertical-align: bottom">
-                                <div class="signature">
-                                    {{-- <p>LURAH BAKUNG</p> --}}
-                                    <p>Yang Bersangkutan</p>
-                                    <div class="ttd-field"></div>
-                                    {{-- <img src="{{ asset('surat/ttd.png') }}" alt="ttd"> --}}
-                                    <p>{{ $surat_value['nama'] }}</p>
-
-                                </div>
-                            </td>
-                            <td style="vertical-align: bottom">
-                                <table>
-                                    <tr>
-                                        <td>Bandar Lampung,
-                                            {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="signature">
-                                    <p>LURAH BAKUNG</p>
-                                    <p>KECAMATAN TELUKBETUNG BARAT</p>
-                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
-                                        alt="ttd">
-                                    <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
-                                    {{-- <p>NIP.{{ $lurah->NIP }}</p> --}}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0; margin: 0"></td>
-                            <td style="text-align: center; font-weight: bold; padding: 0; margin: 0">
-                                <p style="margin: 0">NIP.{{ $lurah->NIP }}</p>
+                            <td>Bandar Lampung,
+                                {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
                             </td>
                         </tr>
                     </table>
+                    <div class="signature">
+                        <p>LURAH BAKUNG</p>
+                        <p>KECAMATAN TELUKBETUNG BARAT</p>
+                        <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                            alt="ttd">
+                        <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
+                        <p>NIP.{{ $lurah->NIP }}</p>
+                    </div>
                 </div>
             </div>
         </div>

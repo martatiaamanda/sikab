@@ -89,43 +89,43 @@ class BersihDiri extends Seeder
                 'validate' => 'required'
             ],
             [
-                'name' => 'tempat_lahir',
+                'name' => 'tempat_lahir_ibu',
                 'type' => 'text',
                 'title' => 'Tempat Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tanggal_lahir',
+                'name' => 'tanggal_lahir_ibu',
                 'type' => 'date',
                 'title' => 'Tanggal Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'jenis_kelamin',
+                'name' => 'jenis_kelamin_ibu',
                 'type' => 'option',
                 'title' => 'Jenis Kelamin',
                 'validate' => 'required'
             ],
             [
-                'name' => 'agama',
+                'name' => 'agama_ibu',
                 'type' => 'text',
                 'title' => 'Agama',
                 'validate' => 'required'
             ],
             [
-                'name' => 'kewarganegaraan',
+                'name' => 'kewarganegaraan_ibu',
                 'type' => 'text',
                 'title' => 'Kewarganegaraan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'pekerjaan',
+                'name' => 'pekerjaan_ibu',
                 'type' => 'text',
                 'title' => 'Pekerjaan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'alamat',
+                'name' => 'alamat_ibu',
                 'type' => 'option',
                 'title' => 'Almat Lengkap',
                 'validate' => 'required'
@@ -145,43 +145,43 @@ class BersihDiri extends Seeder
                 'validate' => 'required'
             ],
             [
-                'name' => 'tempat_lahir',
+                'name' => 'tempat_lahir_ayah',
                 'type' => 'text',
                 'title' => 'Tempat Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tanggal_lahir',
+                'name' => 'tanggal_lahir_ayah',
                 'type' => 'date',
                 'title' => 'Tanggal Lahir',
                 'validate' => 'required'
             ],
             [
-                'name' => 'jenis_kelamin',
+                'name' => 'jenis_kelamin_ayah',
                 'type' => 'option',
                 'title' => 'Jenis Kelamin',
                 'validate' => 'required'
             ],
             [
-                'name' => 'agama',
+                'name' => 'agama_ayah',
                 'type' => 'text',
                 'title' => 'Agama',
                 'validate' => 'required'
             ],
             [
-                'name' => 'kewarganegaraan',
+                'name' => 'kewarganegaraan_ayah',
                 'type' => 'text',
                 'title' => 'Kewarganegaraan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'pekerjaan',
+                'name' => 'pekerjaan_ayah',
                 'type' => 'text',
                 'title' => 'Pekerjaan',
                 'validate' => 'required'
             ],
             [
-                'name' => 'alamat',
+                'name' => 'alamat_ayah',
                 'type' => 'text',
                 'title' => 'Almat Lengkap',
                 'validate' => 'required'
