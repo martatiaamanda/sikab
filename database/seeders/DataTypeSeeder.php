@@ -12,6 +12,7 @@ use Database\Seeders\surat\Kematian;
 use Database\Seeders\surat\Ket;
 use Database\Seeders\surat\Lahir;
 use Database\Seeders\surat\Menikah;
+use Database\Seeders\surat\PengantarNikah;
 use Database\Seeders\surat\Penghasilan;
 use Database\Seeders\surat\Skck;
 use Database\Seeders\surat\Sktm;
@@ -39,6 +40,7 @@ class DataTypeSeeder extends Seeder
             Skck::class,
             BelumMenikah::class,
             Lahir::class,
+            PengantarNikah::class,
             // KependudukanSeeder::class,
         ]);
 

@@ -6,7 +6,7 @@ use App\Models\DataType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BersihDiri extends Seeder
+class PengantarNikah extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class BersihDiri extends Seeder
         //
         $data_diri = DataType::create([
             'name' => 'Data Diri',
-            'jenis_surat_id' => 6,
+            'jenis_surat_id' => 11,
 
         ]);
 
@@ -29,8 +29,8 @@ class BersihDiri extends Seeder
             ],
             [
                 'name' => 'nik',
-                'type' => 'text',
-                'title' => 'NIK/KTP',
+                'type' => 'number',
+                'title' => 'Nomor Induk Kependudukan(NIK)',
                 'validate' => 'required'
             ],
             [
@@ -58,12 +58,6 @@ class BersihDiri extends Seeder
                 'validate' => 'required'
             ],
             [
-                'name' => 'kewarganegaraan',
-                'type' => 'text',
-                'title' => 'Kewarganegaraan',
-                'validate' => 'required'
-            ],
-            [
                 'name' => 'pekerjaan',
                 'type' => 'text',
                 'title' => 'Pekerjaan',
@@ -72,69 +66,47 @@ class BersihDiri extends Seeder
             [
                 'name' => 'alamat',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat',
                 'validate' => 'required'
             ],
         ]);
 
-        $data_ibu = DataType::create([
-            'name' => 'Data Ibu',
-            'jenis_surat_id' => 6,
+        $data_perkawinan = DataType::create([
+            'name' => 'Data Perkawinan',
+            'jenis_surat_id' => 11,
+
         ]);
-        $data_ibu->input_fields()->createMany([
+
+        $data_perkawinan->input_fields()->createMany([
             [
-                'name' => 'nama_ibu',
+                'name' => 'laki_laki',
                 'type' => 'text',
-                'title' => 'Nama Ibu',
+                'title' => 'Laki-laki (Jejaka/Duda)',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tempat_lahir_ibu',
+                'name' => 'istri_ke',
+                'type' => 'number',
+                'title' => 'atau Istri ke',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'perempuan',
                 'type' => 'text',
-                'title' => 'Tempat Lahir',
+                'title' => 'Perempuan (Perawan/Janda)',
                 'validate' => 'required'
             ],
             [
-                'name' => 'tanggal_lahir_ibu',
-                'type' => 'date',
-                'title' => 'Tanggal Lahir',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'jenis_kelamin_ibu',
-                'type' => 'option',
-                'title' => 'Jenis Kelamin',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'agama_ibu',
+                'name' => 'pasangan_terdahulu',
                 'type' => 'text',
-                'title' => 'Agama',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'kewarganegaraan_ibu',
-                'type' => 'text',
-                'title' => 'Kewarganegaraan',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'pekerjaan_ibu',
-                'type' => 'text',
-                'title' => 'Pekerjaan',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'alamat_ibu',
-                'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Nama istri/suami terdahulu',
                 'validate' => 'required'
             ],
         ]);
 
         $data_ayah = DataType::create([
             'name' => 'Data Ayah',
-            'jenis_surat_id' => 6,
+            'jenis_surat_id' => 11,
         ]);
 
         $data_ayah->input_fields()->createMany([
@@ -142,6 +114,12 @@ class BersihDiri extends Seeder
                 'name' => 'nama_ayah',
                 'type' => 'text',
                 'title' => 'Nama Ayah',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'nik_ayah',
+                'type' => 'number',
+                'title' => 'Nomor Induk Kependudukan(NIK)',
                 'validate' => 'required'
             ],
             [
@@ -154,12 +132,6 @@ class BersihDiri extends Seeder
                 'name' => 'tanggal_lahir_ayah',
                 'type' => 'date',
                 'title' => 'Tanggal Lahir',
-                'validate' => 'required'
-            ],
-            [
-                'name' => 'jenis_kelamin_ayah',
-                'type' => 'option',
-                'title' => 'Jenis Kelamin',
                 'validate' => 'required'
             ],
             [
@@ -183,22 +155,66 @@ class BersihDiri extends Seeder
             [
                 'name' => 'alamat_ayah',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
 
-        $data_Dokumen = DataType::create([
-            'name' => 'Data Lainnya',
-            'jenis_surat_id' => 6,
+        $data_ibu = DataType::create([
+            'name' => 'Data Ibu',
+            'jenis_surat_id' => 11,
         ]);
-        $data_Dokumen->input_fields()->createMany([
+
+        $data_ibu->input_fields()->createMany([
             [
-                'name' => 'keperluan',
+                'name' => 'nama_ibu',
                 'type' => 'text',
-                'title' => 'Keperluan',
+                'title' => 'Nama Ibu',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'nik_ibu',
+                'type' => 'number',
+                'title' => 'Nomor Induk Kependudukan(NIK)',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'tempat_lahir_ibu',
+                'type' => 'text',
+                'title' => 'Tempat Lahir',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'tanggal_lahir_ibu',
+                'type' => 'date',
+                'title' => 'Tanggal Lahir',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'agama_ibu',
+                'type' => 'text',
+                'title' => 'Agama',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'kewarganegaraan_ibu',
+                'type' => 'text',
+                'title' => 'Kewarganegaraan',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'pekerjaan_ibu',
+                'type' => 'text',
+                'title' => 'Pekerjaan',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'alamat_ibu',
+                'type' => 'text-large',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
+
     }
 }

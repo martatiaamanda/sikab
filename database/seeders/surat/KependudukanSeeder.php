@@ -40,7 +40,7 @@ class KependudukanSeeder extends Seeder
             ],
             [
                 'name' => 'alamat',
-                'type' => 'option',
+                'type' => 'text-large',
                 'title' => 'Almat Lengkap',
                 'validate' => 'required'
             ],
@@ -53,25 +53,25 @@ class KependudukanSeeder extends Seeder
         $data_ibu->input_fields()->createMany([
             [
                 'name' => 'nama_ibu',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Nama Ibu',
                 'validate' => 'required'
             ],
             [
                 'name' => 'umur_ibu',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Umur Ibu',
                 'validate' => 'required'
             ],
             [
                 'name' => 'Pekerjaan_ibu',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Pekerjaan Ibu',
                 'validate' => 'required'
             ],
             [
                 'name' => 'alamat_ibu',
-                'type' => 'option',
+                'type' => 'text-large',
                 'title' => 'Almat Ibu',
                 'validate' => 'required'
             ],
@@ -85,25 +85,25 @@ class KependudukanSeeder extends Seeder
         $data_ayah->input_fields()->createMany([
             [
                 'name' => 'nama_ayah',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Nama Ayah',
                 'validate' => 'required'
             ],
             [
                 'name' => 'umur_ayah',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Umur Ayah',
                 'validate' => 'required'
             ],
             [
                 'name' => 'Pekerjaan_ayah',
-                'type' => 'option',
+                'type' => 'text',
                 'title' => 'Pekerjaan Ayah',
                 'validate' => 'required'
             ],
             [
                 'name' => 'alamat_ayah',
-                'type' => 'option',
+                'type' => 'text-large',
                 'title' => 'Almat Ayah',
                 'validate' => 'required'
             ],

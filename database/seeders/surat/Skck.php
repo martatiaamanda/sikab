@@ -59,13 +59,13 @@ class Skck extends Seeder
             ],
             [
                 'name' => 'no_kk',
-                'type' => 'text',
+                'type' => 'number',
                 'title' => 'Nomor KK',
                 'validate' => 'required'
             ],
             [
                 'name' => 'alamat',
-                'type' => 'text',
+                'type' => 'text-large',
                 'title' => 'Alamat',
                 'validate' => 'required'
             ],
