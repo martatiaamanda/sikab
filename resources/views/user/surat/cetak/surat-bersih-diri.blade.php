@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Keterangan Kelahiran</title>
     <style>
-        /* * {
+        * {
             font-size: 12px
-        } */
+        }
 
         body {
             font-family: "Times New Roman", Times, serif;
-            text-size-adjust: 12px;
+            /* text-size-adjust: 10px; */
             margin: 0;
             padding: 0;
         }
@@ -31,6 +31,7 @@
 
         .header {
             text-align: center;
+            font-size: 110px;
             padding-top: 10px;
         }
 
@@ -49,8 +50,8 @@
         }
 
         .content .paragraph {
-            margin: 8mm 0;
-            text-indent: 20px;
+            margin: 5mm 0;
+            /* text-indent: 20px; */
         }
 
         .content .section-title {
@@ -58,40 +59,58 @@
         }
 
         .footer {
-            position: relative;
+            display: flex;
+            justify-content: space-between
         }
 
-        .footer .inner-footer {
-            position: absolute;
-            right: 0;
-            /* width: 60%; */
-            /* margin-top: 50px; */
+        .left,
+        .right {
+            /* border: 1px solid black; */
+            width: 40%;
+        }
+
+        .tanggal {
+            width: 100%;
+            border-bottom: 1px solid black;
+        }
+
+        .tanggal span {
+            display: block;
+        }
+
+        .footer table tr td {
+            width: 50%;
         }
 
         .signature {
             text-align: center;
-            font-weight: bold;
             width: 100%;
             /* margin-top: 50px; */
             margin-right: 50px;
+        }
+
+        .signature .name {
+            font-weight: bold;
         }
 
         .signature p {
             margin: 0;
         }
 
+
         .signature img {
             /* width: 200px; */
-            height: 120px;
+            height: 90px;
         }
 
         table {
             width: 100%;
-            margin-left: 20px
+            margin-left: 50px;
+            border-collapse: collapse;
         }
 
         table tr td {
-            padding: 5px 0;
+            padding: 0
         }
 
         th,
@@ -100,7 +119,12 @@
         }
 
         .ttd-field {
-            height: 120px;
+            height: 90px;
+        }
+
+        .line {
+            width: 100%;
+            border-bottom: 1px solid black;
         }
     </style>
 </head>
@@ -111,16 +135,97 @@
 
         <div class="inner">
             <div class="header">
-                <h3>SURAT KETERANGAN DOMISILI</h3>
+                <h3>SURAT KETERANGAN BERSIH DIRI</h3>
                 <p>NOMOR: {{ $surat->nomor_surat }}</p>
             </div>
 
             <div class="content">
-                <p class="paragraph">
-                    Yang bertanda tangan dibawah ini , Lurah Bakung Kecamatan Telukbetung Barat Kota Bandar Lampung ,
-                    menerangkan bahwa:
+                <p>
+                    Yang bertanda tangan dibawah ini, Lurah Bakung Kecamatan TelukBetung Barat, dengan ini menerangkan
+                    bahwa :
+                </p>
+                <p>
+                    Nama Orang tua/Wali :
                 </p>
 
+                <div class="details">
+                    <table>
+                        <tr>
+                            <td style="width: 180px">Nama Bapak/Wali</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['nama_ayah'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['jenis_kelamin_ayah'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Tempat/Tgl. Lahir</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['tempat_lahir_ayah'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ayah'])->format('d F Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Agama/ Warganegara</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['agama_ayah'] }}, {{ $surat_value['kewarganegaraan_ayah'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pekerjaan</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['pekerjaan_ayah'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td>
+                                {{ $surat_value['alamat_ayah'] }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="details" style="padding-top: 15px">
+                    <table>
+                        <tr>
+                            <td style="width: 180px">Nama Ibu</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['nama_ibu'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Kelamin</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['jenis_kelamin_ibu'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Tempat/Tgl. Lahir</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['tempat_lahir_ibu'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ibu'])->format('d F Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Agama/ Warganegara</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['agama_ibu'] }}, {{ $surat_value['kewarganegaraan_ibu'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pekerjaan</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['pekerjaan_ibu'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td>
+                                {{ $surat_value['alamat_ibu'] }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p class="paragraph">
+                    Nama tersebut diatas BENAR Orang Tua/Wali (Bapak/ibu) dari :
+                </p>
                 <div class="details">
                     <table>
                         <tr>
@@ -129,10 +234,9 @@
                             <td>{{ $surat_value['nama'] }}</td>
                         </tr>
                         <tr>
-                            <td>Tempat/Tgl. Lahir</td>
+                            <td style="width: 180px">NIK/KTP</td>
                             <td>:</td>
-                            <td>{{ $surat_value['tempat_lahir'] }},
-                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}</td>
+                            <td>{{ $surat_value['nik'] }}</td>
                         </tr>
                         <tr>
                             <td>Jenis Kelamin</td>
@@ -140,19 +244,20 @@
                             <td>{{ $surat_value['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
                         </tr>
                         <tr>
+                            <td>Tempat/Tgl. Lahir</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['tempat_lahir'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Agama/ Warganegara</td>
+                            <td>:</td>
+                            <td>{{ $surat_value['agama'] }}, {{ $surat_value['kewarganegaraan'] }}</td>
+                        </tr>
+                        <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
                             <td>{{ $surat_value['pekerjaan'] }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bangsa/ Agama</td>
-                            <td>:</td>
-                            <td>{{ $surat_value['kewarganegaraan'] }}, {{ $surat_value['agama'] }}</td>
-                        </tr>
-                        <tr>
-                            <td>Masa Berlaku s/d</td>
-                            <td>:</td>
-                            <td>{{ $surat_value['masa_berlaku'] }}</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
@@ -165,56 +270,69 @@
                 </div>
 
                 <p class="paragraph">
-                    Bahwa benar nama tersebut diatas adalah penduduk Kelurahan Bakung Kecamatan Telukbetung Barat Kota
-                    Bandar Lampung yang berdomisili pada alamat tersebut diatas.
+                    Bahwa berdasarkan data-data yang ada serta sepengetahuan kami, nama tersebut diatas tidak terlibat
+                    G-30 S/PKI atau OT/Ormas lainnya yang terlarang dan tidak pernah dihukum serta berkelakuan baik.
+                    Surat keterangan Bersih Diri/ bersih lingkungan ini diberikan dengan benar kepada yang bersangkutan
+                    untuk dapat melengkapi persyaratan : {{ $surat_value['keperluan'] }}.
                 </p>
-
-                <p class="paragraph">
-                    Demikian Surat keterangan Domisili ini dibuat dengan sebenarnya untuk dapat dipergunakan sebagaimana
-                    mestinya .
+                <p>
+                    Demikian surat keterangan ini diberikan kepada yang bersangkutan untuk dapat dipergunakan
+                    sebagaimana mestinya.
                 </p>
             </div>
 
             <div class="footer">
-                <div class="inner-footer">
 
-                    <table>
-                        <tr>
-                            <td style="vertical-align: bottom">
-                                <div class="signature">
-                                    {{-- <p>LURAH BAKUNG</p> --}}
-                                    <p>Yang Bersangkutan</p>
-                                    <div class="ttd-field"></div>
-                                    {{-- <img src="{{ asset('surat/ttd.png') }}" alt="ttd"> --}}
-                                    <p>{{ $surat_value['nama'] }}</p>
+                <div class="left">
+                    <div class="tanggal">
+                        <span>Nomor :</span>
+                        <span>Tanggal :</span>
+                    </div>
+                    <div class="signature">
+                        <p>Mengetahui</p>
+                        <p>Camat TelukBetung Barat</p>
+                        <div class="ttd-field"></div>
+                        <p class="name" style="text-decoration: underline">IDHAM BASYAR, S.SH</p>
+                        <P class="name">NIP. 19710723 200003 1 004</P>
 
-                                </div>
-                            </td>
-                            <td style="vertical-align: bottom">
-                                <table>
-                                    <tr>
-                                        <td>Bandar Lampung,
-                                            {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="signature">
-                                    <p>LURAH BAKUNG</p>
-                                    <p>KECAMATAN TELUKBETUNG BARAT</p>
-                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
-                                        alt="ttd">
-                                    <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
-                                    {{-- <p>NIP.{{ $lurah->NIP }}</p> --}}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0; margin: 0"></td>
-                            <td style="text-align: center; font-weight: bold; padding: 0; margin: 0">
-                                <p style="margin: 0">NIP.{{ $lurah->NIP }}</p>
-                            </td>
-                        </tr>
-                    </table>
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="tanggal">
+                        <span>Dikeluarkan : Bandar Lampung</span>
+                        <span>pada Tanggal : {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
+                        </span>
+                    </div>
+                    <div class="signature">
+                        <p>Lurah Bakung</p>
+                        <p>Kecaamat TelukBetung Barat</p>
+                        {{-- <div class="ttd-field"></div> --}}
+                        <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                            alt="ttd">
+                        <p class="name" style="text-decoration: underline">IDHAM BASYAR, S.SH</p>
+                        <P class="name">NIP. 19710723 200003 1 004</P>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer" style=" padding-top: 10px;">
+                <div class="left">
+                    <div class="signature">
+                        <p>Mengetahui</p>
+                        <p>KOMANDAN KORAMIL 0410-03/TBT-TBB</p>
+                        <div class="ttd-field"></div>
+                        <p>(....................................................)</p>
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="signature">
+                        <p>Mengetahui</p>
+                        <p>KAPOLSEK TERLUKBETUNG TIMUR</p>
+                        <div class="ttd-field"></div>
+                        <p>(....................................................)</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -208,19 +208,6 @@
 
             <div class="footer">
                 <div class="inner-footer">
-                    {{-- <table style="font-weight: bold">
-                        <tr>
-                            <td style="margin: 0; padding: 0;">DIKELUARKAN DI</td>
-                            <td style="margin: 0; padding: 0;">:</td>
-                            <td style="margin: 0; padding: 0;">Bandar Lampung</td>
-                        </tr>
-                        <tr>
-                            <td style="margin: 0; padding: 0;">PADA TANGGAL</td>
-                            <td style="margin: 0; padding: 0;">:</td>
-                            <td style="margin: 0; padding: 0;">
-                                {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}</td>
-                        </tr>
-                    </table> --}}
                     <table>
                         <tr>
                             <td>Bandar Lampung,
