@@ -70,6 +70,12 @@ class Skck extends Seeder
                 'validate' => 'required'
             ],
             [
+                'name' => 'rt',
+                'type' => 'text',
+                'title' => 'RT',
+                'validate' => 'required'
+            ],
+            [
                 'name' => 'kelurahan',
                 'type' => 'text',
                 'title' => 'Kelurahan',
@@ -85,6 +91,12 @@ class Skck extends Seeder
                 'name' => 'Keperluan',
                 'type' => 'text',
                 'title' => 'Keperluan',
+                'validate' => 'required'
+            ],
+            [
+                'name' => 'ketua_rt',
+                'type' => 'text',
+                'title' => 'Ketua RT',
                 'validate' => 'required'
             ],
         ]);
