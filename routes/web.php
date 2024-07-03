@@ -12,6 +12,7 @@ use App\Http\Controllers\user\BansosController;
 use App\Http\Controllers\user\BuatSuratController;
 use App\Http\Controllers\user\RiwayatBansonControllercd;
 use App\Http\Controllers\user\RiwayatSuratControllercd;
+use App\Http\Controllers\UserDocumenController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\User;
 use Illuminate\Support\Facades\Redis;
@@ -113,7 +114,7 @@ Route::group(['middleware' => ['auth']], function () {
         // Route::get('/bansos/{id}/cetak', function() {
         //     dd('cetak');
         // })->name('admin.bansos.cetak');
-    });
+});
 
     
     Route::get('/riwayat-surat/{id}/cetak', [RiwayatSuratControllercd::class, 'print'])->name('user.riwayat-surat.cetak');
@@ -125,4 +126,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update_data'])->name('profile.update');
     Route::put('/profile/photo', [ProfileController::class, 'update_foto'])->name('profile.update.photo');
+    Route::put('/profile/password', [ProfileController::class, 'update_password'])->name('profile.update.password');
+
+    Route::post('profile/document', [UserDocumenController::class, 'store'])->name('profile.upload.document.store');
+    Route::put('profile/document', [UserDocumenController::class, 'update'])->name('profile.upload.document.update');
 });

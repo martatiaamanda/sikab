@@ -157,4 +157,30 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function update_password(Request $request) {
+
+        $user_id = auth()->user()->id;
+
+        $user = User::findOrfail($user_id);
+
+        if(!$user) {
+            return Redirect::back()->with('error', 'User tidak ditemukan');
+        }
+
+        $request->validate([
+            'password' => ['required', 'string' ],
+            'password_confirmation' => ['required', 'same:password'],
+        ], [
+            'password.required' => 'Password harus diisi',
+            'password_confirmation.same' => 'Password tidak sama',
+            'password_confirmation.required' => 'Password konfirmasi harus diisi',
+        ]);
+
+        $user->update([
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('profile')->with('success', 'Password berhasil diubah');
+    }
 }

@@ -51,6 +51,10 @@ class User extends Authenticatable
         return $this->hasOne(UserData::class, 'user_id', 'id');
     }
 
+    public function user_documen() {
+        return $this->hasOne(UserDocumen::class, 'user_id', 'id');
+    }
+
     public function surat() {
         return $this->hasMany(Surat::class, 'user_id', 'id');
     }
