@@ -8,6 +8,7 @@ use App\Models\InputField;
 use App\Models\JenisSurat;
 use App\Models\NomorSurat;
 use App\Models\surat;
+use App\Models\UserDocumen;
 use Illuminate\Http\Request;
 use Laravel\Prompts\Key;
 use Termwind\Components\Dd;
@@ -50,9 +51,6 @@ class BuatSuratController extends Controller
 
     public function store(Request $request, $slug) {
 
-        // if($slug !== 'surat-kependudukan') {
-        //     return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
-        // }
         // get jenis surat
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
 
@@ -65,15 +63,44 @@ class BuatSuratController extends Controller
         $request_input = [];
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
+        $user_document = UserDocumen::where('user_id', auth()->id())->first();
 
         // loop data types and input fields for validate request and get request input
         foreach($data_types as $data_type) {
             $fields = $data_type->input_fields;
             foreach($fields as $field) {
-                $validate_scema[$field->name] = [$field->validate];
-                $validate_response_scema[$field->name.'.'.$field->validate] = $field->name . ' Harus diisi';
-                if($field->type == 'file') {
-                    $request_input[$field->id] = $request->file($field->name);
+                // $validate_scema[$field->name] = [$field->validate];
+                // $validate_response_scema[$field->name.'.'.$field->validate] = $field->name . ' Harus diisi';
+                // if($field->type == 'file') {
+                //     $request_input[$field->id] = $request->file($field->name);
+                // } else {
+                //     $request_input[$field->id] = $request->input($field->name);
+                // }
+                if (!empty($field->validate)) {
+                    $validate_schema[$field->name] = [$field->validate];
+                    $validate_response_schema[$field->name . '.' . $field->validate] = $field->name . ' Harus diisi';
+                }
+    
+                if ($field->type == 'file') {
+                    $file = $request->file($field->name);
+                    $document_field_empty = true;
+    
+                    if (!$file && $user_document) {
+                        if ($field->name == 'ktp' && $user_document->ktp) {
+                            $file = $user_document->ktp;
+                            $document_field_empty = false;
+                        } elseif ($field->name == 'kk' && $user_document->kk) {
+                            $file = $user_document->kk;
+                            $document_field_empty = false;
+                        }
+                    }
+    
+                    // If the document field is empty and no file is uploaded, add a required validation rule
+                    if ($document_field_empty) {
+                        $validate_schema[$field->name][] = 'required';
+                    }
+    
+                    $request_input[$field->id] = $file;
                 } else {
                     $request_input[$field->id] = $request->input($field->name);
                 }
@@ -114,49 +141,109 @@ class BuatSuratController extends Controller
     }
 
 
-    public function update(Request $request, $id)
-    {
-        // get surat
-        $surat = surat::where('id', $id)->first();
-        $jenis_surat = JenisSurat::where('id', $surat->jenis_surat_id)->first();
-
-        $surat->status = 'diproses';
-        $surat->save();
-
+    public function update(Request $request, $id) {
+        // get surat by id
+        $surat = Surat::find($id);
+    
+        if (!$surat) {
+            return redirect()->back()->with('error', 'Surat Tidak Ditemukan');
+        }
+    
+        // get jenis surat
+        $jenis_surat = JenisSurat::find($surat->jenis_surat_id);
+    
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
+    
+        // variable for validate request and and get request input
+        $validate_schema = [];
+        $validate_response_schema = [];
         $request_input = [];
-
+    
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
-
+    
+        // Get user document
+        $user_document = UserDocumen::where('user_id', auth()->id())->first();
+    
         // loop data types and input fields for validate request and get request input
         foreach($data_types as $data_type) {
             $fields = $data_type->input_fields;
             foreach($fields as $field) {
-                if($field->type == 'file') {
-                    $request_input[$field->id] = $request->file($field->name);
+                // Check if validate attribute is set
+                if (!empty($field->validate)) {
+                    $validate_schema[$field->name] = [$field->validate];
+                    $validate_response_schema[$field->name . '.' . $field->validate] = $field->name . ' Harus diisi';
+                }
+    
+                if ($field->type == 'file') {
+                    $file = $request->file($field->name);
+                    $document_field_empty = true;
+    
+                    if (!$file && $user_document) {
+                        if ($field->name == 'ktp' && $user_document->ktp) {
+                            $file = $user_document->ktp;
+                            $document_field_empty = false;
+                        } elseif ($field->name == 'kk' && $user_document->kk) {
+                            $file = $user_document->kk;
+                            $document_field_empty = false;
+                        }
+                    }
+    
+                    // If the document field is empty and no file is uploaded, add a required validation rule
+                    if ($document_field_empty) {
+                        $validate_schema[$field->name][] = 'required';
+                    }
+    
+                    $request_input[$field->id] = $file;
                 } else {
                     $request_input[$field->id] = $request->input($field->name);
                 }
             }
         }
-
-
-        // create input value for surat
+    
+        // validate request
+        $request->validate($validate_schema, $validate_response_schema);
+    
+        $user = auth()->user();
+    
+        // update surat
+        $surat->update([
+            'user_id' => $user->id,
+            'jenis_surat_id' => $jenis_surat->id,
+        ]);
+    
+        // update input value for surat
         foreach($request_input as $key => $value) {
-            if(is_uploaded_file($value)) {
+            $input_value = $surat->input_value()->where('input_field_id', $key)->first();
+    
+            if (is_uploaded_file($value)) {
                 $file_name = $this->uploadFile($key, $value, $surat->id);
-                $input_value = $surat->input_value()->where('input_field_id', $key)->first();
-                $input_value->value = $file_name;
-                $input_value->save();
+                if ($input_value) {
+                    $input_value->update([
+                        'value' => $file_name
+                    ]);
+                } else {
+                    $surat->input_value()->create([
+                        'input_field_id' => $key,
+                        'value' => $file_name
+                    ]);
+                }
             } else {
-                $input_value = $surat->input_value()->where('input_field_id', $key)->first();
-                $input_value->value = $value;
-                $input_value->save();
+                if ($input_value) {
+                    $input_value->update([
+                        'value' => $value
+                    ]);
+                } else {
+                    $surat->input_value()->create([
+                        'input_field_id' => $key,
+                        'value' => $value
+                    ]);
+                }
             }
         }
-
-        return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil update');
+    
+        return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil Diperbarui');
     }
+    
 }
