@@ -24,7 +24,7 @@ class Admin
         // dd($request->path());
 
         if($request->path() === 'admin/dashboard' || $request->path() === 'admin') {
-            return redirect()->route('dashboard');
+            return redirect()->route('user.buat-surat');
         }
         return redirect()->back()->with('error', 'anda tidak memiliki akses');
     }

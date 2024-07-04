@@ -33,11 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
     // user routes
     Route::middleware(User::class)->group( function () {
         Route::get('/', function () {
-            return redirect()->route('dashboard');
+            return redirect()->route('user.buat-surat');
         });
-        Route::get('/dashboard', function () {
-            return view('user.dashboard');
-        })->name('dashboard');
+        // Route::get('/dashboard', function () {
+        //     return view('user.dashboard');
+        // })->name('dashboard');
         Route::get("/buat-surat", [BuatSuratController::class, 'index'])->name('user.buat-surat');
         Route::get("/buat-surat/pindah", [SuratPindahController::class, 'create'])->name('user.buat-surat.pindah.create');
         Route::post("/buat-surat/pindah", [SuratPindahController::class, 'store'])->name('user.buat-surat.pindah.store');

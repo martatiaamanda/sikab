@@ -44,9 +44,9 @@ class AuthenticatedSessionController extends Controller
         } 
 
         if (Str::contains($intended, '/admin')) {
-            return redirect()->route('dashboard');
+            return redirect()->route('user.buat-surat');
         }
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('user.buat-surat', absolute: false));
 
 
     }
