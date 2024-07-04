@@ -61,6 +61,18 @@ class AdminSuratController extends Controller
         return view('admin.surat.show', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
     }
 
+    public function showPindah($id)  {
+        $surat = surat::where('id', $id)->first();
+
+        if (!$surat) {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
+        }
+
+        $surat_pindah = $surat->surat_pindah;
+
+        return view('admin.surat.pindah.show', compact('surat', 'surat_pindah'));
+    }
+
 
     public function konfirmasi(Request $request, $id)
     {

@@ -398,6 +398,48 @@
                     </div>
 
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+                        Data Docukent</h6>
+
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                1
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga<span
+                                    class="text-danger  font-italic">*(pdf)</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="kk" name="kk"
+                                placeholder="Kartu Keluarga">
+                            @error('kk')
+                                <p class="text-danger p-0 m-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                2
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli<span
+                                    class="text-danger font-italic">*(pdf)</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="ktp" name="ktp"
+                                placeholder="KTP Asli">
+                            @error('ktp')
+                                <p class="text-danger p-0 m-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                         Data Pengikut</h6>
 
 

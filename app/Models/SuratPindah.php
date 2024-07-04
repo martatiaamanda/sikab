@@ -30,6 +30,9 @@ class SuratPindah extends Model
         'kabupaten_tujuan',
         'provinsi_tujuan',
         'alasan_pindah',
+
+        'kk',
+        'ktp'
     ];
 
     public $timestamps = false;

@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/surat/pengajuan', [AdminSuratController::class, 'pengajuan'])->name('admin.pengajuan');
         Route::get('/surat/done', [AdminSuratController::class, 'done'])->name('admin.done');
 
+        Route::get('/surat/pindah/{id}/show', [AdminSuratController::class, 'showPindah'])->name('admin.surat.pindah.show');
         Route::get('/surat/{id}/show', [AdminSuratController::class, 'show'])->name('admin.surat.show');
         // Route::get('/surat/{id}/edit', [AdminSuratController::class, 'edit'])->name('admin.surat.edit');
 

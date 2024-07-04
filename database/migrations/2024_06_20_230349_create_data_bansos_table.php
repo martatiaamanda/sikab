@@ -19,17 +19,10 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->string('nama_ibu');
-            $table->string('umur_ibu');
-            $table->string('pekerjaan_ibu');
-            $table->string('alamat_ibu');
-            $table->string('nama_ayah');
-            $table->string('umur_ayah');
-            $table->string('pekerjaan_ayah');
-            $table->string('alamat_ayah');
             $table->string('kk');
             $table->string('ktp');
             $table->string('sktm');
+            $table->string('pengantar_rt');
             // $table->timestamps();
         });
     }

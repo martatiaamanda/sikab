@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('kabupaten_tujuan');
             $table->string('provinsi_tujuan');
             $table->string('alasan_pindah');
+
+            $table->string('kk');
+            $table->string('ktp');
         });
     }
 

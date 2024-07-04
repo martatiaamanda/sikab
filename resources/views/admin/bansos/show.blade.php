@@ -133,155 +133,12 @@
                 <div class="row align-items-center">
                     {{-- @foreach ($data_types as $data_type) --}}
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-                        Data Diri Ibu</h6>
-
-                    {{-- @foreach ($data_type->input_fields as $input_field) --}}
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                1
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="nama_ibu">Nama Ibu></label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="nama_ibu" name="nama_ibu"
-                                placeholder="Nama Lengkap" value="{{ $bansos->data_bansos->nama_ibu }}" disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                2
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="umur_ibu">Umur</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="umur_ibu" name="umur_ibu"
-                                placeholder="Umur" value="{{ $bansos->data_bansos->umur_ibu }}" disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                3
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="pekerjaan_ibu">Pekerjaaan</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu"
-                                placeholder="pekerjaan" value="{{ $bansos->data_bansos->pekerjaan_ibu }}" disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                4
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="alamat_ibu">Alamat</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <textarea class="form-control" name="alamat_ibu" id="alamat_ibu" aria-label="With textarea"
-                                placeholder="ALmat Lengkap" disabled>{{ $bansos->data_bansos->alamat_ibu }}</textarea>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center">
-                    {{-- @foreach ($data_types as $data_type) --}}
-                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-                        Data Diri Ayah</h6>
-
-                    {{-- @foreach ($data_type->input_fields as $input_field) --}}
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                1
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="nama_ayah">Nama Ayah</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="nama_ayah" name="nama_ayah"
-                                placeholder="Nama Lengkap" value="{{ $bansos->data_bansos->nama_ayah }}" disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                2
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="umur_ayah">Umur</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="number" class="form-control" id="umur_ayah" name="umur_ayah"
-                                placeholder="Umur" value="{{ $bansos->data_bansos->umur_ayah }}" disabled>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                3
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="pekerjaan_ayah">Pekerjaaan</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah"
-                                placeholder="Pekerjaan" value="{{ $bansos->data_bansos->pekerjaan_ayah }}" disabled>
-
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                4
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="alamat_ayah">Alamat</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <textarea class="form-control" name="alamat_ayah" id="alamat_ayah" aria-label="With textarea"
-                                placeholder="ALmat Lengkap" disabled>{{ $bansos->data_bansos->alamat_ayah }}</textarea>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center">
-                    {{-- @foreach ($data_types as $data_type) --}}
-                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                         Dokumen Tambahan</h6>
 
                     {{-- @foreach ($data_type->input_fields as $input_field) --}}
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
                                 1
                             </p>
                             <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga</label>
@@ -394,6 +251,48 @@
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
                                             src="{{ asset('storage/bansos/' . $bansos->data_bansos->sktm) }}"
+                                            width="100%" height="100%" type='application/pdf'>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                3
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Pengantar dari RT/RW
+                                setempat</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <div class="form-control ">
+                                <button type="button" class="border-0 bg-transparent w-100 text-start"
+                                    data-bs-toggle="modal" data-bs-target="#pengantar">
+                                    {{ $bansos->data_bansos->pengantar_rt }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="modal modal-fullscreen fade modal-xl " id="pengantar" tabindex="-1"
+                            role="dialog" aria-labelledby="pengantarLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+                                <div class="modal-content rounded rounded-3">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="pengantarLabel">Surat Pengantar
+                                            dari RT/RW</h5>
+                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed class="p-0 m-0"
+                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->pengantar_rt) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>

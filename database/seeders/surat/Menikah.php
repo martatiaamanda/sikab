@@ -139,6 +139,27 @@ class Menikah extends Seeder
                 'validate' => 'required'
             ],
         ]);
+
+        
+        $data_document = DataType::create([
+            'name' => 'Data Dokumen',
+            'jenis_surat_id' => 5,
+        ]);
+
+        $data_document->input_fields()->createMany([
+            [
+                'name' => 'ktp',
+                'type' => 'file',
+                'title' => 'KTP',
+                'validate' => null
+            ],
+            [
+                'name' => 'kk',
+                'type' => 'file',
+                'title' => 'KK',
+                'validate' => null
+            ],
+        ]);
         
     }
 }

@@ -1,16 +1,61 @@
 <x-app-layout>
-    <x-slot name="title">Buat Surat</x-slot>
+    <x-slot name="title">Detail Surat</x-slot>
 
     <section class="m-3">
         <div class=" bg-white shadow border-radius-lg p-4">
             <div class="card-header pb-0 text-left bg-transparent">
-                <h3 class="font-weight-bolder text-info text-gradient">Surat Pindah</h3>
-                <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p>
+                <h3 class="font-weight-bolder text-info text-gradient">{{ $surat->jenis_surat->name }}</h3>
+                {{-- <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p> --}}
             </div>
-            <form action='{{ route('user.buat-surat.pindah.store') }}' method="POST" enctype="multipart/form-data">
-                @csrf
+            <form>
+                {{-- @csrf --}}
                 <div class="row align-items-center">
-                    {{-- @foreach ($data_types as $data_type) --}}
+
+                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Surat</h6>
+                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                        <label class="fs-6 m-0 ps-2">Nomor Surat</label>
+                    </div>
+                    <div class="col-md-6 col-lg-7 col-sm-6">
+                        <p class=" text-secondary fs-6  font-weight-bold">: {{ $surat->nomor_surat ?? '-' }}</p>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                        <label class="fs-6 m-0 ps-2">Tanggal Dibuat</label>
+                    </div>
+                    <div class="col-md-6 col-lg-7 col-sm-6">
+                        <p class=" text-secondary fs-6  font-weight-bold">:
+                            {{ \Carbon\Carbon::parse($surat->tanggal_surat)->format('d F Y') }}</p>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                        <label class="fs-6 m-0 ps-2">Status</label>
+                    </div>
+                    <div class="col-md-6 col-lg-7 col-sm-6">
+                        <p class=" text-secondary fs-6  font-weight-bold">:
+                            <span
+                                class="badge badge-sm bg-gradient-{{ $surat->status == 'diterima' ? 'success' : ($surat->status == 'ditolak' ? 'danger' : 'warning') }}">{{ $surat->status }}</span>
+                        </p>
+                    </div>
+
+                    @if ($surat->status == 'ditolak')
+                        <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                            <label class="fs-6 m-0 ps-2">Catatan</label>
+                        </div>
+                        <div class="col-md-6 col-lg-7 col-sm-6">
+                            <p class=" text-secondary fs-6  font-weight-bold">: {{ $surat->catatan ?? '-' }}</p>
+                        </div>
+                    @endif
+
+                    @if ($surat->status == 'diterima')
+                        <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                            <label class="fs-6 m-0 ps-2">Tanggal Diterima</label>
+                        </div>
+                        <div class="col-md-6 col-lg-7 col-sm-6">
+                            <p class=" text-secondary fs-6  font-weight-bold">:
+                                {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}</p>
+                        </div>
+                    @endif
+
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                         Data Diri</h6>
 
@@ -26,7 +71,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama lengkap" value="{{ old('nama') }}">
+                                placeholder="Nama lengkap" value="{{ $surat_pindah->nama }}" disabled>
                             @error('nama')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -45,11 +90,13 @@
 
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
-                            <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+                            <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" disabled>
                                 <option value="">Pilih Jenis Kelamin</option>
-                                <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki
+                                <option value="L" {{ $surat_pindah->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                    Laki-laki
                                 </option>
-                                <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan
+                                <option value="P" {{ $surat_pindah->jenis_kelamin == 'P' ? 'selected' : '' }}>
+                                    Perempuan
                                 </option>
                             </select>
 
@@ -71,7 +118,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}">
+                                placeholder="Tempat Lahir" value="{{ $surat_pindah->tempat_lahir }}" disabled>
                             @error('tempat_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -90,7 +137,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                placeholder="" value="{{ old('tanggal_lahir') }}">
+                                placeholder="" value="{{ $surat_pindah->tanggal_lahir }}" disabled>
                             @error('tanggal_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -109,7 +156,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="kewarganegaraan" name="kewarganegaraan"
-                                placeholder="Kewarganegaraan" value="{{ old('kewarganegaraan') }}">
+                                placeholder="Kewarganegaraan" value="{{ $surat_pindah->kewarganegaraan }}" disabled>
                             @error('kewarganegaraan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -117,16 +164,18 @@
                     </div>
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
                                 6
                             </p>
-                            <label class="fs-6 m-0 ps-2" for="agama">Agama<span class="text-danger">*</span></label>
+                            <label class="fs-6 m-0 ps-2" for="agama">Agama<span
+                                    class="text-danger">*</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="agama" name="agama"
-                                placeholder="Agama" value="{{ old('agama') }}">
+                                placeholder="Agama" value="{{ $surat_pindah->agama }}" disabled>
                             @error('agama')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -145,7 +194,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="perkawinan" name="perkawinan"
-                                placeholder="Status Perkawinan" value="{{ old('perkawinan') }}">
+                                placeholder="Status Perkawinan" value="{{ $surat_pindah->perkawinan }}" disabled>
                             @error('perkawinan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -164,7 +213,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                placeholder="Pekerjaan " value="{{ old('pekerjaan') }}">
+                                placeholder="Pekerjaan " value="{{ $surat_pindah->pekerjaan }}" disabled>
                             @error('pekerjaan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -183,7 +232,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="pendidikan" name="pendidikan"
-                                placeholder="Pendidikan Terakhir" value="{{ old('pendidikan') }}">
+                                placeholder="Pendidikan Terakhir" value="{{ $surat_pindah->pendidikan }}" disabled>
                             @error('pendidikan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -202,7 +251,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="no_kk" name="no_kk"
-                                placeholder="Nomor KK" value="{{ old('no_kk') }}">
+                                placeholder="Nomor KK" value="{{ $surat_pindah->no_kk }}" disabled>
                             @error('no_kk')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -225,7 +274,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <textarea class="form-control" name="alamat_asal" id="alamat_asal" aria-label="With textarea"
-                                placeholder="ALmat Lengkap">{{ old('alamat_asal') }}</textarea>
+                                placeholder="ALmat Lengkap" disabled>{{ $surat_pindah->alamat_asal }}</textarea>
 
                             {{-- <input type="text" class="form-control" id="alamat_asal" name="alamat_asal" --}}
                             {{-- placeholder="Alamat Asal" value="{{ old('alamat_asal') }}"> --}}
@@ -247,7 +296,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="alamat_tujuan" name="alamat_tujuan"
-                                placeholder="Alamat tujuan" value="{{ old('alamat_tujuan') }}">
+                                placeholder="Alamat tujuan" value="{{ $surat_pindah->alamat_tujuan }}" disabled>
                             @error('alamat_tujuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -266,7 +315,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="desa_tujuan" name="desa_tujuan"
-                                placeholder="Desa tujuan" value="{{ old('desa_tujuan') }}">
+                                placeholder="Desa tujuan" value="{{ $surat_pindah->desa_tujuan }}" disabled>
                             @error('desa_tujuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -285,7 +334,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="kecamatan_tujuan" name="kecamatan_tujuan"
-                                placeholder="Kecamatan tujuan" value="{{ old('kecamatan_tujuan') }}">
+                                placeholder="Kecamatan tujuan" value="{{ $surat_pindah->kecamatan_tujuan }}"
+                                disabled>
                             @error('kecamatan_tujuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -304,7 +354,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="kabupaten_tujuan" name="kabupaten_tujuan"
-                                placeholder="Kabupaten tujuan" value="{{ old('kabupaten_tujuan') }}">
+                                placeholder="Kabupaten tujuan" value="{{ $surat_pindah->kabupaten_tujuan }}"
+                                disabled>
                             @error('kabupaten_tujuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -323,7 +374,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="provinsi_tujuan" name="provinsi_tujuan"
-                                placeholder="Provinsi tujuan" value="{{ old('provinsi_tujuan') }}">
+                                placeholder="Provinsi tujuan" value="{{ $surat_pindah->provinsi_tujuan }}" disabled>
                             @error('provinsi_tujuan')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -342,53 +393,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <textarea class="form-control" name="alasan_pindah" id="alasan_pindah" aria-label="With textarea"
-                                placeholder="Alasan Pindah">{{ old('alasan_pindah') }}</textarea>
-
-                            {{-- <input type="text" class="form-control" id="provinsi_tujuan" name="provinsi_tujuan"
-                                placeholder="Provinsi tujuan" value="{{ old('provinsi_tujuan') }}"> --}}
+                                placeholder="Alasan Pindah" disabled>{{ $surat_pindah->alasan_pindah }}</textarea>
                             @error('alasan pindah')
-                                <p class="text-danger p-0 m-0">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-                        Data Docukent</h6>
-
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                1
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga<span
-                                    class="text-danger  font-italic">*(pdf)</span></label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="file" class="form-control" id="kk" name="kk"
-                                placeholder="Kartu Keluarga">
-                            @error('kk')
-                                <p class="text-danger p-0 m-0">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 my-3">
-                        <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                style="width: 30px">
-                                2
-                            </p>
-                            <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli<span
-                                    class="text-danger font-italic">*(pdf)</span></label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-7">
-                        <div class="form-group">
-                            <input type="file" class="form-control" id="ktp" name="ktp"
-                                placeholder="KTP Asli">
-                            @error('ktp')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
                         </div>
@@ -397,80 +403,271 @@
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                         Data Pengikut</h6>
 
-                    <div class="col-md-12 col-lg-11">
-                        <div class="row" id="subSuratPindah">
 
-
-
+                    {{-- @foreach ($data_type->input_fields as $input_field) --}}
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                1
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <div class="form-control ">
+                                <button type="button" class="border-0 bg-transparent w-100 text-start"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    {{ $surat_pindah->kk }}
+                                </button>
+                            </div>
                         </div>
 
-                        <div class="d-flex justify-content-start">
-                            <button type="button" id="btnAddPengikut"
-                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white">Tambah
-                                Pengikut</button>
+                        <div class="modal modal-fullscreen fade modal-xl " id="exampleModal" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+                                <div class="modal-content rounded rounded-3">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Kartu Keluarga</h5>
+                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed class="p-0 m-0"
+                                            src="{{ asset('storage/surat/' . $surat_pindah->kk) }}" width="100%"
+                                            height="100%" type='application/pdf'>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                2
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <div class="form-control ">
+                                <button type="button" class="border-0 bg-transparent w-100 text-start"
+                                    data-bs-toggle="modal" data-bs-target="#modalKtp">
+                                    {{ $surat_pindah->ktp }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="modal modal-fullscreen fade modal-xl " id="modalKtp" tabindex="-1"
+                            role="dialog" aria-labelledby="modalKtpLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+                                <div class="modal-content rounded rounded-3">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalKtpLabel">KTP</h5>
+                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed class="p-0 m-0"
+                                            src="{{ asset('storage/surat/' . $surat_pindah->ktp) }}" width="100%"
+                                            height="100%" type='application/pdf'>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+                        Data Pengikut</h6>
+
+
+                    <div class="col-md-12 col-lg-11 my-3">
+                        <table class="table align-items-center mb-0 w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
+                                    <th class="text-uppercase text-info   font-weight-bolder opacity-7 ps-2">Nama</th>
+                                    <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                        Jenis Kelamin</th>
+                                    <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                        Hubungan</th>
+                                    <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
+                                        Keterangan</th>
+                                    {{-- <th class="text-info opacity-7"></th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($surat_pindah->sub_surat_pindah as $sub_surat_pindah)
+                                    <tr>
+                                        <td>
+                                            <p class=" ps-3 text-secondary  font-weight-bold">{{ $loop->iteration }}
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <p class=" text-secondary  font-weight-bold">
+                                                {{ $sub_surat_pindah->nama }}</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span
+                                                class="text-secondary  font-weight-bold">{{ $sub_surat_pindah->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span
+                                                class="text-secondary  font-weight-bold">{{ $sub_surat_pindah->hubungan }}</span>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span
+                                                class="text-secondary  font-weight-bold">{{ $sub_surat_pindah->keterangan }}</span>
+                                        </td>
+                                        {{-- <td>
+                                            {{ $pengikut }}
+                                        </td> --}}
+                                    </tr>
+                                @endforeach
+                        </table>
+                    </div>
+
+
 
 
 
                 </div>
                 <div class="col-md-11 ">
-                    <div class="d-flex justify-content-end">
-                        <button type="submit"
-                            class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Simpan</button>
+                    <div class="d-flex justify-content-end gap-3">
+                        {{-- <a href="{{ back()->getTargetUrl() }}"
+                            class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a> --}}
+
+                        @if ($surat->status == 'diproses')
+                            <button type="button" data-bs-toggle="modal" id="ButtonOk"
+                                onclick="showmodal('diterima')"
+                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white">Terima</button>
+                            <button type="button" data-bs-toggle="modal" id="ButtonOk"
+                                onclick="showmodal('ditolak')"
+                                class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
+                        @endif
+
+                        @if ($surat->status == 'diterima')
+                            <button type="button" onclick="printContent()"
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Cetak</button>
+                        @endif
+                        <a href="{{ back()->getTargetUrl() }}"
+                            class="btn bg-gradient-faded-secondary mt-4 mb-0 px-5 text-white">Kembali</a>
                     </div>
                 </div>
 
             </form>
         </div>
 
+        <div class="modal fade " id="modalOk" tabindex="-1" role="dialog" aria-labelledby="modalOkLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalOkLabel">catatan surat</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action='{{ route('admin.surat.konfirmasi', [$surat->id]) }}' method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="row mb-5">
+                                <div class=" mb-3">
+                                    <label for="catatan">Caratan</label>
+                                    <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>
+                                    @error('catatan')
+                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3" style="display: none ">
+                                    <label for="status">status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="diterima">ok
+                                        </option>
+                                        <option value="ditolak">
+                                            no
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-gradient-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <x-slot name='scripts'>
-
         <script>
-            document.getElementById('btnAddPengikut').addEventListener('click', function() {
-                let subSurats = document.getElementById('subSuratPindah');
-                let index = subSurats.children.length;
-                console.log(index);
-                let newSubSurat = `
-                            <div class="row form-group">
-                                <div class="col-12">
-                                    <spanc class=" text-xs font-weight-bolder opacity-6">pengikut ${index+1}</spanc>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="subSuratPindah[${index}][nama]">Nama Lengkap<span class="text-danger">*</span></label>
-                                    <input name="subSuratPindah[${index}][nama]" id="subSuratPindah[${index}][nama]" type="text" class="form-control"
-                                        placeholder="Nama Lengkap" value="{{ old('subSuratPindah[${index}][nama]') }}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="subSuratPindah[${index}][jenis_kelamin]">Jenis Kelamin<span class="text-danger">*</span></label>
-                                    <select id="subSuratPindah[${index}][jenis_kelamin]" name="subSuratPindah[${index}][jenis_kelamin]" class="form-control">
-                                        <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="L" {{ old('subSuratPindah[${index}][jenis_kelamin]') == 'L' ? 'selected' : '' }}>
-                                            Laki-laki
-                                        </option>
-                                        <option value="P" {{ old('subSuratPindah[${index}][jenis_kelamin]') == 'P' ? 'selected' : '' }}>
-                                            Perempuan
-                                        </option>
-                                    </select>
-                                </div>
+            const inputStatus = document.getElementById('status');
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="subSuratPindah[${index}][hubungan]">Hubungan Keluarga<span class="text-danger">*</span></label>
-                                    <input name="subSuratPindah[${index}][hubungan]" id="subSuratPindah[${index}][hubungan]" type="text" class="form-control"
-                                        placeholder="Hubungan Keluarga" value="{{ old('subSuratPindah[${index}][hubungan]') }}">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="subSuratPindah[${index}][keterangan]">Keterangan<span class="text-danger">*</span></label>
-                                    <input name="subSuratPindah[${index}][keterangan]" id="subSuratPindah[${index}][keterangan]" type="text" class="form-control"
-                                        placeholder="Keterangan" value="{{ old('subSuratPindah[${index}][keterangan]') }}">
-                                </div>
-                            </div>
-                `
-                subSurats.insertAdjacentHTML('beforeend', newSubSurat);
-            });
+            const showmodal = (status) => {
+                const data = status
+                console.log(data);
+                inputStatus.value = data;
+                const modal = new bootstrap.Modal(document.getElementById('modalOk'));
+                modal.show();
+            }
+            // const btnOk = document.getElementById('ButtonOk');
+            // btnOk.addEventListener('click', function() {
+            //     const modal = new bootstrap.Modal(document.getElementById('modalOk'));
+            //     modal.show();
+            // });
+            const session = {!! json_encode($errors->all()) !!};
+            const modalOk = document.getElementById('modalOK');
+
+            if (session.length > 0) {
+                const modal = new bootstrap.Modal(modalOk);
+                modal.show();
+            }
+
+            function printContent() {
+                console.log('ini');
+                fetch("{{ route('user.riwayat-surat.cetak', [$surat->id]) }}", {
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(html);
+                        iframeDoc.close();
+                        iframe.onload = () => {
+                            iframe.contentWindow.focus();
+                            iframe.contentWindow.print();
+                            document.body.removeChild(iframe);
+                        };
+
+                    });
+            }
         </script>
     </x-slot>
 

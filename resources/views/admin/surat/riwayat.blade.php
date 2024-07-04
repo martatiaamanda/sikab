@@ -67,7 +67,7 @@
                                                         Edit
                                                     </a>
                                                 @endif --}}
-                                                <a href="{{ route('admin.surat.show', [$history->id]) }}"
+                                                <a href="{{ $history->jenis_surat->slug == 'surat-pindah' ? route('admin.surat.pindah.show', [$history->id]) : route('admin.surat.show', [$history->id]) }}"
                                                     class="text-secondary font-weight-bold text-decoration-underline"
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     detail

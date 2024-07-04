@@ -18,17 +18,18 @@ class DataBansos extends Model
         'tempat_lahir',
         'tanggal_lahir',
         'jenis_kelamin',
-        'nama_ibu',
-        'umur_ibu',
-        'pekerjaan_ibu',
-        'alamat_ibu',
-        'nama_ayah',
-        'umur_ayah',
-        'pekerjaan_ayah',
-        'alamat_ayah',
+        // 'nama_ibu',
+        // 'umur_ibu',
+        // 'pekerjaan_ibu',
+        // 'alamat_ibu',
+        // 'nama_ayah',
+        // 'umur_ayah',
+        // 'pekerjaan_ayah',
+        // 'alamat_ayah',
         'kk',
         'ktp',
         'sktm',
+        'pengantar_rt'
     ];
 
     public $timestamps = false;

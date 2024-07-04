@@ -7,7 +7,7 @@
                 <h3 class="font-weight-bolder text-info text-gradient">{{ $jenis_surat->name }}</h3>
                 {{-- <p class="mb-0">silahkan isi semua dokumen yang diperlukan</p> --}}
             </div>
-            <form method="POST" action="{{route('user.surat.update', [$history->id])}}">
+            <form method="POST" action="{{ route('user.surat.update', [$history->id]) }}">
                 @csrf
                 @method('PUT')
                 {{-- @csrf --}}
@@ -80,7 +80,7 @@
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
                                         <select id="{{ $input_field->name }}" name="{{ $input_field->name }}"
-                                            class="form-control" >
+                                            class="form-control">
                                             <option {{ $surat_value[$input_field->id] == 'L' ? 'selected' : '' }}
                                                 value="L">Laki-laki</option>
                                             <option {{ $surat_value[$input_field->id] == 'P' ? 'selected' : '' }}
@@ -94,37 +94,46 @@
                             @elseif ($input_field->type == 'file')
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
-                                        <div class="form-control ">
-                                            <button type="button" class="border-0 bg-transparent w-100 text-start"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                {{ $surat_value[$input_field->id] }}
-                                            </button>
-                                        </div>
+                                        <!-- Ubah Button -->
+                                        <button type="button" id="ubahButton" class="btn btn-primary mb-2"
+                                            onclick="toggleFileInput('{{ $input_field->name }}')">Ubah</button>
 
+                                        <!-- File Input -->
+                                        <input type="file" class="form-control" id="{{ $input_field->name }}"
+                                            name="{{ $input_field->name }}" style="display: none;">
 
-                                        <div class="modal modal-fullscreen fade modal-xl " id="exampleModal"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable "
-                                                role="document">
-                                                <div class="modal-content rounded rounded-3">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close text-dark"
-                                                            data-bs-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <embed class="p-0 m-0"
-                                                            src="{{ asset('storage/surat/' . $surat_value[$input_field->id]) }}"
-                                                            width="100%" height="100%" type='application/pdf'>
+                                        <!-- Validation Error Handling -->
+                                        @error($input_field->name)
+                                            <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                        @enderror
 
-                                                    </div>
+                                        <!-- Button to trigger modal -->
+                                        <button type="button" class="btn btn-secondary w-100 text-start mt-2"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            {{ $surat_value[$input_field->id] }}
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal to show document -->
+                                    <div class="modal modal-fullscreen fade modal-xl" id="exampleModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content rounded rounded-3">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Document Viewer</h5>
+                                                    <button type="button" class="btn-close text-dark"
+                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <embed class="p-0 m-0"
+                                                        src="{{ asset('storage/surat/' . $surat_value[$input_field->id]) }}"
+                                                        width="100%" height="100%" type='application/pdf'>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             @else
@@ -133,7 +142,7 @@
                                         <input type="{{ $input_field->type }}" class="form-control"
                                             id="{{ $input_field->name }}" name="{{ $input_field->name }}"
                                             placeholder="{{ $input_field->title }}"
-                                            value="{{ $surat_value[$input_field->id] }}" >
+                                            value="{{ $surat_value[$input_field->id] }}">
                                         @error($input_field->name)
                                             <p class="text-danger p-0 m-0">{{ $message }}</p>
                                         @enderror
@@ -146,7 +155,7 @@
                 <div class="col-md-11 ">
                     <div class="d-flex justify-content-end">
                         @if ($history->status != 'diterima')
-                            <button type="submit" 
+                            <button type="submit"
                                 class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">simpan</button>
                         @endif
                         <a href="{{ back()->getTargetUrl() }}"
@@ -160,5 +169,13 @@
 
     </section>
 
+    <x-slot name='scripts'>
 
+        <script>
+            function toggleFileInput(fieldName) {
+                var fileInput = document.getElementById(fieldName);
+                fileInput.style.display = fileInput.style.display === 'none' ? 'block' : 'none';
+            };
+        </script>
+    </x-slot>
 </x-app-layout>

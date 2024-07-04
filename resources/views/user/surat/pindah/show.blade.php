@@ -404,6 +404,93 @@
                         Data Pengikut</h6>
 
 
+                    {{-- @foreach ($data_type->input_fields as $input_field) --}}
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                1
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <div class="form-control ">
+                                <button type="button" class="border-0 bg-transparent w-100 text-start"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    {{ $surat_pindah->kk }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="modal modal-fullscreen fade modal-xl " id="exampleModal" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+                                <div class="modal-content rounded rounded-3">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Kartu Keluarga</h5>
+                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed class="p-0 m-0"
+                                            src="{{ asset('storage/surat/' . $surat_pindah->kk) }}" width="100%"
+                                            height="100%" type='application/pdf'>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
+                                2
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <div class="form-control ">
+                                <button type="button" class="border-0 bg-transparent w-100 text-start"
+                                    data-bs-toggle="modal" data-bs-target="#modalKtp">
+                                    {{ $surat_pindah->ktp }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="modal modal-fullscreen fade modal-xl " id="modalKtp" tabindex="-1"
+                            role="dialog" aria-labelledby="modalKtpLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
+                                <div class="modal-content rounded rounded-3">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalKtpLabel">KTP</h5>
+                                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <embed class="p-0 m-0"
+                                            src="{{ asset('storage/surat/' . $surat_pindah->ktp) }}" width="100%"
+                                            height="100%" type='application/pdf'>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
+                        Data Pengikut</h6>
+
+
                     <div class="col-md-12 col-lg-11 my-3">
                         <table class="table align-items-center mb-0 w-full">
                             <thead>

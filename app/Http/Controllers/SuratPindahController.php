@@ -26,12 +26,29 @@ class SuratPindahController extends Controller
         return view('user.surat.pindah.create');
     }
 
+    protected function uploadFile($field, $file, $surat_id, ) {
+
+        $file_name = time() . '-' . $surat_id . '-' . $field . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/surat', $file_name);
+
+        return $file_name;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         //
+
+        $user = auth()->user();
+        $userDocument = $user->userDocument;
+
+        // Determine required fields based on the existence of userDocument kk and ktp
+        $kkRequired = !$userDocument || !$userDocument->kk ? 'required' : 'nullable';
+        $ktpRequired = !$userDocument || !$userDocument->ktp ? 'required' : 'nullable';
+
+
         $request->validate([
             'nama' => 'required',
             'jenis_kelamin' => 'required',
@@ -50,6 +67,8 @@ class SuratPindahController extends Controller
             'kabupaten_tujuan' => 'required',
             'provinsi_tujuan' => 'required',
             'alasan_pindah' => 'required',
+            "kk" => [$kkRequired, 'file','mimes:pdf','max:2048'],
+            "ktp" => [$ktpRequired,'file','mimes:pdf','max:2048'],
         ], [
             'required' => ':attribute tidak boleh kosong'
         ]);
@@ -58,12 +77,13 @@ class SuratPindahController extends Controller
 
         $jenis_surat = JenisSurat::where('slug', 'surat-pindah')->first();
 
-        $user = auth()->user();
-
         $surat = surat::create([
             'user_id' => $user->id,
             'jenis_surat_id' => $jenis_surat->id,
         ]);
+
+        $ktp = request()->file('kk') ? $this->uploadFile('kk', request()->file('kk'), $surat->id) : $userDocument->kk;
+        $kk = request()->file('ktp') ? $this->uploadFile('ktp', request()->file('ktp'), $surat->id) : $userDocument->ktp;
 
         $surat_pindah = $surat->surat_pindah()->create([
             'jenis_surat_id' => $jenis_surat->id,
@@ -84,11 +104,19 @@ class SuratPindahController extends Controller
             'kabupaten_tujuan' => $request->kabupaten_tujuan,
             'provinsi_tujuan' => $request->provinsi_tujuan,
             'alasan_pindah' => $request->alasan_pindah,
+
+            'kk' => $kk,
+            'ktp' => $ktp,
         ]);
 
-        $surat_pindah->sub_surat_pindah()->createMany(
-            $request->subSuratPindah
-        );
+        if($request->has('subSuratPindah')) {
+            $surat_pindah->sub_surat_pindah()->createMany(
+                $request->subSuratPindah
+            );
+        }
+        // $surat_pindah->sub_surat_pindah()->createMany(
+        //     $request->subSuratPindah
+        // );
         
         return redirect()->route('user.riwayat-surat')->with('success', 'Surat Berhasil Dibuat');
 
@@ -146,6 +174,9 @@ class SuratPindahController extends Controller
 
         $surat_pindah = $surat->surat_pindah;
 
+        $kk = request()->file('kk') ? $this->uploadFile('kk', request()->file('kk'), $surat->id) : $surat_pindah->kk;
+        $ktp = request()->file('ktp') ? $this->uploadFile('ktp', request()->file('ktp'), $surat->id) : $surat_pindah->ktp;
+
         $surat_pindah->update([
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -164,6 +195,9 @@ class SuratPindahController extends Controller
             'kabupaten_tujuan' => $request->kabupaten_tujuan,
             'provinsi_tujuan' => $request->provinsi_tujuan,
             'alasan_pindah' => $request->alasan_pindah,
+
+            'kk' => $kk,
+            'ktp' => $ktp,
         ]);
 
         $sub_surat_pindah = $surat_pindah->sub_surat_pindah;
