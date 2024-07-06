@@ -1,4 +1,4 @@
-<x-app-layout>
+'<x-app-layout>
     <x-slot name="title">Buat Surat</x-slot>
 
 

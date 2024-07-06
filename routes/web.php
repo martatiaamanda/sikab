@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\admin\AdminSuratController;
 use App\Http\Controllers\admin\bansosController as AdminBansosController;
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
@@ -71,9 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/', function () {
             return redirect()->route('admin.dashboard');
         });
-        Route::get('/dashboard', function () {
-                    return view('admin.dashoard');
-                })->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::get('/user', [userController::class, 'index'])->name('admin.user');
 
@@ -92,6 +91,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/surat', [AdminSuratController::class, 'index'])->name('admin.surat');
         Route::get('/surat/pengajuan', [AdminSuratController::class, 'pengajuan'])->name('admin.pengajuan');
         Route::get('/surat/done', [AdminSuratController::class, 'done'])->name('admin.done');
+
+        Route::get('/surat/{slug}', [AdminSuratController::class, 'jenis'])->name('admin.surat.jenis');
 
         Route::get('/surat/pindah/{id}/show', [AdminSuratController::class, 'showPindah'])->name('admin.surat.pindah.show');
         Route::get('/surat/{id}/show', [AdminSuratController::class, 'show'])->name('admin.surat.show');

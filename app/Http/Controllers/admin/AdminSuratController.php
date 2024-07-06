@@ -36,6 +36,15 @@ class AdminSuratController extends Controller
         return view('admin.surat.riwayat', compact('histories', 'page_title'));
     }
 
+    public function jenis($slug)  {
+        $jenis_surat = JenisSurat::where('slug', $slug)->first();
+        $histories = $jenis_surat->surats()->orderByDesc('id')->paginate(10);
+        $page_title = 'Surat '.$jenis_surat->name;
+
+        return view('admin.surat.riwayat', compact('histories', 'page_title'));
+        
+    }
+
     public function show($id)
     {
         $history = surat::where('id', $id)->first();
