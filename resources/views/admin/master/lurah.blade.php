@@ -39,17 +39,27 @@
                                 </div>
 
                                 <div class="col-md-7 mb-3">
-                                    <label for="tanda_tangan">Tanda Tangan</label>
-                                    <div class="">
-                                        <div class="w-25 h-25">
-                                            <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
-                                                alt="ttd" class="w-100 border-radius-lg shadow-sm">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="tanda_tangan">Tanda Tangan</label>
+                                            <div class="">
+                                                <div class="w-25 h-25">
+                                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                                                        alt="ttd" class="w-100 border-radius-lg shadow-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="stempel">Stempel <span class="text-danger">(foto stemple dengan background transparant)</span></label>
+                                            <div class="">
+                                                <div class="w-25 h-25">
+                                                    <img src="{{ $lurah->stemple ? asset('storage/lurah/' . $lurah->stemple) : 'https://via.placeholder.com/150' }}"
+                                                        alt="ttd" class="w-100 border-radius-lg shadow-sm">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-
                             </div>
 
                             
@@ -88,45 +98,52 @@
                                 placeholder="Nama Lengkap" aria-label="name"
                                 aria-describedby="name-addon" value="{{ $lurah->name }}">
                                 @error('name')
-                                    <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                @enderror
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
                         </div>
                         <div class=" mb-3">
                             <label for="NIP">NIP</label>
                             <input name="NIP" id="NIP" type="text" class="form-control"
                                 placeholder="NIP" aria-label="NIP" value="{{ $lurah->NIP }}">
                                 @error('NIP')
-                                    <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                @enderror
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
                         </div>
                         <div class="mb-3">
                             <div class="row">
                                 <div class="col-6">
                                     <label for="awal_jabatan">Masa Jabtan </label>
-                                    <input type="number" class="form-control" id="awal_jabatan" name="awal_jabatan" min="1900" max="2100" placeholder="YYYY" value="{{$lurah->awal_jabatan}}" required>
+                                    <input type="number" class="form-control" id="awal_jabatan" name="awal_jabatan" min="1900" max="2100" placeholder="YYYY" value="{{ $lurah->awal_jabatan }}" required>
                                     {{-- <input type="year" name="awal_jabatan" id="awal_jabatan" type="text" class="form-control"
                                         placeholder="awal_jabatan" aria-label="awal_jabatan" value="{{ $lurah->awal_jabatan }}"> --}}
                                         @error('awal_jabatan')
-                                            <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                        @enderror
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
                                 </div>
                                 <div class="col-6">
                                     <label for="akhir_jabatan">sampai</label>
-                                    <input type="number" class="form-control" id="akhir_jabatan" name="akhir_jabatan" min="1900" max="2100" placeholder="YYYY" value="{{$lurah->akhir_jabatan}}" required>
+                                    <input type="number" class="form-control" id="akhir_jabatan" name="akhir_jabatan" min="1900" max="2100" placeholder="YYYY" value="{{ $lurah->akhir_jabatan }}" required>
                                     {{-- <input name="akhir_jabatan" id="akhir_jabatan" type="text" class="form-control"
                                         placeholder="akhir_jabatan" aria-label="akhir_jabatan" value="{{ $lurah->akhir_jabatan }}"> --}}
                                         @error('akhir_jabatan')
-                                            <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                        @enderror
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="tanda_tangan">Pilih Foto</label>
+                            <label for="tanda_tangan">Tenda Tangan</label>
                             <input type="file" class="form-control" id="tanda_tangan" name="tanda_tangan" accept=".png">
                                 @error('tanda_tangan')
-                                    <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                @enderror
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="stemple">Stempel</label>
+                            <input type="file" class="form-control" id="stemple" name="stemple" accept=".png">
+                                @error('stemple')
+    <p class="text-danger p-0 m-0">{{ $message }}</p>
+@enderror
                         </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
@@ -143,15 +160,13 @@
 
     <x-slot name='scripts' >
         <script>
-            
+            const session = {!! json_encode($errors->all()) !!};
+            const modalData = document.getElementById('modalUpdate');
 
-        const session = {!! json_encode($errors->all()) !!};
-        const modalData = document.getElementById('modalUpdate');
-
-        if (session.length > 0 ) {
-            const modal = new bootstrap.Modal(modalUpdate);
-            modal.show();
-        }
+            if (session.length > 0) {
+                const modal = new bootstrap.Modal(modalUpdate);
+                modal.show();
+            }
         </script>
     </x-slot>
 

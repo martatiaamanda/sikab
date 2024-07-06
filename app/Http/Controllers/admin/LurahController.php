@@ -41,6 +41,7 @@ class LurahController extends Controller
             'awal_jabatan' => 'required',
             'akhir_jabatan' => 'required',
             'tanda_tangan' => 'required|image|mimes:png|max:2048',
+            'stemple' => 'required|image|mimes:png|max:2048',
             ], [
                 'name.required' => 'Nama Lurah tidak boleh kosong',
                 'NIP.required' => 'NIP tidak boleh kosong',
@@ -50,6 +51,9 @@ class LurahController extends Controller
                 'tanda_tangan.image' => 'Tanda Tangan harus berupa gambar',
                 'tanda_tangan.mimes' => 'Tanda Tangan harus berupa gambar dengan format PNG',
                 'tanda_tangan.max' => 'Tanda Tangan tidak boleh lebih dari 2MB',
+                'stemple.required' => 'Stemple tidak boleh kosong',
+                'stemple.image' => 'Stemple harus berupa gambar',
+                'stemple.mimes' => 'Stemple harus berupa gambar dengan format PNG',
                 
             ]);
 
@@ -60,6 +64,7 @@ class LurahController extends Controller
         $lurah->awal_jabatan = $request->awal_jabatan;
         $lurah->akhir_jabatan = $request->akhir_jabatan;
         $lurah->tanda_tangan = $this->uploadFile($request->file('tanda_tangan'), $request->NIP);
+        $lurah->stemple = $this->uploadFile($request->file('stemple'), $request->NIP);
 
         $lurah->save();
 

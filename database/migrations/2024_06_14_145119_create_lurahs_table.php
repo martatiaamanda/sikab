@@ -18,6 +18,7 @@ return new class extends Migration
             $table->year('awal_jabatan');
             $table->year('akhir_jabatan');
             $table->string('tanda_tangan')->nullable();
+            $table->string('stemple')->nullable();
 
             // $table->timestamps();
         });

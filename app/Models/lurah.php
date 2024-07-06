@@ -16,6 +16,7 @@ class lurah extends Model
         'awal_jabatan',
         'akhir_jabatan',
         'tanda_tangan',
+        'stemple'
     ]; 
 
     public $timestamps = false;

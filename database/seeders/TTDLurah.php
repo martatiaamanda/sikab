@@ -16,6 +16,7 @@ class TTDLurah extends Seeder
         $lurah = lurah::first();
 
         $lurah->tanda_tangan = 'fake-signature-word-vector.jpg';
+        $lurah->stemple = 'fake-stemple-word-vector.png';
         $lurah->save();
     }
 }
