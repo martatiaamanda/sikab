@@ -17,7 +17,7 @@ class JenisSurat extends Model
     ];
 
     public function surats() {
-        return $this->hasMany(Surat::class, 'jenis_surat_id', 'id');
+        return $this->hasMany(surat::class, 'jenis_surat_id', 'id');
     }
 
     public function data_types() {
