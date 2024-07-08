@@ -168,6 +168,9 @@
                 var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", '_blank');
                 printWindow.onload = function() {
                     printWindow.print();
+                    printWindow.onafterprint = function() {
+                        printWindow.close();
+                    };
                 };
 
                 // fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {

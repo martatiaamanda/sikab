@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Keterangan Kelahiran</title>
     <style>
+        @page {
+            size: 210mm 330mm;
+            /* Ukuran kertas F4 */
+            margin: 0;
+            /* Hilangkan margin untuk mengurangi efek header/footer */
+        }
+
         * {
             font-size: 12px
         }
@@ -307,7 +314,7 @@
                     </div>
 
                 </div>
-                <div class="right">
+                <div class="right" style="position: relative">
                     <div class="tanggal">
                         <span>Dikeluarkan : Bandar Lampung</span>
                         <span>pada Tanggal : {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}

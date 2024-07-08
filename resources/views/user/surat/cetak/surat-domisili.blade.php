@@ -1,6 +1,3 @@
-@php
-    use Carbon\Carbon;
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Keterangan Kelahiran</title>
     <style>
+        @page {
+            size: 210mm 330mm;
+            /* Ukuran kertas F4 */
+            margin: 0;
+            /* Hilangkan margin untuk mengurangi efek header/footer */
+        }
+
         /* * {
+        
             font-size: 12px
         } */
 
@@ -21,9 +26,9 @@
         }
 
         .container {
-            /* width: 210mm;
+            width: 210mm;
             max-width: 210mm;
-            min-height: 330mm; */
+            min-height: 330mm;
             box-sizing: border-box;
             margin: auto;
         }
@@ -48,12 +53,12 @@
         }
 
         .content {
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
         .content .paragraph {
-            /* margin: 8mm 0; */
-            text-indent: 10px;
+            margin: 8mm 0;
+            text-indent: 20px;
         }
 
         .content .section-title {
@@ -71,34 +76,21 @@
             /* margin-top: 50px; */
         }
 
-        .td-signature {
-            position: fixed;
-            text-align: center;
-
-        }
-
         .signature {
             text-align: center;
             font-weight: bold;
             width: 100%;
-
             /* margin-top: 50px; */
             margin-right: 50px;
         }
 
         .signature p {
             margin: 0;
-            text-align: center;
         }
 
         .signature img {
-            /* position: absolute;
-            overflow: visible;
-            left: 0;
-            right: 0; */
-            width: 1mm;
             /* width: 200px; */
-            /* height: 120px; */
+            height: 120px;
         }
 
         table {
@@ -117,8 +109,8 @@
 
         .stemple {
             position: absolute;
-            width: 200mm;
-            height: 200mm;
+            width: 200px;
+            height: 200px;
             opacity: 0.6;
             right: 0;
             bottom: 0;
@@ -132,7 +124,7 @@
 
 <body>
     <div class="container">
-        <img src="{{ public_path('surat/header.png') }}" style="width: 100%" alt="header" />
+        <img src="{{ asset('surat/header.png') }}" style="width: 100%" alt="header" />
 
         <div class="inner">
             <div class="header">
@@ -149,7 +141,7 @@
                 <div class="details">
                     <table>
                         <tr>
-                            <td>Nama</td>
+                            <td style="width: 180px">Nama</td>
                             <td>:</td>
                             <td>{{ $surat_value['nama'] }}</td>
                         </tr>
@@ -203,19 +195,19 @@
             <div class="footer">
                 <div class="inner-footer">
 
-                    <table class="relative">
+                    <table>
                         <tr>
                             <td style="vertical-align: bottom">
                                 <div class="signature">
                                     {{-- <p>LURAH BAKUNG</p> --}}
                                     <p>Yang Bersangkutan</p>
                                     <div class="ttd-field"></div>
-                                    {{-- <img src="{{ public_path('surat/ttd.png') }}" alt="ttd"> --}}
+                                    {{-- <img src="{{ asset('surat/ttd.png') }}" alt="ttd"> --}}
                                     <p>{{ $surat_value['nama'] }}</p>
 
                                 </div>
                             </td>
-                            <td class="td-signature" style="vertical-align: bottom; position: fixed;">
+                            <td style="vertical-align: bottom">
                                 <table>
                                     <tr>
                                         <td>Bandar Lampung,
@@ -224,15 +216,14 @@
                                     </tr>
                                 </table>
                                 <div class="stemple">
-                                    <img src="{{ public_path('storage/lurah/' . $lurah->stemple) }}" width="200px"
-                                        alt="stempel">
+                                    <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                                        style="width: 100%; height: 100%">
                                 </div>
                                 <div class="signature">
                                     <p>LURAH BAKUNG</p>
                                     <p>KECAMATAN TELUKBETUNG BARAT</p>
-                                    <img class="ttd-lurah"
-                                        src="{{ $lurah->tanda_tangan ? public_path('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
-                                        style="width: 10mm" alt="ttd">
+                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                                        alt="ttd">
                                     <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
                                     {{-- <p>NIP.{{ $lurah->NIP }}</p> --}}
                                 </div>
