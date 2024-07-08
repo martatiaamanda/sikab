@@ -164,8 +164,7 @@
                             <td>:</td>
                             <td>
                                 {{ $surat_value['tempat_lahir'] }},
-                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    F Y') }}
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}
                             </td>
                         </tr>
                         <tr>
@@ -289,8 +288,7 @@
                         <tr>
                             <td>
                                 Bandar Lampung,
-                                {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    F Y') }}
+                                {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
                             </td>
                         </tr>
                     </table>

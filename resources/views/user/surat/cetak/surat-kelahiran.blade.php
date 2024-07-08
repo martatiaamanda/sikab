@@ -39,7 +39,7 @@
 
         .header {
             text-align: center;
-            padding-top: 10px;
+            padding-top: 5px;
         }
 
         .header h3,
@@ -48,16 +48,16 @@
         }
 
         .header h3 {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-decoration: underline solid 3px;
         }
 
         .content {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .content .paragraph {
-            margin: 8mm 0;
+            margin: 3mm 0;
         }
 
         .content .section-title {
@@ -72,13 +72,13 @@
             position: absolute;
             right: 0;
             width: 60%;
-            /* margin-top: 50px; */
+            margin-top: 20px;
         }
 
         .signature {
             text-align: center;
             font-weight: bold;
-            margin-top: 50px;
+            /* margin-top: 50px; */
             margin-right: 50px;
         }
 
@@ -87,7 +87,8 @@
         }
 
         .signature img {
-            width: 200px;
+            /* width: 200px; */
+            height: 120px;
         }
 
         table {
@@ -121,7 +122,6 @@
                 <h3>SURAT KETERANGAN KELAHIRAN</h3>
                 <p>NOMOR: 474/ /V.07/VI.42/VI/2024</p>
             </div>
-
             <div class="content">
                 <p class="paragraph">
                     Yang bertanda tangan dibawah ini Lurah Bakung Kecamatan
@@ -134,30 +134,30 @@
                         <tr>
                             <td style="width: 180px">Nama</td>
                             <td>:</td>
-                            <td>PANI</td>
+                            <td>{{ $surat_value['nama'] }}</td>
                         </tr>
                         <tr>
                             <td>Jenis Kelamin</td>
                             <td>:</td>
-                            <td>Perempuan</td>
+                            <td>
+                                {{ $surat_value['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Tempat/Tgl. Lahir</td>
                             <td>:</td>
-                            <td>Bandar Lampung, 18-07-2017</td>
+                            <td>{{ $surat_value['tempat_lahir'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}</td>
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td>Belum/TidakBekerja</td>
+                            <td>{{ $surat_value['pekerjaan'] }}</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td>
-                                Jl. Saleh Kramayudha RT 001 LK II, Kelurahan
-                                Bakung Kecamatan TelukBetung Barat
-                            </td>
+                            <td>{{ $surat_value['alamat'] }}</td>
                         </tr>
                     </table>
                 </div>
@@ -172,29 +172,29 @@
                         <tr>
                             <td style="width: 180px">Nama</td>
                             <td>:</td>
-                            <td>PANI</td>
+                            <td>{{ $surat_value['nama_ayah'] }}</td>
                         </tr>
                         <tr>
                             <td>Tempat/Tgl. Lahir</td>
                             <td>:</td>
-                            <td>Bandar Lampung, 18-07-2017</td>
+                            <td>{{ $surat_value['tempat_lahir_ayah'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ayah'])->format('d F Y') }}</td>
                         </tr>
                         <tr>
                             <td>Bangsa/ Agama</td>
                             <td>:</td>
-                            <td>Indonesia / Ilsam</td>
+                            <td>{{ $surat_value['kewarganegaraan_ayah'] }} / {{ $surat_value['agama_ayah'] }}</td>
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td>Belum/TidakBekerja</td>
+                            <td>{{ $surat_value['pekerjaan_ayah'] }}</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
                             <td>
-                                Jl. Saleh Kramayudha RT 001 LK II, Kelurahan
-                                Bakung Kecamatan TelukBetung Barat
+                                {{ $surat_value['alamat_ayah'] }}
                             </td>
                         </tr>
                     </table>
@@ -207,29 +207,31 @@
                         <tr>
                             <td style="width: 180px">Nama</td>
                             <td>:</td>
-                            <td>PANI</td>
+                            <td>{{ $surat_value['nama_ibu'] }}</td>
                         </tr>
                         <tr>
                             <td>Tempat/Tgl. Lahir</td>
                             <td>:</td>
-                            <td>Bandar Lampung, 18-07-2017</td>
+                            <td>{{ $surat_value['tempat_lahir_ibu'] }},
+                                {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ibu'])->format('d F Y') }}</td>
+
                         </tr>
                         <tr>
                             <td>Bangsa/ Agama</td>
                             <td>:</td>
-                            <td>Indonesia / Ilsam</td>
+                            <td>{{ $surat_value['kewarganegaraan_ibu'] }} / {{ $surat_value['agama_ibu'] }}</td>
+
                         </tr>
                         <tr>
                             <td>Pekerjaan</td>
                             <td>:</td>
-                            <td>Belum/TidakBekerja</td>
+                            <td>{{ $surat_value['pekerjaan_ibu'] }}</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>:</td>
                             <td>
-                                Jl. Saleh Kramayudha RT 001 LK II, Kelurahan
-                                Bakung Kecamatan TelukBetung Barat
+                                {{ $surat_value['alamat_ibu'] }}
                             </td>
                         </tr>
                     </table>
@@ -252,19 +254,22 @@
                         <tr>
                             <td>PADA TANGGAL</td>
                             <td>:</td>
-                            <td>20 JUNI 2024</td>
+                            <td>{{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}</td>
                         </tr>
                     </table>
-                    <div class="stemple">
-                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
-                            style="width: 100%; height: 100%">
-                    </div>
                     <div class="signature">
                         <p>LURAH BAKUNG</p>
                         <p>KECAMATAN TELUKBETUNG BARAT</p>
-                        <img src="{{ asset('surat/ttd.png') }}" alt="ttd">
-                        <p style="text-decoration: underline 2px">SIGIT, SE</p>
-                        <p>NIP.19761202 200701 1 006</p>
+                        <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                            alt="ttd" />
+                        <p style="text-decoration: underline 2px">
+                            {{ $lurah->name }}
+                        </p>
+                        <p>NIP.{{ $lurah->NIP }}</p>
+                    </div>
+                    <div class="stemple">
+                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                            style="width: 100%; height: 100%">
                     </div>
                 </div>
             </div>
