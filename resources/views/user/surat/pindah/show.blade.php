@@ -548,6 +548,10 @@
                             <a href="{{ route('user.riwayat-surat.pindah.edit', [$surat->id]) }}"
                                 class="btn bg-gradient-faded-success mt-4 mb-0 px-5 text-white me-5">Edit</a>
                         @endif
+                        @if ($surat->status == 'diterima')
+                            <button type="button" onclick="printContent()"
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">Cetak</button>
+                        @endif
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Kembali</a>
                     </div>
@@ -558,5 +562,18 @@
 
     </section>
 
+    <x-slot name='scripts'>
+        <script>
+            function printContent() {
+                var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$surat->id]) }}", '_blank');
+                printWindow.onload = function() {
+                    printWindow.print();
+                    printWindow.onafterprint = function() {
+                        printWindow.close();
+                    };
+                };
+            }
+        </script>
+    </x-slot>
 
 </x-app-layout>

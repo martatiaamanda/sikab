@@ -556,9 +556,9 @@
                                 class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
                         @endif
 
-                        @if ($surat->status == 'diterima')
+                        @if ($history->status == 'diterima')
                             <button type="button" onclick="printContent()"
-                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white">Cetak</button>
+                                class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">Cetak</button>
                         @endif
                         <a href="{{ back()->getTargetUrl() }}"
                             class="btn bg-gradient-faded-secondary mt-4 mb-0 px-5 text-white">Kembali</a>
@@ -622,6 +622,15 @@
 
     <x-slot name='scripts'>
         <script>
+            function printContent() {
+                var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", '_blank');
+                printWindow.onload = function() {
+                    printWindow.print();
+                    printWindow.onafterprint = function() {
+                        printWindow.close();
+                    };
+                };
+            }
             const inputStatus = document.getElementById('status');
 
             const showmodal = (status) => {
@@ -642,31 +651,6 @@
             if (session.length > 0) {
                 const modal = new bootstrap.Modal(modalOk);
                 modal.show();
-            }
-
-            function printContent() {
-                console.log('ini');
-                fetch("{{ route('user.riwayat-surat.cetak', [$surat->id]) }}", {
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                    })
-                    .then(response => response.text())
-                    .then(html => {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        document.body.appendChild(iframe);
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        iframeDoc.open();
-                        iframeDoc.write(html);
-                        iframeDoc.close();
-                        iframe.onload = () => {
-                            iframe.contentWindow.focus();
-                            iframe.contentWindow.print();
-                            document.body.removeChild(iframe);
-                        };
-
-                    });
             }
         </script>
     </x-slot>
