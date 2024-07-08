@@ -155,6 +155,15 @@
             height: 90px;
         }
 
+        .stemple {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            right: 0;
+            bottom: -100;
+        }
+
         .line {
             width: 100%;
             border-bottom: 1px solid black;
@@ -285,11 +294,15 @@
 
             <div class="footer">
 
-                <div class="left">
+                <div class="left" style="position: relative">
                     <p style="text-align: center; margin: 0; padding: 0">Mengetahui</p>
                     <div class="tanggal">
                         <span>Nomor : {{ $surat->nomor_surat }}</span>
                         <span>Tanggal : {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}</span>
+                    </div>
+                    <div class="stemple">
+                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                            style="width: 100%; height: 100%">
                     </div>
                     <div class="signature">
                         <p>LURAH BAKUNG</p>

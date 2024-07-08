@@ -1,3 +1,6 @@
+@php
+    use Carbon\Carbon;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,9 +21,9 @@
         }
 
         .container {
-            width: 210mm;
+            /* width: 210mm;
             max-width: 210mm;
-            min-height: 330mm;
+            min-height: 330mm; */
             box-sizing: border-box;
             margin: auto;
         }
@@ -45,12 +48,12 @@
         }
 
         .content {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .content .paragraph {
-            margin: 8mm 0;
-            text-indent: 20px;
+            /* margin: 8mm 0; */
+            text-indent: 10px;
         }
 
         .content .section-title {
@@ -68,21 +71,34 @@
             /* margin-top: 50px; */
         }
 
+        .td-signature {
+            position: fixed;
+            text-align: center;
+
+        }
+
         .signature {
             text-align: center;
             font-weight: bold;
             width: 100%;
+
             /* margin-top: 50px; */
             margin-right: 50px;
         }
 
         .signature p {
             margin: 0;
+            text-align: center;
         }
 
         .signature img {
+            /* position: absolute;
+            overflow: visible;
+            left: 0;
+            right: 0; */
+            width: 1mm;
             /* width: 200px; */
-            height: 120px;
+            /* height: 120px; */
         }
 
         table {
@@ -99,6 +115,15 @@
             vertical-align: top;
         }
 
+        .stemple {
+            position: absolute;
+            width: 200mm;
+            height: 200mm;
+            opacity: 0.6;
+            right: 0;
+            bottom: 0;
+        }
+
         .ttd-field {
             height: 120px;
         }
@@ -107,7 +132,7 @@
 
 <body>
     <div class="container">
-        <img src="{{ asset('surat/header.png') }}" style="width: 100%" alt="header" />
+        <img src="{{ public_path('surat/header.png') }}" style="width: 100%" alt="header" />
 
         <div class="inner">
             <div class="header">
@@ -124,7 +149,7 @@
                 <div class="details">
                     <table>
                         <tr>
-                            <td style="width: 180px">Nama</td>
+                            <td>Nama</td>
                             <td>:</td>
                             <td>{{ $surat_value['nama'] }}</td>
                         </tr>
@@ -178,19 +203,19 @@
             <div class="footer">
                 <div class="inner-footer">
 
-                    <table>
+                    <table class="relative">
                         <tr>
                             <td style="vertical-align: bottom">
                                 <div class="signature">
                                     {{-- <p>LURAH BAKUNG</p> --}}
                                     <p>Yang Bersangkutan</p>
                                     <div class="ttd-field"></div>
-                                    {{-- <img src="{{ asset('surat/ttd.png') }}" alt="ttd"> --}}
+                                    {{-- <img src="{{ public_path('surat/ttd.png') }}" alt="ttd"> --}}
                                     <p>{{ $surat_value['nama'] }}</p>
 
                                 </div>
                             </td>
-                            <td style="vertical-align: bottom">
+                            <td class="td-signature" style="vertical-align: bottom; position: fixed;">
                                 <table>
                                     <tr>
                                         <td>Bandar Lampung,
@@ -198,11 +223,16 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <div class="stemple">
+                                    <img src="{{ public_path('storage/lurah/' . $lurah->stemple) }}" width="200px"
+                                        alt="stempel">
+                                </div>
                                 <div class="signature">
                                     <p>LURAH BAKUNG</p>
                                     <p>KECAMATAN TELUKBETUNG BARAT</p>
-                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
-                                        alt="ttd">
+                                    <img class="ttd-lurah"
+                                        src="{{ $lurah->tanda_tangan ? public_path('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                                        style="width: 10mm" alt="ttd">
                                     <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
                                     {{-- <p>NIP.{{ $lurah->NIP }}</p> --}}
                                 </div>

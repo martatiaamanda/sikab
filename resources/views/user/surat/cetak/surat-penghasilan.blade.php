@@ -9,6 +9,10 @@
         /* * {
             font-size: 12px
         } */
+        @page {
+            size: 210mm 330mm;
+            margin: 0;
+        }
 
         body {
             font-family: "Times New Roman", Times, serif;
@@ -101,6 +105,19 @@
 
         .ttd-field {
             height: 120px;
+        }
+
+        .stemple {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            right: 0;
+            bottom: 0;
+        }
+
+        #ibu td {
+            padding-top: 30px
         }
     </style>
 </head>
@@ -248,6 +265,10 @@
                                 {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}</td>
                         </tr>
                     </table>
+                    <div class="stemple">
+                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                            style="width: 100%; height: 100%">
+                    </div>
                     <div class="signature">
                         <p>LURAH BAKUNG</p>
                         <p>KECAMATAN TELUKBETUNG BARAT</p>

@@ -126,6 +126,15 @@
             width: 100%;
             border-bottom: 1px solid black;
         }
+
+        .stemple {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 
@@ -303,6 +312,10 @@
                         <span>Dikeluarkan : Bandar Lampung</span>
                         <span>pada Tanggal : {{ \Carbon\Carbon::parse($surat->tanggal_disetujui)->format('d F Y') }}
                         </span>
+                    </div>
+                    <div class="stemple">
+                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                            style="width: 100%; height: 100%">
                     </div>
                     <div class="signature">
                         <p>Lurah Bakung</p>

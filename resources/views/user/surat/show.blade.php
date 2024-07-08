@@ -165,7 +165,6 @@
     <x-slot name='scripts'>
         <script>
             function printContent() {
-                console.log('ini');
                 fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')

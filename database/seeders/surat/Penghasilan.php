@@ -35,13 +35,13 @@ class Penghasilan extends Seeder
             ],
             [
                 'name' => 'penghasilan_ayah',
-                'type' => 'text',
+                'type' => 'number',
                 'title' => 'Penghasilan Pokok',
                 'validate' => 'required'
             ],
             [
                 'name' => 'penghasilan_tambahan_ayah',
-                'type' => 'text',
+                'type' => 'number',
                 'title' => 'Penghasilan Tambahan',
                 'validate' => 'required'
             ]
@@ -66,13 +66,13 @@ class Penghasilan extends Seeder
             ],
             [
                 'name' => 'penghasilan_ibu',
-                'type' => 'text',
+                'type' => 'number',
                 'title' => 'Penghasilan Pokok',
                 'validate' => 'required'
             ],
             [
                 'name' => 'penghasilan_tambahan_ibu',
-                'type' => 'text',
+                'type' => 'number',
                 'title' => 'Penghasilan Tambahan',
                 'validate' => 'required'
             ]

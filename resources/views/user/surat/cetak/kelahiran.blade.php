@@ -92,6 +92,15 @@
             align-self: baseline;
             vertical-align: top;
         }
+
+        .stemple {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 </head>
 
@@ -238,6 +247,10 @@
                             <td>20 JUNI 2024</td>
                         </tr>
                     </table>
+                    <div class="stemple">
+                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                            style="width: 100%; height: 100%">
+                    </div>
                     <div class="signature">
                         <p>LURAH BAKUNG</p>
                         <p>KECAMATAN TELUKBETUNG BARAT</p>

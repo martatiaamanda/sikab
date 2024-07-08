@@ -86,8 +86,8 @@ class RiwayatSuratControllercd extends Controller
     public function print($id)
     {
         $lurah = lurah::first();
-        if ($lurah->tanda_tangan == null) {
-            return redirect()->route('user.riwayat-surat')->with('error', 'Tanda Tangan Lurah Belum Diatur');
+        if ($lurah->tanda_tangan == null or $lurah->stemple == null) {
+            return redirect()->route('user.riwayat-surat')->with('error', 'Tanda Tangan Lurah atau stempel Belum Diatur');
         }
         $surat  = surat::where('id', $id)->first();
         if (!$surat){
@@ -96,6 +96,12 @@ class RiwayatSuratControllercd extends Controller
 
         if($surat->status != 'diterima') {
             return redirect()->route('user.riwayat-surat')->with('error', 'Surat belum disetujui');
+        }
+
+        if ($surat->jenis_surat->slug == 'surat-pindah') {
+            $surat_value = $surat->surat_pindah;
+
+            return view('user.surat.cetak.surat-pindah', compact('lurah', 'surat', 'surat_value'));
         }
 
         $surat_value = new Collection(); 

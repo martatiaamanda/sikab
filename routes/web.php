@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SuratPindahController;
 use App\Http\Controllers\user\BansosController;
@@ -119,7 +120,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
     
-    Route::get('/riwayat-surat/{id}/cetak', [RiwayatSuratControllercd::class, 'print'])->name('user.riwayat-surat.cetak');
+    Route::get('/riwayat-surat/{id}/cetak', [PrintController::class, 'view'])->name('user.riwayat-surat.cetak');
+    Route::get('/riwayat-surat/{id}/cetak/download', [PrintController::class, 'cetak'])->name('user.riwayat-surat.pindah.cetak');
 
     Route::get('/riwayat-surat/cetak', function() {
         return view('user.surat.cetak');

@@ -103,13 +103,16 @@ class AdminSuratController extends Controller
             $surat->nomor_surat = $nomor_surat->awal .' '. $surat->id . $nomor_surat->akhir . '/'. $nomor_surat->tahun;
             $surat->tanggal_disetujui = now();
         }
+
         
         $surat->status = $request->status;
         $surat->catatan = $request->catatan;
         // $surat->tanggal_disetujui = now();
         $surat->save();
 
-        return redirect()->route('admin.surat.show', [$id])->with('success', 'Surat Berhasil Dikonfirmasi');
+        return redirect()->back()->withInput()->with('success', 'Surat Berhasil Dikonfirmasi');
+
+        // return redirect()->route('admin.surat.show', [$id])->with('success', 'Surat Berhasil Dikonfirmasi');
     }
 
     public function edit($id)
