@@ -165,27 +165,32 @@
     <x-slot name='scripts'>
         <script>
             function printContent() {
-                fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {
-                        headers: {
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        }
-                    })
-                    .then(response => response.text())
-                    .then(html => {
-                        const iframe = document.createElement('iframe');
-                        iframe.style.display = 'none';
-                        document.body.appendChild(iframe);
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        iframeDoc.open();
-                        iframeDoc.write(html);
-                        iframeDoc.close();
-                        iframe.onload = () => {
-                            iframe.contentWindow.focus();
-                            iframe.contentWindow.print();
-                            document.body.removeChild(iframe);
-                        };
+                var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", '_blank');
+                printWindow.onload = function() {
+                    printWindow.print();
+                };
 
-                    });
+                // fetch("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", {
+                //         headers: {
+                //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                //         }
+                //     })
+                //     .then(response => response.text())
+                //     .then(html => {
+                //         const iframe = document.createElement('iframe');
+                //         iframe.style.display = 'none';
+                //         document.body.appendChild(iframe);
+                //         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                //         iframeDoc.open();
+                //         iframeDoc.write(html);
+                //         iframeDoc.close();
+                //         iframe.onload = () => {
+                //             iframe.contentWindow.focus();
+                //             iframe.contentWindow.print();
+                //             document.body.removeChild(iframe);
+                //         };
+
+                //     });
             }
         </script>
     </x-slot>

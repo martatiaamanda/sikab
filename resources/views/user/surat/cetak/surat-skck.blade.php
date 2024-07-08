@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Keterangan Kelahiran</title>
     <style>
+        @page {
+            size: 210mm 330mm;
+            /* Ukuran kertas F4 */
+            margin: 0;
+            /* Hilangkan margin untuk mengurangi efek header/footer */
+        }
+
         body {
             font-family: "Times New Roman", Times, serif;
             /* text-size-adjust: 10px; */
-            margin: 0;
-            padding: 0;
+            /* margin: 0;
+            padding: 0; */
         }
 
         .container {
