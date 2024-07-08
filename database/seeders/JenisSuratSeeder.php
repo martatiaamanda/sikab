@@ -31,7 +31,7 @@ class JenisSuratSeeder extends Seeder
             ],
             [
                 'name' => 'Surat Keterangan ',
-                'slug' => 'surat-keterangan',
+            'slug' => 'surat-keterangan',
                 'icon' => 'fa-shop'
             ],
             [
