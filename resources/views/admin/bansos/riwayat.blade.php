@@ -7,8 +7,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
-                    <div class="card-header pb-0">
-                        <h6>{{ $page_title }}</h6>
+                    <div class="d-flex justify-content-between items-center">
+                        <div class="card-header pb-0">
+                            <h6>{{ $page_title }}</h6>
+                        </div>
+                        @if ($page_title == 'Bansos Selesai')
+                            <a href="{{ route('admin.export.bansos') }}"
+                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white me-3">Export Data</a>
+                        @endif
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">

@@ -25,6 +25,10 @@
             padding: 0;
         }
 
+        .inner {
+            margin-top: 20mm;
+        }
+
         .container {
             width: 210mm;
             max-width: 210mm;
@@ -127,12 +131,25 @@
         {{-- <img src="{{ asset('surat/header.png') }}" style="width: 100%" alt="header" /> --}}
 
         <div class="inner">
+            <table style="width: 70%; text-indent: 0">
+                <tr>
+                    <td>KANTOR DESA/KELURAHAN</td>
+                    <td>: BAKUNG</td>
+                </tr>
+                <tr>
+                    <td>KECAMATAN</td>
+                    <td>: TELUKBETUNG BARAT</td>
+                </tr>
+                <tr>
+                    <td>KABUPATEN</td>
+                    <td>: BANDAR LAMPUNG</td>
+                </tr>
+
+
+            </table>
             <div class="header">
-                <p>KANTOR DESA/KELURAHAN : $kelurahan }}</p>
-                <p>KECAMATAN : $kecamatan }}</p>
-                <p>KABUPATEN/KOTA : $kabupaten }}</p>
-                <p><strong>SURAT PENGANTAR PERKAWINAN</strong></p>
-                <p>Nomor: $nomor }}</p>
+                <h3>SURAT PENGANTAR PERNIKAHAN</h3>
+                <p>NOMOR: {{ $surat->nomor_surat }}</p>
             </div>
 
             <div class="content">

@@ -17,7 +17,7 @@
 
                             <a href="{{ route('admin.surat.jenis', [$jenis_surat->slug]) }}"
                                 class="d-flex  align-items-center gap-3 border-top">
-                                <span class="text-bold">Jenis Surat</span>
+                                <span class="text-bold">Kelola Surat</span>
                                 <i class="fa-solid fa-chevron-right"></i>
                             </a>
                         </div>

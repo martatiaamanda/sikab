@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\userController;
 use App\Http\Controllers\admin\AdminSuratController;
 use App\Http\Controllers\admin\bansosController as AdminBansosController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ExportController;
 use App\Http\Controllers\Auth\custom\RegisterController;
 use App\Http\Controllers\admin\LurahController;
 use App\Http\Controllers\admin\NomorSuratController;
@@ -117,6 +118,8 @@ Route::group(['middleware' => ['auth']], function () {
         // Route::get('/bansos/{id}/cetak', function() {
         //     dd('cetak');
         // })->name('admin.bansos.cetak');
+
+        Route::get('/export/bansos', [ExportController::class, 'index'])->name('admin.export.bansos');
 });
 
     
