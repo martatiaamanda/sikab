@@ -19,14 +19,19 @@
         } */
 
         body {
-            font-family: "Times New Roman", Times, serif;
+            font-family: Arial, sans-serif;
+            /* font-family: "Times New Roman", Times, serif; */
             text-size-adjust: 12px;
             margin: 0;
             padding: 0;
         }
 
         .inner {
-            margin-top: 20mm;
+            margin-top: 15mm;
+        }
+
+        .inner table {
+            margin: 0
         }
 
         .container {
@@ -35,6 +40,7 @@
             min-height: 330mm;
             box-sizing: border-box;
             margin: auto;
+            /* border: 1px solid black; */
         }
 
         .container .inner {
@@ -43,7 +49,7 @@
 
         .header {
             text-align: center;
-            padding-top: 10px;
+            padding-top: 15px;
         }
 
         .header h3,
@@ -52,7 +58,7 @@
         }
 
         .header h3 {
-            margin-bottom: 10px;
+            /* margin-bottom: 10px; */
             text-decoration: underline solid 2px;
         }
 
@@ -61,9 +67,13 @@
         }
 
         .content .paragraph {
-            margin: 8mm 0;
-            text-indent: 20px;
+            margin: 4mm 0 0 0;
+            /* text-indent: 20px; */
             text-align: justify;
+        }
+
+        .content table tr .field {
+            width: 280px
         }
 
         .content .section-title {
@@ -149,41 +159,135 @@
             </table>
             <div class="header">
                 <h3>SURAT PENGANTAR PERNIKAHAN</h3>
-                <p>NOMOR: {{ $surat->nomor_surat }}</p>
+                <p>Nomor: {{ $surat->nomor_surat }}</p>
             </div>
 
             <div class="content">
-                <p>Yang bertanda tangan di bawah ini menjelaskan dengan sesungguhnya bahwa:</p>
-                <p>1. Nama: $nama }}</p>
-                <p>2. Nomor Induk Kependudukan (NIK): $nik }}</p>
-                <p>3. Jenis kelamin: $jenis_kelamin }}</p>
-                <p>4. Tempat dan tanggal lahir: $tempat_tanggal_lahir }}</p>
-                <p>5. Agama: $agama }}</p>
-                <p>6. Pekerjaan: $pekerjaan }}</p>
-                <p>7. Alamat: $alamat }}</p>
-                <p>8. Status perkawinan:</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;- Laki-laki: Jejaka, Duda, atau beristri ke... : $status_laki_laki }}</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;- Perempuan: Perawan, Janda : $status_perempuan }}</p>
-                <p>9. Nama istri/suami terdahulu: $nama_istri_suami_terdahulu }}</p>
-                <br>
-                <p>Adalah benar anak dari perkawinan seorang pria:</p>
-                <p>Nama lengkap dan alias: $nama_ayah }}</p>
-                <p>Nomor Induk Kependudukan (NIK): $nik_ayah }}</p>
-                <p>Tempat dan tanggal lahir: $tempat_tanggal_lahir_ayah }}</p>
-                <p>Kewarganegaraan: $kewarganegaraan_ayah }}</p>
-                <p>Agama: $agama_ayah }}</p>
-                <p>Pekerjaan: $pekerjaan_ayah }}</p>
-                <p>Alamat: $alamat_ayah }}</p>
-                <br>
-                <p>dengan seorang wanita:</p>
-                <p>Nama lengkap dan alias: $nama_ibu }}</p>
-                <p>Nomor Induk Kependudukan (NIK): $nik_ibu }}</p>
-                <p>Tempat dan tanggal lahir: $tempat_tanggal_lahir_ibu }}</p>
-                <p>Kewarganegaraan: $kewarganegaraan_ibu }}</p>
-                <p>Agama: $agama_ibu }}</p>
-                <p>Pekerjaan: $pekerjaan_ibu }}</p>
-                <p>Alamat: $alamat_ibu }}</p>
+                <p class="paragraph">Yang bertanda tangan di bawah ini menjelaskan dengan sesungguhnya bahwa:</p>
+                <table>
+                    <tr>
+                        <td class="field">1. Nama</td>
+                        <td>: {{ $surat_value['nama'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">2. Nomor Induk Kependudukan (NIK)</td>
+                        <td>: {{ $surat_value['nik'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">3. Jenis Kelamin</td>
+                        <td>: {{ $surat_value['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">4. Tempat dan Tanggal Lahir</td>
+                        <td>: {{ $surat_value['tempat_lahir'] }},
+                            {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir'])->format('d F Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">5. Agama</td>
+                        <td>: {{ $surat_value['agama'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">6. Pekerjaan</td>
+                        <td>: {{ $surat_value['pekerjaan'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">7. Alamat</td>
+                        <td>: {{ $surat_value['alamat'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">8. Status Perkawinan</td>
+                        <td>: -</td>
+                    </tr>
+                    <tr>
+                        <td class="field" style="text-indent: 20px"> a. Laki-laki : Jejaka, Duda</td>
+                        <td>: {{ $surat_value['laki_laki'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field" style="text-indent: 40px"> atau beristri ke</td>
+                        <td>: {{ $surat_value['istri_ke'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field" style="text-indent: 20px"> b. Perempuan : Perawan, Janda</td>
+                        <td>: {{ $surat_value['perempuan'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">9. Nama Istri/Suami terdahulu</td>
+                        <td>: {{ $surat_value['pasangan_terdahulu'] }}</td>
+                    </tr>
+                </table>
+                <p class="paragraph">Adalah benar anal dari perkawian seorang pria :</p>
+
+                <table>
+                    <tr>
+                        <td class="field">Nama</td>
+                        <td>: {{ $surat_value['nama_ayah'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Nomor Induk Kependudukan (NIK)</td>
+                        <td>: {{ $surat_value['nik_ayah'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Tempat dan Tanggal Lahir</td>
+                        <td>: {{ $surat_value['tempat_lahir_ayah'] }},
+                            {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ayah'])->format('d F Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Kewarganegaraan</td>
+                        <td>: {{ $surat_value['kewarganegaraan_ayah'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Agama</td>
+                        <td>: {{ $surat_value['agama_ayah'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Pekerjaan</td>
+                        <td>: {{ $surat_value['pekerjaan_ayah'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Alamat</td>
+                        <td>: {{ $surat_value['alamat_ayah'] }}</td>
+                    </tr>
+                </table>
+
+                <p class="paragraph">dengan seorang wanita :</p>
+
+                <table>
+                    <tr>
+                        <td class="field">Nama</td>
+                        <td>: {{ $surat_value['nama_ibu'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Nomor Induk Kependudukan (NIK)</td>
+                        <td>: {{ $surat_value['nik_ibu'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Tempat dan Tanggal Lahir</td>
+                        <td>: {{ $surat_value['tempat_lahir_ibu'] }},
+                            {{ \Carbon\Carbon::parse($surat_value['tanggal_lahir_ibu'])->format('d F Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Kewarganegaraan</td>
+                        <td>: {{ $surat_value['kewarganegaraan_ibu'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Agama</td>
+                        <td>: {{ $surat_value['agama_ibu'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Pekerjaan</td>
+                        <td>: {{ $surat_value['pekerjaan_ibu'] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field">Alamat</td>
+                        <td>: {{ $surat_value['alamat_ibu'] }}</td>
+                    </tr>
+                </table>
             </div>
+
+            <p style="text-align: justify; text-indent: 30px; margin: 8mm 0;">Demikian, surat pengantar ini dibuat
+                dengan mengingat
+                sumpah jabatan dan untuk dipergunakan sebagaimana
+                mestinya. </p>
         </div>
 
         <div class="footer">
