@@ -196,7 +196,7 @@
                     </tr>
                     <tr>
                         <td class="field">8. Status Perkawinan</td>
-                        <td>: -</td>
+                        <td>: - </td>
                     </tr>
                     <tr>
                         <td class="field" style="text-indent: 20px"> a. Laki-laki : Jejaka, Duda</td>
