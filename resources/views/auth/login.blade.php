@@ -10,12 +10,12 @@
                     <div class="col-xl- col-lg-8 col-md-9 d-flex flex-column mx-auto ">
                         <div class="card card-plain mt-8 bg-gradient-light">
                             <div class="row m-3">
+                                <div class="card-header pb-0 text-left bg-transparent text-center">
+                                    <h2 class="font-weight-bolder text-primary text-gradient">Selamat Datang</h2>
+                                    <p class="mb-0">Gunakan Email / NIK dan password untuk masuk kedalam sistem
+                                    </p>
+                                </div>
                                 <div class="col-md-6 col-12">
-                                    <div class="card-header pb-0 text-left bg-transparent">
-                                        <h3 class="font-weight-bolder text-primary text-gradient">Selamat Datang</h3>
-                                        <p class="mb-0">Gunakan Email / NIK dan password untuk masuk kedalam sistem
-                                        </p>
-                                    </div>
                                     <div class="card-body">
                                         <form role="form" method="POST" action="{{ route('login') }}">
                                             @csrf
@@ -66,10 +66,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 d-md-block d-none">
-                                    <div class="w-100 h-100 bg-cover rounded-3"
-                                        style="background-image: url('{{ asset('static/img/bg-auth.jpg') }}')">
-                                        <div class="w-100 h-100 bg-gradient-faded-dark opacity-2 rounded-3"></div>
+                                <div class="col-md-6 d-md-block d-none pb-5">
+                                    <div class="w-100 h-100 bg-cover rounded-3 "
+                                        style="background-image: url('{{ asset('static/img/bg-auth-5.png') }}')">
+                                        {{-- <div class="w-100 h-100 bg-gradient-faded-dark opacity-2 rounded-3"></div> --}}
                                         {{-- <img class="w-full" src="{{ asset('static/img/bg-auth.jpg') }}" alt="img"> --}}
                                     </div>
                                 </div>
