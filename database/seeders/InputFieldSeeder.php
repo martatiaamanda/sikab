@@ -39,7 +39,7 @@ class InputFieldSeeder extends Seeder
                 'jenis_surat_id' => 1,
                 'name' => 'alamat',
                 'type' => 'option',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
             [
@@ -67,7 +67,7 @@ class InputFieldSeeder extends Seeder
                 'jenis_surat_id' => 1,
                 'name' => 'alamat_ibu',
                 'type' => 'option',
-                'title' => 'Almat Ibu',
+                'title' => 'Alamat Ibu',
                 'validate' => 'required'
             ],
             [
@@ -95,7 +95,7 @@ class InputFieldSeeder extends Seeder
                 'jenis_surat_id' => 1,
                 'name' => 'alamat_ayah',
                 'type' => 'option',
-                'title' => 'Almat Ayah',
+                'title' => 'Alamat Ayah',
                 'validate' => 'required'
             ],
             [

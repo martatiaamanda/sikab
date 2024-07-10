@@ -90,7 +90,7 @@
                             class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('user.riwayat-bansos*') ? 'text-info' : 'text-dark' }}"></i>
                     </div>
                     <span
-                        class="nav-link-text ms-1 {{ Request::routeIs('user.riwayat-bansos*') ? 'text-white ' : ' text-black' }}">Rywayat
+                        class="nav-link-text ms-1 {{ Request::routeIs('user.riwayat-bansos*') ? 'text-white ' : ' text-black' }}">Riwayat
                         Bantuan Sosial</span>
                 </a>
             </li>

@@ -65,7 +65,7 @@ class Menikah extends Seeder
             [
                 'name' => 'alamat',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
@@ -121,7 +121,7 @@ class Menikah extends Seeder
             [
                 'name' => 'alamat_istri',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);

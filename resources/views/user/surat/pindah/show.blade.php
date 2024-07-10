@@ -274,7 +274,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <textarea class="form-control" name="alamat_asal" id="alamat_asal" aria-label="With textarea"
-                                placeholder="ALmat Lengkap" disabled>{{ $surat_pindah->alamat_asal }}</textarea>
+                                placeholder="Alamat Lengkap" disabled>{{ $surat_pindah->alamat_asal }}</textarea>
 
                             {{-- <input type="text" class="form-control" id="alamat_asal" name="alamat_asal" --}}
                             {{-- placeholder="Alamat Asal" value="{{ old('alamat_asal') }}"> --}}

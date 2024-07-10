@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
-                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea" placeholder="ALmat Lengkap">{{ $bansos->data_bansos->alamat }}</textarea>
+                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea" placeholder="Alamat Lengkap">{{ $bansos->data_bansos->alamat }}</textarea>
                             @error('alamat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror

@@ -72,7 +72,7 @@ class BersihDiri extends Seeder
             [
                 'name' => 'alamat',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
@@ -127,7 +127,7 @@ class BersihDiri extends Seeder
             [
                 'name' => 'alamat_ibu',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
@@ -183,7 +183,7 @@ class BersihDiri extends Seeder
             [
                 'name' => 'alamat_ayah',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);

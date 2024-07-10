@@ -124,7 +124,7 @@
                     </div>
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
-                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea" placeholder="ALmat Lengkap"
+                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea" placeholder="Alamat Lengkap"
                                 disabled>{{ $bansos->data_bansos->alamat }}</textarea>
                         </div>
                     </div>

@@ -78,7 +78,7 @@ class Ket extends Seeder
             [
                 'name' => 'alamat',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
             [

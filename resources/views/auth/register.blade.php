@@ -8,9 +8,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-10 col-lg-10 col-md-10 d-flex flex-column mx-auto">
-                        <div class="card card-plain mt-8">
+                        <div class="card card-plain mt-8 bg-gradient-light">
                             <div class="card-header pb-0 text-left bg-transparent">
-                                <h3 class="font-weight-bolder text-info text-gradient">Selamat Datang</h3>
+                                <h3 class="font-weight-bolder text-primary text-gradient">Selamat Datang</h3>
                                 <p class="mb-0">Daftarkan data diri anda untuk masuk kedalam sistem</p>
                             </div>
                             <div class="card-body">
@@ -149,11 +149,11 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                <p class="mb-4 text-sm mx-auto">
+                            <div class="card-footer text-center pt-0 px-lg-2 px-1 pb-0">
+                                <p class="text-sm mx-auto">
                                     Sudah memiliki akun ?
                                     <a href="{{ route('login') }}"
-                                        class="text-info text-gradient font-weight-bold">login di sini </a>
+                                        class="text-primary text-gradient font-weight-bold">login di sini </a>
                                 </p>
                             </div>
                         </div>

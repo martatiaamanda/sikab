@@ -30,7 +30,7 @@ class PengantarNikah extends Seeder
             [
                 'name' => 'nik',
                 'type' => 'number',
-                'title' => 'Nomor Induk Kependudukan(NIK)',
+                'title' => 'NIK',
                 'validate' => 'required'
             ],
             [

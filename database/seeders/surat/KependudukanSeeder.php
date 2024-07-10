@@ -41,7 +41,7 @@ class KependudukanSeeder extends Seeder
             [
                 'name' => 'alamat',
                 'type' => 'text-large',
-                'title' => 'Almat Lengkap',
+                'title' => 'Alamat Lengkap',
                 'validate' => 'required'
             ],
         ]);
@@ -72,7 +72,7 @@ class KependudukanSeeder extends Seeder
             [
                 'name' => 'alamat_ibu',
                 'type' => 'text-large',
-                'title' => 'Almat Ibu',
+                'title' => 'Alamat Ibu',
                 'validate' => 'required'
             ],
         ]);
@@ -104,7 +104,7 @@ class KependudukanSeeder extends Seeder
             [
                 'name' => 'alamat_ayah',
                 'type' => 'text-large',
-                'title' => 'Almat Ayah',
+                'title' => 'Alamat Ayah',
                 'validate' => 'required'
             ],
         ]);

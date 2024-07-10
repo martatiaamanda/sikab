@@ -68,8 +68,13 @@
                                         style="width: 30px">
                                         {{ $loop->iteration }}
                                     </p>
-                                    <label class="fs-6 m-0 ps-2" for="name">{{ $input_field->title }}<span
-                                            class="text-danger">*</span></label>
+                                    @if ($input_field->type == 'file')
+                                        <label class="fs-6 m-0 ps-2" for="name">Scan {{ $input_field->title }}
+                                            Asli<span class="text-danger">*</span></label>
+                                    @else
+                                        <label class="fs-6 m-0 ps-2" for="name">{{ $input_field->title }}<span
+                                                class="text-danger">*</span></label>
+                                    @endif
                                 </div>
                             </div>
                             @if ($input_field->type == 'option')
@@ -91,7 +96,7 @@
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
                                         <textarea class="form-control" name="{{ $input_field->name }}" id="{{ $input_field->name }}" aria-label="With textarea"
-                                            placeholder="ALmat Lengkap">{{ old($input_field->name) }}</textarea>
+                                            placeholder="{{ $input_field->title }}">{{ old($input_field->name) }}</textarea>
                                         @error($input_field->name)
                                             <p class="text-danger p-0 m-0">{{ $message }}</p>
                                         @enderror

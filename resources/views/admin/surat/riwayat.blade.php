@@ -41,7 +41,6 @@
                                             </td>
                                             <td>
                                                 <p class=" text-secondary  font-weight-bold">
-                                                    {{ $history->id }}
                                                     {{ $history->nomor_surat ?? '-' }}</p>
                                             </td>
                                             <td class="align-middle text-center text-sm">
