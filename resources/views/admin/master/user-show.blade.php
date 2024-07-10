@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">User {{$user->name}}</x-slot>
+    <x-slot name="title">User {{ $user->name }}</x-slot>
     <section>
 
         {{-- {{ $user }} --}}
@@ -45,11 +45,9 @@
                                         <label for="role">Role</label>
                                         <select name="role" id="role" class="form-control" disabled>
                                             <option value="">Pilih Jenis Kelamin</option>
-                                            <option value="user"
-                                                {{ $user->role == 'user' ? 'selected' : '' }}>User
+                                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User
                                             </option>
-                                            <option value="admin"
-                                                {{ $user->role == 'admin' ? 'selected' : '' }}>
+                                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>
                                                 Admin
 
                                             </option>
@@ -83,10 +81,12 @@
                                         <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" disabled>
                                             <option value="">Pilih Jenis Kelamin</option>
                                             <option value="L"
-                                                {{ $user->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki-laki
+                                                {{ $user->user_data->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                                Laki-laki
                                             </option>
                                             <option value="P"
-                                                {{ $user->user_data->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan
+                                                {{ $user->user_data->jenis_kelamin == 'P' ? 'selected' : '' }}>
+                                                Perempuan
                                             </option>
                                         </select>
 
@@ -102,6 +102,11 @@
                                 </div>
 
                                 <div class="text-end ">
+                                    <button type="button" class="btn bg-gradient-primary  mt-4 mb-0 text-white me-3"
+                                        data-bs-toggle="modal" data-bs-target="#modalPass">
+                                        <i class="fas fa-user-edit text-secondary text-sm text-white"></i>
+                                        <span>Ubah Password</span>
+                                    </button>
 
                                     <a href="{{ route('admin.user') }}"
                                         class="btn bg-gradient-faded-danger mt-4 mb-0 text-white">Batal</a>
@@ -115,6 +120,107 @@
             </div>
             {{-- </div> --}}
         </div>
+
+
+        <div class="modal fade" id="modalPass" tabindex="-1" role="dialog" aria-labelledby="modalPassLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPassLabel">ubah Password</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action={{ route('admin.user.update.password', [$user->id]) }} method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+
+
+                            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Ubah Password
+                                (kosongkan untuk password default '123456')
+                            </h6>
+
+                            <div class="row mb-5">
+                                <div class="col-md-6 mb-3">
+                                    <label for="password">Password<span class="text-danger">*</span></label>
+                                    <div class="form-control d-flex justify-content-between align-items-center p-0">
+                                        <input type="password" name="password" id="password"
+                                            class="form-control border-0" placeholder="Password default is '123456'"
+                                            aria-label="Password" aria-describedby="password-addon">
+                                        <button type="button" onclick="toggleShowPassword('password')"
+                                            class="input-group-text border-0">
+                                            <i id="toggleIcon" class="fas fa-eye-slash"></i>
+                                        </button>
+                                    </div>
+                                    @error('password')
+                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="password_confirmation">Konfirmasi Password<span
+                                            class="text-danger">*</span></label>
+                                    <div class="form-control d-flex justify-content-between align-items-center p-0">
+                                        <input type="password" name="password_confirmation"
+                                            id="password_confirmation" class="form-control border-0"
+                                            placeholder="Konfirmasi Password" aria-label="Password"
+                                            aria-describedby="password-addon">
+                                        <button type="button" onclick="toggleShowPassword('password_confirmation')"
+                                            class="input-group-text border-0">
+                                            <i id="toggleIcon" class="fas fa-eye-slash"></i>
+                                        </button>
+                                    </div>
+                                    @error('password_confirmation')
+                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn bg-gradient-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </section>
+
+    <x-slot name='scripts'>
+        <script>
+            function toggleShowPassword(target) {
+                const targetInput = document.getElementById(target);
+                const targetIcon = targetInput.parentElement.querySelector('#toggleIcon');
+                const isPasswordType = targetInput.type === 'password';
+                targetInput.type = isPasswordType ? 'text' : 'password';
+                targetIcon.classList.toggle('fa-eye', isPasswordType);
+                targetIcon.classList.toggle('fa-eye-slash', !isPasswordType);
+            }
+
+            const session = {!! json_encode($errors->all()) !!};
+            const modals = {
+                modalPass: document.getElementById('modalPass')
+            };
+
+            const errorConditions = [{
+                keyword: 'Password',
+                modal: modals.modalPass
+            }, ];
+
+            console.log(session);
+
+            if (session.length > 0) {
+                const errorMessage = session[0];
+                const condition = errorConditions.find(cond => errorMessage.includes(cond.keyword));
+                const modalToShow = condition ? condition.modal : modals.modalData;
+                new bootstrap.Modal(modalToShow).show();
+            }
+        </script>
+    </x-slot>
 
 </x-app-layout>

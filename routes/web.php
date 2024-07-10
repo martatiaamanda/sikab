@@ -77,11 +77,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::get('/user', [userController::class, 'index'])->name('admin.user');
+        Route::get('/user/create', [userController::class, 'create'])->name('admin.user.create');
+        Route::post('/user/create', [userController::class, 'store'])->name('admin.user.store');
 
         // Route::get('/user', [userController::class, 'index'])->name('user.admin.index');
         Route::get('/user/{id}/show', [userController::class, 'show'])->name('admin.user.show');
         Route::get('/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
         Route::put('/user/{id}/update', [userController::class, 'update'])->name('admin.user.update');
+        Route::put('/user/{id}/update/password', [userController::class, 'updatePassword'])->name('admin.user.update.password');
 
 
         Route::get('/lurah', [LurahController::class, 'index'])->name('admin.lurah');

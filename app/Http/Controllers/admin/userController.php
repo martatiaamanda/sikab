@@ -26,6 +26,63 @@ class userController extends Controller
         // dd($id);
     }
 
+    public function create()
+    {
+        return view('admin.master.user.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validator = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string' ],
+            'password_confirmation' => ['required', 'same:password'],
+            'NIK' => ['required', 'string', 'max:255', 'unique:users'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'tempat_lahir' => ['required', 'string', 'max:255'],
+            'tanggal_lahir' => ['required', 'string'],
+            'jenis_kelamin' => ['required', 'in:L,P'],
+            'no_hp' => ['required', 'string', 'max:255'],
+            // 'profile_ficture' => ['string', 'max:255'],
+            // 'role' => ['required', 'string', 'max:255'],
+        ], [
+            'name.required' => 'Nama harus diisi',
+            'NIK.unique' => 'NIK sudah terdaftar',
+            'NIK.required' => 'NIK harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'password_confirmation.same' => 'Password tidak sama',
+            'password_confirmation.required' => 'Password konfirmasi harus diisi',
+            'password.string' => 'Password harus berupa string',
+            'password_confirmation.required' => 'Password konfirmasi harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
+            'tempat_lahir.required' => 'Tempat lahir harus diisi',
+            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
+            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
+            'no_hp.required' => 'Nomor Handphone harus diisi',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'NIK' => $request->NIK,
+            'email' => $request->email,
+            'role' => 'admin',
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->user_data()->create([
+            'alamat' => $request->alamat,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_hp' => $request->no_hp,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->route('admin.user.show', $user->id)->with('success', 'User created successfully!');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -37,7 +94,7 @@ class userController extends Controller
 
     public function update(User $id, Request $request)
     {
-        $user = $id;
+    $user = $id;
 
         $user->name = $request->name;
         $user->NIK = $request->NIK;
@@ -56,6 +113,33 @@ class userController extends Controller
         ]);
     
         return redirect()->route('admin.user.show', $id->id)->with('success', 'User updated successfully!');
+    }
+
+    public function updatePassword(User $id, Request $request)
+    {
+        
+        $user = $id;
+        $request->validate([
+            // 'password' => [ 'string' ],
+            'password_confirmation' => [ 'same:password'],
+        ], [
+            'password_confirmation.same' => 'Password tidak sama',
+        ]);
+
+        if (!$request->password) {
+            $pass = '123456';
+        } else {
+            $pass = $request->password;
+        }
+
+        
+
+
+
+        $user->password = Hash::make($pass);
+        $user->save();
+
+        return redirect()->route('admin.user.show', $id->id)->with('success', 'Password updated successfully!');
     }
 
 }

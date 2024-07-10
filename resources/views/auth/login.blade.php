@@ -59,6 +59,13 @@
                                     </div>
                                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                         <p class="mb-4 text-sm mx-auto">
+                                            Lupa password ?
+                                            <a href="https://wa.me/6283105075794" target="_blank"
+                                                class="text-primary text-gradient font-weight-bold">Hubungi Admin </a>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                        <p class="mb-4 text-sm mx-auto">
                                             Belum memiliki akun ?
                                             <a href="{{ route('register') }}"
                                                 class="text-primary text-gradient font-weight-bold">Daftar di sini </a>
