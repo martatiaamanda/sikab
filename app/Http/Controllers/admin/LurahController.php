@@ -12,7 +12,7 @@ class LurahController extends Controller
     protected function uploadFile($file, $file_tpye)
     {
 
-        $file_name = time() . '_' . $file_tpye . '_' . $file->getClientOriginalName();
+        $file_name = $file_tpye . '_' . time() . '_'  . $file->getClientOriginalExtension();
         $file->storeAs('public/lurah', $file_name);
 
         return $file_name;
