@@ -7,7 +7,7 @@
                 <div class="card ">
                     <div class="card-body">
                         <form role="form" ">
-                                    
+
                             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data
                                 Kepale Kelurahan</h6>
 
@@ -44,7 +44,7 @@
                                             <label for="tanda_tangan">Tanda Tangan</label>
                                             <div class="">
                                                 <div class="w-25 h-25">
-                                                    <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                                                    <img src="{{ $lurah->tanda_tangan ? asset('' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
                                                         alt="ttd" class="w-100 border-radius-lg shadow-sm">
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            
+
                             <div class="text-end">
                                 <button type="button"
                                     class="btn bg-gradient-faded-info mt-4 mb-0 text-white" data-bs-toggle="modal"
@@ -70,7 +70,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -155,7 +155,7 @@
         </div>
     </div>
 </div>
-            
+
     </section>
 
     <x-slot name='scripts' >
