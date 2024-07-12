@@ -44,7 +44,7 @@
                                             <label for="tanda_tangan">Tanda Tangan</label>
                                             <div class="">
                                                 <div class="w-25 h-25">
-                                                    <img src="{{ $lurah->tanda_tangan ? asset('/storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                                                    <img src="{{ $lurah->tanda_tangan ? asset('' . Auth::user()->user_data->profile_ficture) : 'https://via.placeholder.com/150' }}"
                                                         alt="ttd" class="w-100 border-radius-lg shadow-sm">
                                                 </div>
                                             </div>
