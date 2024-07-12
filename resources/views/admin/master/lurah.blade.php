@@ -132,7 +132,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="tanda_tangan">Tenda Tangan</label>
+                            <label for="tanda_tangan">Tanda Tangan</label>
                             <input type="file" class="form-control" id="tanda_tangan" name="tanda_tangan" accept=".png">
                                 @error('tanda_tangan')
     <p class="text-danger p-0 m-0">{{ $message }}</p>

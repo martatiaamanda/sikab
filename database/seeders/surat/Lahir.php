@@ -14,11 +14,11 @@ class Lahir extends Seeder
     public function run(): void
     {
         $data_diri = DataType::create([
-            'name' => 'Data Diri',
+            'name' => 'Data Anak',
             'jenis_surat_id' => 13,
         ]);
 
-        
+
         $data_diri->input_fields()->createMany([
             [
                 'name' => 'nama',
@@ -157,7 +157,7 @@ class Lahir extends Seeder
             ],
         ]);
 
-        
+
         $data_document = DataType::create([
             'name' => 'Data Dokumen',
             'jenis_surat_id' => 13,

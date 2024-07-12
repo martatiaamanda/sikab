@@ -102,7 +102,7 @@
                                                                     @method('PUT')
                                                                     <div class="row mb-5">
                                                                         <div class=" mb-3">
-                                                                            <label for="catatan">Caratan</label>
+                                                                            <label for="catatan">Catatan</label>
                                                                             <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>
                                                                             @error('catatan')
                                                                                 <p class="text-danger p-0 m-0">
