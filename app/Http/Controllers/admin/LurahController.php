@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class LurahController extends Controller
 {
 
-    protected function uploadFile($file, $NIP)
+    protected function uploadFile($file, $file_tpye)
     {
 
-        $file_name = time() . '_' . $NIP . '_' . $file->getClientOriginalName();
+        $file_name = time() . '_' . $file_tpye . '_' . $file->getClientOriginalName();
         $file->storeAs('public/lurah', $file_name);
 
         return $file_name;
@@ -64,8 +64,8 @@ class LurahController extends Controller
         $lurah->NIP = $request->NIP;
         $lurah->awal_jabatan = $request->awal_jabatan;
         $lurah->akhir_jabatan = $request->akhir_jabatan;
-        $lurah->tanda_tangan = $this->uploadFile($request->file('tanda_tangan'), $request->NIP);
-        $lurah->stemple = $this->uploadFile($request->file('stemple'), $request->NIP);
+        $lurah->tanda_tangan = $this->uploadFile($request->file('tanda_tangan'), 'ttd');
+        $lurah->stemple = $this->uploadFile($request->file('stemple'), 'stemple');
 
         $lurah->save();
 
