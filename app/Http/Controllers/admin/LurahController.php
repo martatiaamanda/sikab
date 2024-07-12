@@ -13,7 +13,7 @@ class LurahController extends Controller
     {
 
         $file_name = $file_tpye . '_' . time() . '.'  . $file->getClientOriginalExtension();
-        $file->storeAs('public/lurah', $file_name);
+        $file->storeAs('public/kades', $file_name);
 
         return $file_name;
     }

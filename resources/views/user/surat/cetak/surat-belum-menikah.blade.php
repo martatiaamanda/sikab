@@ -14,7 +14,7 @@
         }
 
         /* * {
-        
+
             font-size: 12px
         } */
 
@@ -229,13 +229,13 @@
                         </tr>
                     </table>
                     <div class="stemple">
-                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                        <img src="{{ asset('storage/kades/' . $lurah->stemple) }}" alt="stempel"
                             style="width: 100%; height: 100%">
                     </div>
                     <div class="signature">
                         <p>LURAH BAKUNG</p>
                         <p>KECAMATAN TELUKBETUNG BARAT</p>
-                        <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                        <img src="{{ $lurah->tanda_tangan ? asset('storage/kades/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
                             alt="ttd">
                         <p style="text-decoration: underline 2px">{{ $lurah->name }}</p>
                         <p>NIP.{{ $lurah->NIP }}</p>

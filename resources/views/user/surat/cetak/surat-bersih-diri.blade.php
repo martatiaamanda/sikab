@@ -321,14 +321,14 @@
                         </span>
                     </div>
                     <div class="stemple">
-                        <img src="{{ asset('storage/lurah/' . $lurah->stemple) }}" alt="stempel"
+                        <img src="{{ asset('storage/kades/' . $lurah->stemple) }}" alt="stempel"
                             style="width: 100%; height: 100%">
                     </div>
                     <div class="signature">
                         <p>Lurah Bakung</p>
                         <p>Kecaamat TelukBetung Barat</p>
                         {{-- <div class="ttd-field"></div> --}}
-                        <img src="{{ $lurah->tanda_tangan ? asset('storage/lurah/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
+                        <img src="{{ $lurah->tanda_tangan ? asset('storage/kades/' . $lurah->tanda_tangan) : 'https://via.placeholder.com/150' }}"
                             alt="ttd">
                         <p class="name" style="text-decoration: underline">IDHAM BASYAR, S.SH</p>
                         <P class="name">NIP. 19710723 200003 1 004</P>
