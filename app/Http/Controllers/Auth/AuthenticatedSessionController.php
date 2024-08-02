@@ -18,10 +18,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        $user = User::where('role', 'admin')->first();
+        $user = User::where('role', 'admin')->get();
 
-        $nomor_hp = $user->user_data->no_hp;
-        return view('auth.login', compact('nomor_hp'));
+        // $nomor_hp = $user->user_data->no_hp;
+        return view('auth.login', compact('user'));
     }
 
     /**
@@ -45,14 +45,12 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->intended(route('admin.dashboard', absolute: false));
             }
             return redirect()->route('admin.dashboard');
-        } 
+        }
 
         if (Str::contains($intended, '/admin')) {
             return redirect()->route('user.buat-surat');
         }
         return redirect()->intended(route('user.buat-surat', absolute: false));
-
-
     }
 
     /**

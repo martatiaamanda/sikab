@@ -86,14 +86,14 @@
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.done*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
                   <i class="fa-solid fa-envelope-circle-check fs-5 text-gradient {{ Request::routeIs('admin.done*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
-              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.done*') ? 'text-white ' : ' text-black' }}">surat Selesai</span>
+              <span class="nav-link-text ms-1 {{ Request::routeIs('admin.done*') ? 'text-white ' : ' text-black' }}">Surat Selesai</span>
             </a>
           </li>
           <li class="nav-item mt-3">
             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Bantuan Sosial</h6>
           </li>
 
- 
+
           <li class="nav-item">
             <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.bansos.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">

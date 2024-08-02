@@ -9,7 +9,7 @@
                         <form role="form" ">
 
                             <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data
-                                Kepale Kelurahan</h6>
+                                Kepala Kelurahan</h6>
 
                             <div class="row mb-5">
                                 <div class="col-md-7 mb-3">
@@ -26,12 +26,12 @@
                                 <div class="col-md-7">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="NIK">Masa Jabtan </label>
+                                            <label for="NIK">Masa Jabatan </label>
                                             <input name="NIK" id="NIK" type="text" class="form-control"
                                                 placeholder="NIK" aria-label="NIK" value="{{ $lurah->awal_jabatan }}" disabled>
                                         </div>
                                         <div class="col-6">
-                                            <label for="NIK">sampai</label>
+                                            <label for="NIK">Sampai</label>
                                             <input name="NIK" id="NIK" type="text" class="form-control"
                                                 placeholder="NIK" aria-label="NIK" value="{{ $lurah->akhir_jabatan }}" disabled>
                                         </div>
@@ -50,7 +50,7 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label for="stempel">Stempel <span class="text-danger">(foto stemple dengan background transparant)</span></label>
+                                            <label for="stempel">Stempel <span class="text-danger">(foto stempel dengan background transparan)</span></label>
                                             <div class="">
                                                 <div class="w-25 h-25">
                                                     <img src="{{ $lurah->stemple ? asset('storage/kades/' . $lurah->stemple) : 'https://via.placeholder.com/150' }}"

@@ -173,7 +173,7 @@
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalOkLabel">catatan surat</h5>
+                        <h5 class="modal-title" id="modalOkLabel">Catatan Surat</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
                             aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -186,7 +186,7 @@
                             @method('PUT')
                             <div class="row mb-5">
                                 <div class=" mb-3">
-                                    <label for="catatan">Caratan</label>
+                                    <label for="catatan">Catatan</label>
                                     <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>
                                     @error('catatan')
                                         <p class="text-danger p-0 m-0">{{ $message }}</p>
@@ -208,8 +208,8 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn bg-gradient-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                        data-bs-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                                 </div>
                         </form>
                     </div>

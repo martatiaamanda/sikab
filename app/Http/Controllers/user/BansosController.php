@@ -11,7 +11,8 @@ use Termwind\Components\Dd;
 class BansosController extends Controller
 {
 
-    protected function uploadFile($field, $file, $bansos_id, ) {
+    protected function uploadFile($field, $file, $bansos_id,)
+    {
 
         $file_name = time() . '-' . $bansos_id . '-' . $field . '_' . $file->getClientOriginalName();
         $file->storeAs('public/bansos', $file_name);
@@ -53,7 +54,7 @@ class BansosController extends Controller
             'ktp' => 'required|file|mimes:pdf|max:2048',
             'sktm' => 'required|file|mimes:pdf|max:2048',
             'pengantar_rt' => 'required|file|mimes:pdf|max:2048'
-        ],[
+        ], [
             'nama.required' => 'Nama Lengkap Wajib Diisi',
             'alamat.required' => 'Alamat Wajib Diisi',
             'tempat_lahir.required' => 'Tempat Lahir Wajib Diisi',
@@ -75,11 +76,12 @@ class BansosController extends Controller
             'pengantar_rt.file' => 'Pengantar RT Harus Berupa File',
             'pengantar_rt.mimes' => 'Pengantar RT Harus Berupa File PDF',
             'pengantar_rt.max' => 'Pengantar RT Maksimal 2MB',
-        ] );
+        ]);
         $bansos = new Bansos();
         $bansos->user_id = auth()->user()->id;
+        $bansos->tanggal_bansos = now();
 
-        $bansos->save();
+        $bansos->$bansos->save();
         $bansos->data_bansos()->create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -93,9 +95,6 @@ class BansosController extends Controller
         ]);
 
         return redirect()->route('user.riwayat-bansos')->with('success', 'Bansos Berhasil Diajukan');
-
-
-
     }
 
     /**
@@ -137,8 +136,8 @@ class BansosController extends Controller
             'kk' => 'required|file|mimes:pdf|max:2048',
             'ktp' => 'required|file|mimes:pdf|max:2048',
             'sktm' => 'required|file|mimes:pdf|max:2048',
-             'pengantar_rt' => 'required|file|mimes:pdf|max:2048'
-        ],[
+            'pengantar_rt' => 'required|file|mimes:pdf|max:2048'
+        ], [
             'nama.required' => 'Nama Lengkap Wajib Diisi',
             'alamat.required' => 'Alamat Wajib Diisi',
             'tempat_lahir.required' => 'Tempat Lahir Wajib Diisi',
@@ -160,7 +159,7 @@ class BansosController extends Controller
             'pengantar_rt.file' => 'Pengantar RT Harus Berupa File',
             'pengantar_rt.mimes' => 'Pengantar RT Harus Berupa File PDF',
             'pengantar_rt.max' => 'Pengantar RT Maksimal 2MB',
-        ] );
+        ]);
 
         $bansos = Bansos::findOrFail($id);
         $bansos->status = 'diproses';
@@ -177,14 +176,14 @@ class BansosController extends Controller
             'sktm' => $this->uploadFile('sktm', $request->file('sktm'), $bansos->id),
             'pengantar_rt' => $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id),
         ]);
-        
+
         return redirect()->route('user.riwayat-bansos.show', [$id])->with('success', 'Bansos Berhasil Diupdate');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         //
         $bansos = Bansos::findOrFail($id);

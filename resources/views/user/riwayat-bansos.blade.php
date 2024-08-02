@@ -14,8 +14,8 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
-                                        <th class="text-uppercase text-info   font-weight-bolder opacity-7 ps-2">Nomor
-                                            Surat</th>
+                                        {{-- <th class="text-uppercase text-info   font-weight-bolder opacity-7 ps-2">Nomor
+                                            Surat</th> --}}
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Perihal</th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
@@ -33,10 +33,10 @@
                                                 <p class=" ps-3 text-secondary  font-weight-bold">{{ $loop->iteration }}
                                                 </p>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <p class=" text-secondary  font-weight-bold">
                                                     {{ $history->nomor_bansos ?? '-' }}</p>
-                                            </td>
+                                            </td> --}}
                                             <td class="align-middle text-center text-sm">
                                                 <span
                                                     class="text-secondary  font-weight-bold">{{ $history->perihal }}</span>

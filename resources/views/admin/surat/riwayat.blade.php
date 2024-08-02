@@ -20,8 +20,7 @@
                                             Surat</th>
                                         <th
                                             class="text-center text-uppercase text-info   font-weight-bolder opacity-7 ps-2">
-                                            Yang
-                                            Mengajukan
+                                            Nama
                                         </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Jenis Surat</th>
@@ -87,20 +86,20 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
-                                                                    id="modalOkLabel{{ $history->id }}">catatan surat
+                                                                    id="modalOkLabel{{ $history->id }}">Catatan Surat
                                                                 </h5>
                                                                 <button type="button" class="btn-close text-dark"
                                                                     data-bs-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <form
-                                                                    action='{{ route('admin.surat.konfirmasi', [$history->id]) }}'
-                                                                    method="POST" enctype="multipart/form-data">
-                                                                    @csrf
-                                                                    @method('PUT')
-                                                                    <div class="row mb-5">
+                                                            <form
+                                                                action='{{ route('admin.surat.konfirmasi', [$history->id]) }}'
+                                                                method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="modal-body">
+                                                                    <div class="row ">
                                                                         <div class=" mb-3">
                                                                             <label for="catatan">Catatan</label>
                                                                             <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>
@@ -128,20 +127,21 @@
 
                                                                         </div>
 
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                class="btn bg-gradient-secondary"
-                                                                                data-bs-dismiss="modal">Close</button>
-                                                                            <button type="submit"
-                                                                                class="btn bg-gradient-primary">Save
-                                                                                changes</button>
-                                                                        </div>
-                                                                </form>
-                                                            </div>
 
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                        class="btn bg-gradient-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit"
+                                                                        class="btn bg-gradient-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

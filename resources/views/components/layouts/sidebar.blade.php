@@ -6,9 +6,10 @@
         <div class="navbar-brand m-0 d-flex align-items-center ">
             @if (Auth::user())
                 <div class="col-auto">
-                    <div class="avatar avatar-lg position-relative">
-                        <img src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('static/img/default.png') }}"
-                            alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <div class="avatar avatar-lg position-relative ratio ratio-1x1">
+                        <img style="object-fit: cover; object-position: 50% 50%"
+                            src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('static/img/default.png') }}"
+                            alt="profile_image" class="w-100 border-radius-2xl shadow-sm">
                     </div>
                 </div>
                 <div class=" ms-1">
@@ -91,7 +92,7 @@
                     </div>
                     <span
                         class="nav-link-text ms-1 {{ Request::routeIs('user.riwayat-bansos*') ? 'text-white ' : ' text-black' }}">Riwayat
-                        Bantuan Sosial</span>
+                        Pengajuan Bansos</span>
                 </a>
             </li>
 

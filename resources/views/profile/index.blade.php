@@ -11,8 +11,9 @@
         <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
             <div class="row gx-4">
                 <div class="col-auto">
-                    <div class="avatar avatar-xl position-relative">
-                        <img src="{{ Auth::user()->user_data->profile_ficture ? asset('' . Auth::user()->user_data->profile_ficture) : asset('static/img/default.png') }}"
+                    <div class="avatar avatar-xl position-relative ratio ratio-1x1">
+                        <img style="object-fit: cover; object-position: 50% 50%"
+                            src="{{ Auth::user()->user_data->profile_ficture ? asset('storage/profile/' . Auth::user()->user_data->profile_ficture) : asset('static/img/default.png') }}"
                             alt="profile_image" class="w-100 border-radius-lg shadow-sm">
                     </div>
                 </div>
@@ -41,8 +42,8 @@
         <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPhotoLabel">ubah poto profil</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="modalPhotoLabel">Ubah Foto Profile</h5>
+                    <button type="button" class="btn-Batal text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -61,8 +62,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -93,7 +94,7 @@
                             </button>
                         </div>
                         <div class="col-md-7 d-flex align-items-center">
-                            <h6 class="mb-0">Profile nformasi</h6>
+                            <h6 class="mb-0">Profile Informasi</h6>
                         </div>
                     </div>
                 </div>
@@ -124,7 +125,7 @@
                         <ul class="list-group">
                             <li class="list-group-item border-0 ps-0 pt-0 text-sm">
                                 <strong class="text-dark">
-                                    Ktp :</strong> &nbsp;
+                                    KTP :</strong> &nbsp;
                                 @if (Auth::user()->user_documen && Auth::user()->user_documen->ktp)
                                     <button class="border-0 px-0 bg-transparent" data-bs-toggle="modal"
                                         data-bs-target="#ktp">
@@ -137,8 +138,8 @@
                                             role="document">
                                             <div class="modal-content rounded rounded-3">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="ktpLabel">Modal title</h5>
-                                                    <button type="button" class="btn-close text-dark"
+                                                    <h5 class="modal-title" id="ktpLabel">KTP</h5>
+                                                    <button type="button" class="btn-Batal text-dark"
                                                         data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -171,8 +172,8 @@
                                             role="document">
                                             <div class="modal-content rounded rounded-3">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="kkLabel">Modal title</h5>
-                                                    <button type="button" class="btn-close text-dark"
+                                                    <h5 class="modal-title" id="kkLabel">Kartu Keluarga</h5>
+                                                    <button type="button" class="btn-Batal text-dark"
                                                         data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -203,8 +204,8 @@
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDataLabel">ubah data</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="modalDataLabel">Ubah Data Pribadi</h5>
+                    <button type="button" class="btn-Batal text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -290,8 +291,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -304,8 +305,8 @@
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalDocLabel">ubah data</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="modalDocLabel">Ubah Dokumen</h5>
+                    <button type="button" class="btn-Batal text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -318,7 +319,7 @@
                             @method('PUT')
                         @endif
 
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Dokument</h6>
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Dokumen</h6>
 
                         <div class="row mb-5">
                             <div class="col-md-6 mb-3">
@@ -338,8 +339,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                         </div>
                     </form>
                 </div>
@@ -352,8 +353,8 @@
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalPassLabel">ubah data</h5>
-                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="modalPassLabel">Ubah Password</h5>
+                    <button type="button" class="btn-Batal text-dark" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -400,8 +401,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn bg-gradient-secondary"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                                data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn bg-gradient-primary">Simpan</button>
                         </div>
                     </form>
                 </div>

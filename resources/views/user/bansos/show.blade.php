@@ -11,12 +11,12 @@
 
                 <div class="row align-items-center">
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Surat</h6>
-                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                    {{-- <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                         <label class="fs-6 m-0 ps-2">Nomor Surat</label>
                     </div>
                     <div class="col-md-6 col-lg-7 col-sm-6">
                         <p class=" text-secondary fs-6  font-weight-bold">: {{ $bansos->nomor_bansos ?? '-' }}</p>
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                         <label class="fs-6 m-0 ps-2">Tanggal Dibuat</label>

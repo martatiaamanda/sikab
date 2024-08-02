@@ -10,12 +10,12 @@
 
                 <div class="row align-items-center">
                     <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Surat</h6>
-                    <div class="col-md-6 col-lg-4 col-sm-6 my-1">
+                    {{-- <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                         <label class="fs-6 m-0 ps-2">Nomor Surat</label>
-                    </div>
-                    <div class="col-md-6 col-lg-7 col-sm-6">
+                    </div> --}}
+                    {{-- <div class="col-md-6 col-lg-7 col-sm-6">
                         <p class=" text-secondary fs-6  font-weight-bold">: {{ $bansos->nomor_bansos ?? '-' }}</p>
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-6 col-lg-4 col-sm-6 my-1">
                         <label class="fs-6 m-0 ps-2">Tanggal Dibuat</label>
@@ -345,15 +345,14 @@
                             @csrf
                             @method('PUT')
                             <div class="row mb-5">
-                                <div class=" mb-3" id="input_nomor_bansos">
+                                {{-- <div class=" mb-3" id="input_nomor_bansos">
                                     <label for="nomor_bansos">Nomor_bansos</label>
                                     <input type="text" class="form-control" id="nomor_bansos" name="nomor_bansos"
                                         placeholder="Nomor Bantuan Sosial" value="{{ old('nomor_bansos') }}">
-                                    {{-- <textarea class="form-control" name="nomor_bansos" id="nomor_bansos" aria-label="With textarea"></textarea> --}}
                                     @error('nomor_bansos')
                                         <p class="text-danger p-0 m-0">{{ $message }}</p>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class=" mb-3">
                                     <label for="catatan">Caratan</label>
                                     <textarea class="form-control" name="catatan" id="catatan" aria-label="With textarea"></textarea>

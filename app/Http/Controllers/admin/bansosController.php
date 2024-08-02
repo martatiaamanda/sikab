@@ -68,10 +68,10 @@ class bansosController extends Controller
         ]);
 
         if ($request->status == 'diterima') {
-            $request->validate([
-                'nomor_bansos' => 'required',
-            ]);
-            $bansos->nomor_bansos = $request->nomor_bansos;
+            // $request->validate([
+            //     'nomor_bansos' => 'required',
+            // ]);
+            // $bansos->nomor_bansos = $request->nomor_bansos;
             $bansos->tanggal_disetujui = now();
         }
 

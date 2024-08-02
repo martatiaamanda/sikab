@@ -60,8 +60,15 @@
                                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                         <p class="mb-4 text-sm mx-auto">
                                             Lupa password ?
-                                            <a href="https://wa.me/{{ $nomor_hp }}" target="_blank"
-                                                class="text-primary text-gradient font-weight-bold">Hubungi Admin </a>
+                                            <button type="button" data-bs-toggle="modal"
+                                                data-bs-target="#modalAdminList"
+                                                class="text-primary text-gradient font-weight-bold bg-transparent border-0">
+                                                Hubungi Admin
+                                            </button>
+
+
+                                            {{-- <a href="https://wa.me/{{ $nomor_hp }}" target="_blank"
+                                                class="text-primary text-gradient font-weight-bold">Hubungi Admin </a> --}}
                                         </p>
                                     </div>
                                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
@@ -74,15 +81,59 @@
                                 </div>
 
                                 <div class="col-md-6 d-md-block d-none pb-5">
-                                    <div class="w-100 h-100 bg-cover rounded-3 "
-                                        style="background-image: url('{{ asset('static/img/bg-auth-5.png') }}')">
-                                        {{-- <div class="w-100 h-100 bg-gradient-faded-dark opacity-2 rounded-3"></div> --}}
-                                        {{-- <img class="w-full" src="{{ asset('static/img/bg-auth.jpg') }}" alt="img"> --}}
+                                    <div class="w-100 h-100 bg-cover rounded-3 ">
+                                        <img class="img-fluid pt-5" src="{{ asset('static/img/bg-auth-5.png') }}"
+                                            alt="img">
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade " id="modalAdminList" tabindex="-1" role="dialog" aria-labelledby="modalAdminListLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAdminListLabel">Kontak Admin</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @foreach ($user as $item)
+                            {{-- {{ $item }} --}}
+                            <ul class="list-group">
+                                <li class="list-group-item border-0">
+                                    <a href="https://wa.me/{{ $item->user_data->no_hp }}"
+                                        class="d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                        <div class="d-flex align-items-center">
+                                            <button
+                                                class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center">
+                                                <i class="fa-brands fa-whatsapp"></i>
+                                            </button>
+                                            <div class="d-flex flex-column">
+                                                {{-- <h6 class="mb-1 text-dark text-sm">{{ $item->user_data->no_hp }}</h6> --}}
+                                                <h6 class="mb-1 text-dark text-sm">Admin {{ $loop->iteration }}</h6>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        @endforeach
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">batal</button>
+                        {{-- <button type="submit" class="btn bg-gradient-primary">Save
+                                changes</button> --}}
                     </div>
 
                 </div>
