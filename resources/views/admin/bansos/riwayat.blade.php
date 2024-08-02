@@ -29,7 +29,8 @@
                                             Nama
                                         </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
-                                            Jenis Surat</th>
+                                            Perihal
+                                        </th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">
                                             Tgl Pengajuan</th>
                                         <th class="text-center text-uppercase text-info  font-weight-bolder opacity-7">

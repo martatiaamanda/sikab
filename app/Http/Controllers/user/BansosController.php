@@ -81,7 +81,7 @@ class BansosController extends Controller
         $bansos->user_id = auth()->user()->id;
         $bansos->tanggal_bansos = now();
 
-        $bansos->$bansos->save();
+        $bansos->save();
         $bansos->data_bansos()->create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
