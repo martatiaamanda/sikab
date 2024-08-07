@@ -120,7 +120,7 @@
           </li>
 
           <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Acoutnt</h6>
+            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Akun Pengguna</h6>
           </li>
 
         </li>
