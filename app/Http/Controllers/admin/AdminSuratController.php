@@ -14,7 +14,7 @@ class AdminSuratController extends Controller
 {
     public function index()
     {
-        $histories = surat::orderByDesc('id')->paginate(10);
+        $histories = surat::orderByDesc('id')->get();
         $page_title = 'Kelola Surat';
 
         return view('admin.surat.riwayat', compact('histories', 'page_title'));
@@ -22,7 +22,7 @@ class AdminSuratController extends Controller
 
     public function pengajuan()
     {
-        $histories = surat::where('status', '!=', 'diterima')->orderByDesc('id')->paginate(10);
+        $histories = surat::where('status', '!=', 'diterima')->orderByDesc('id')->get();
         $page_title = 'Permohonan Surat';
 
         return view('admin.surat.riwayat', compact('histories', 'page_title'));
@@ -30,19 +30,19 @@ class AdminSuratController extends Controller
 
     public function done()
     {
-        $histories = surat::where('status', 'diterima')->orderByDesc('id')->paginate(10);
+        $histories = surat::where('status', 'diterima')->orderByDesc('id')->get();
         $page_title = 'Surat Selesai';
 
         return view('admin.surat.riwayat', compact('histories', 'page_title'));
     }
 
-    public function jenis($slug)  {
+    public function jenis($slug)
+    {
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
-        $histories = $jenis_surat->surats()->orderByDesc('id')->paginate(10);
-        $page_title = 'Surat '.$jenis_surat->name;
+        $histories = $jenis_surat->surats()->orderByDesc('id')->get();
+        $page_title = 'Surat ' . $jenis_surat->name;
 
         return view('admin.surat.riwayat', compact('histories', 'page_title'));
-        
     }
 
     public function show($id)
@@ -53,7 +53,7 @@ class AdminSuratController extends Controller
         }
 
         $jenis_surat = JenisSurat::where('id', $history->jenis_surat->id)->first();
-        // $mail_types = JenisSurat::all();
+        // $mail_types = JenisSurat::get();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
@@ -70,7 +70,8 @@ class AdminSuratController extends Controller
         return view('admin.surat.show', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
     }
 
-    public function showPindah($id)  {
+    public function showPindah($id)
+    {
         $surat = surat::where('id', $id)->first();
 
         if (!$surat) {
@@ -89,22 +90,22 @@ class AdminSuratController extends Controller
         if (!$surat) {
             return redirect()->route('admin.surat')->with('error', 'Surat Tidak Ditemukan');
         }
-        
+
         // dd($request);
-        
+
         $request->validate([
             'status' => 'required',
             'catatan' => 'nullable',
         ]);
 
-        if($request->status == 'diterima') {
+        if ($request->status == 'diterima') {
 
             $nomor_surat = NomorSurat::first();
-            $surat->nomor_surat = $nomor_surat->awal .' '. $surat->id . $nomor_surat->akhir . '/'. $nomor_surat->tahun;
+            $surat->nomor_surat = $nomor_surat->awal . ' ' . $surat->id . $nomor_surat->akhir . '/' . $nomor_surat->tahun;
             $surat->tanggal_disetujui = now();
         }
 
-        
+
         $surat->status = $request->status;
         $surat->catatan = $request->catatan;
         // $surat->tanggal_disetujui = now();
@@ -123,7 +124,7 @@ class AdminSuratController extends Controller
         }
 
         $jenis_surat = JenisSurat::where('id', $history->jenis_surat->id)->first();
-        // $mail_types = JenisSurat::all();
+        // $mail_types = JenisSurat::get();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         }
@@ -138,8 +139,5 @@ class AdminSuratController extends Controller
         }
 
         return view('user.surat.edit', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
-    
     }
 }
-
-

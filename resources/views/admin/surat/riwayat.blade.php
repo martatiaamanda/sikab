@@ -1,7 +1,13 @@
 <x-app-layout>
     <x-slot name="title">Riwayat Surat</x-slot>
 
-
+    <x-slot name='metas'>
+        {{-- datatables --}}
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    </x-slot>
 
     <section class="m-3">
         <div class="row">
@@ -12,7 +18,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
+                            <table id="data_teble" class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-info  font-weight-bolder opacity-7">NO</th>
@@ -147,9 +153,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-end px-3">
+                            {{-- <div class="d-flex justify-content-end px-3">
                                 {{ $histories->links() }}
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -160,6 +166,10 @@
 
     <x-slot name='scripts'>
         <script>
+            $(document).ready(function() {
+                $('#data_teble').DataTable();
+            });
+
             const showmodal = (status, id) => {
                 const inputStatus = document.getElementById('status' + id);
                 const data = status

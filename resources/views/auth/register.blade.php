@@ -101,8 +101,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="email">Email<span class="text-danger">*</span></label>
                                             <input name="email" id="email" type="email" class="form-control"
-                                                placeholder="Email" aria-label="Email / NIK"
-                                                aria-describedby="email-addon" value="{{ old('email') }}" required>
+                                                placeholder="Email" aria-label="Email" aria-describedby="email-addon"
+                                                value="{{ old('email') }}" required>
                                             @error('email')
                                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                                             @enderror

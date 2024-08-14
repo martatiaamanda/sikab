@@ -9,6 +9,10 @@
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>{{ $title }} - Sistem Informasi Kelurahan Bakung</title>
     <x-metas-x-demo />
+
+    @if (isset($metas))
+        {{ $metas }}
+    @endif
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" style="min-height: 100vh">

@@ -15,12 +15,17 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+
+        if (!filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)) {
+            return back()->withErrors(['email' => 'Alamat email tidak valid.']);
+        }
         // dd($request->name);
         $validator = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string' ],
+            'password' => ['required', 'string'],
             'password_confirmation' => ['required', 'same:password'],
             'NIK' => ['required', 'string', 'max:255', 'unique:users'],
             'alamat' => ['required', 'string', 'max:255'],

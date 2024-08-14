@@ -12,14 +12,14 @@ class bansosController extends Controller
     public function index()
     {
 
-        $histories = Bansos::orderByDesc('id')->paginate(10);
+        $histories = Bansos::orderByDesc('id')->get();
         $page_title = 'Kelola Bansos';
         return view('admin.bansos.riwayat', compact('histories', 'page_title'));
     }
 
     public function pengajuan()
     {
-        $histories = Bansos::where('status', '!=', 'diterima')->orderByDesc('id')->paginate(10);
+        $histories = Bansos::where('status', '!=', 'diterima')->orderByDesc('id')->get();
         $page_title = 'Permohonan Bansos';
 
         return view('admin.bansos.riwayat', compact('histories', 'page_title'));
@@ -27,7 +27,7 @@ class bansosController extends Controller
 
     public function done()
     {
-        $histories = Bansos::where('status', 'diterima')->orderByDesc('id')->paginate(10);
+        $histories = Bansos::where('status', 'diterima')->orderByDesc('id')->get();
         $page_title = 'Bansos Selesai';
 
         return view('admin.bansos.riwayat', compact('histories', 'page_title'));

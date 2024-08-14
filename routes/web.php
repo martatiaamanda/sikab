@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 // auth routes
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', function () {
         return redirect('/login');
@@ -34,7 +34,7 @@ Route::group(['middleware' => ['guest']], function () {
 Route::group(['middleware' => ['auth']], function () {
 
     // user routes
-    Route::middleware(User::class)->group( function () {
+    Route::middleware(User::class)->group(function () {
         Route::get('/', function () {
             return redirect()->route('user.buat-surat');
         });
@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     // admin routes
-    Route::prefix('/admin')->middleware([Admin::class])->group( function () {
+    Route::prefix('/admin')->middleware([Admin::class])->group(function () {
         // admin dashboard
         Route::get('/', function () {
             return redirect()->route('admin.dashboard');
@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/user/{id}/show', [userController::class, 'show'])->name('admin.user.show');
         Route::get('/user/{id}/edit', [userController::class, 'edit'])->name('admin.user.edit');
         Route::put('/user/{id}/update', [userController::class, 'update'])->name('admin.user.update');
+        Route::delete('/user/{id}/delete', [userController::class, 'destroy'])->name('admin.user.delete');
         Route::put('/user/{id}/update/password', [userController::class, 'updatePassword'])->name('admin.user.update.password');
 
         // admin lurah
@@ -115,7 +116,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // export data bansos
         Route::get('/export/bansos', [ExportController::class, 'index'])->name('admin.export.bansos');
-});
+    });
 
     // print surat
     Route::get('/riwayat-surat/{id}/cetak', [PrintController::class, 'view'])->name('user.riwayat-surat.cetak');

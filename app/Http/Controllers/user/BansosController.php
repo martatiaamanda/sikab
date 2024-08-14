@@ -24,7 +24,7 @@ class BansosController extends Controller
      */
     public function index()
     {
-        $histories = Bansos::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
+        $histories = Bansos::where('user_id', auth()->user()->id)->orderByDesc('id')->get();
 
         return view('user.riwayat-bansos', compact('histories'));
     }

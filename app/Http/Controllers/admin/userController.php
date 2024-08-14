@@ -12,13 +12,13 @@ class userController extends Controller
     //
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::get();
         return view('admin.master.user', compact('users'));
     }
 
     public function show(User $id)
     {
-        
+
         // $user = User::findOrFail($id);
         $user = $id;
         // dd($user);
@@ -36,7 +36,7 @@ class userController extends Controller
         $validator = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string' ],
+            'password' => ['required', 'string'],
             'password_confirmation' => ['required', 'same:password'],
             'NIK' => ['required', 'string', 'max:255', 'unique:users'],
             'alamat' => ['required', 'string', 'max:255'],
@@ -94,7 +94,7 @@ class userController extends Controller
 
     public function update(User $id, Request $request)
     {
-    $user = $id;
+        $user = $id;
 
         $user->name = $request->name;
         $user->NIK = $request->NIK;
@@ -111,17 +111,17 @@ class userController extends Controller
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
         ]);
-    
+
         return redirect()->route('admin.user.show', $id->id)->with('success', 'User updated successfully!');
     }
 
     public function updatePassword(User $id, Request $request)
     {
-        
+
         $user = $id;
         $request->validate([
             // 'password' => [ 'string' ],
-            'password_confirmation' => [ 'same:password'],
+            'password_confirmation' => ['same:password'],
         ], [
             'password_confirmation.same' => 'Password tidak sama',
         ]);
@@ -132,7 +132,7 @@ class userController extends Controller
             $pass = $request->password;
         }
 
-        
+
 
 
 
@@ -142,4 +142,10 @@ class userController extends Controller
         return redirect()->route('admin.user.show', $id->id)->with('success', 'Password updated successfully!');
     }
 
+    public function destroy(User $id)
+    {
+        $user = $id;
+        $user->delete();
+        return redirect()->route('admin.user')->with('success', 'User deleted successfully!');
+    }
 }

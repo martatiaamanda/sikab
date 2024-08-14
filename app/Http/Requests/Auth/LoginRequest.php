@@ -43,7 +43,7 @@ class LoginRequest extends FormRequest
 
         $credentials = $this->only('email', 'password');
         $field = filter_var($credentials['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'NIK';
-        
+
         if (! Auth::attempt([$field => $credentials['email'], 'password' => $credentials['password']], $this->boolean('rememberMe'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -83,6 +83,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }

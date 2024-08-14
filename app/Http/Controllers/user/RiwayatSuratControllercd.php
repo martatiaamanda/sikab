@@ -14,7 +14,7 @@ class RiwayatSuratControllercd extends Controller
 {
     public function index()
     {
-        $histories = surat::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
+        $histories = surat::where('user_id', auth()->user()->id)->orderByDesc('id')->get();
 
         // dd ($surats[0]->input_value);
         // $histories = JenisSurat::paginate(10);
@@ -36,7 +36,7 @@ class RiwayatSuratControllercd extends Controller
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
 
-        $surat_value = new Collection(); 
+        $surat_value = new Collection();
 
         $surat_value = [];
         foreach ($history->input_value as $value) {
@@ -68,7 +68,6 @@ class RiwayatSuratControllercd extends Controller
         }
 
         return view('user.surat.edit', compact('history', 'surat_value',  'data_types', 'jenis_surat'));
-    
     }
 
     public function destroy($id)
@@ -90,11 +89,11 @@ class RiwayatSuratControllercd extends Controller
             return redirect()->route('user.riwayat-surat')->with('error', 'Tanda Tangan Lurah atau stempel Belum Diatur');
         }
         $surat  = surat::where('id', $id)->first();
-        if (!$surat){
+        if (!$surat) {
             return redirect()->route('user.riwayat-surat')->with('error', 'Surat Tidak Ditemukan');
         }
 
-        if($surat->status != 'diterima') {
+        if ($surat->status != 'diterima') {
             return redirect()->route('user.riwayat-surat')->with('error', 'Surat belum disetujui');
         }
 
@@ -104,11 +103,11 @@ class RiwayatSuratControllercd extends Controller
             return view('user.surat.cetak.surat-pindah', compact('lurah', 'surat', 'surat_value'));
         }
 
-        $surat_value = new Collection(); 
+        $surat_value = new Collection();
         foreach ($surat->input_value as $value) {
             $surat_value[$value->input_field->name] = $value->value;
         }
         $view = 'user.surat.cetak.' . $surat->jenis_surat->slug;
-        return view( $view, compact( 'lurah', 'surat','surat_value'));
+        return view($view, compact('lurah', 'surat', 'surat_value'));
     }
 }
