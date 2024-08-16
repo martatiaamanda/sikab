@@ -84,7 +84,7 @@
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     detail
                                                 </a>
-                                                @if (Auth::user()->id == 2 || $user->role != 'admin')
+                                                @if ((Auth::user()->id == 2 && Auth::user()->id != $user->id) || $user->role != 'admin')
                                                     <button type="button"
                                                         class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
                                                         data-bs-toggle="modal"
