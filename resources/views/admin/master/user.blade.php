@@ -85,17 +85,6 @@
                                                     detail
                                                 </a>
                                                 @if ($user->role != 'admin')
-                                                    {{-- <form action="{{ route('admin.user.delete', [$user->id]) }}"
-                                                        method="POST" class="p-0">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
-                                                            data-toggle="tooltip" data-original-title="Edit user">
-                                                            Hapus
-                                                        </button>
-                                                    </form> --}}
-
                                                     <button type="button"
                                                         class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
                                                         data-bs-toggle="modal"
@@ -124,7 +113,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <div class="modal-body">
-                                                                        <p class="">Hapus Pengguna
+                                                                        <p class="">Yakin Menghapus Pengguna
                                                                             {{ $user->name }}</p>
                                                                     </div>
                                                                     <div class="modal-footer">
