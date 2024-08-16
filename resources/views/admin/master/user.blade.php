@@ -84,17 +84,61 @@
                                                     data-toggle="tooltip" data-original-title="Edit user">
                                                     detail
                                                 </a>
+                                                @if ($user->role != 'admin')
+                                                    {{-- <form action="{{ route('admin.user.delete', [$user->id]) }}"
+                                                        method="POST" class="p-0">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
+                                                            data-toggle="tooltip" data-original-title="Edit user">
+                                                            Hapus
+                                                        </button>
+                                                    </form> --}}
 
-                                                <form action="{{ route('admin.user.delete', [$user->id]) }}"
-                                                    method="POST" class="p-0">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
+                                                    <button type="button"
                                                         class="border-0 bg-transparent text-secondary font-weight-bold text-decoration-underline"
-                                                        data-toggle="tooltip" data-original-title="Edit user">
-                                                        Hapus
-                                                    </button>
-                                                </form>
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modalDelet{{ $user->id }}">hapus</button>
+                                                    <div class="modal fade " id="modalDelet{{ $user->id }}"
+                                                        tabindex="-1" role="dialog"
+                                                        aria-labelledby="modalDeletLabel{{ $user->id }}"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered "
+                                                            role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="modalDeletLabel{{ $user->id }}">
+                                                                        Konfirmasi
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close text-dark"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+
+                                                                </div>
+                                                                <form
+                                                                    action="{{ route('admin.user.delete', [$user->id]) }}"
+                                                                    method="POST" class="p-0">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <div class="modal-body">
+                                                                        <p class="">Hapus Pengguna
+                                                                            {{ $user->name }}</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn bg-gradient-secondary"
+                                                                            data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit"
+                                                                            class="btn bg-gradient-danger">Hapus</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
 
                                             </td>
                                         </tr>
