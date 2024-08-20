@@ -109,19 +109,23 @@
 
                                         <!-- Button to trigger modal -->
                                         <button type="button" class="btn btn-secondary w-100 text-start mt-2"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal{{ $input_field->id }}">
                                             {{ $surat_value[$input_field->id] }}
                                         </button>
                                     </div>
 
                                     <!-- Modal to show document -->
-                                    <div class="modal modal-fullscreen fade modal-xl" id="exampleModal" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal modal-fullscreen fade modal-xl"
+                                        id="exampleModal{{ $input_field->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel{{ $input_field->id }}" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                             role="document">
                                             <div class="modal-content rounded rounded-3">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Document Viewer</h5>
+                                                    <h5 class="modal-title"
+                                                        id="exampleModalLabel{{ $input_field->id }}">Document Viewer
+                                                    </h5>
                                                     <button type="button" class="btn-close text-dark"
                                                         data-bs-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>

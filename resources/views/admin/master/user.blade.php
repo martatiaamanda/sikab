@@ -17,8 +17,10 @@
                         <div class="card-header pb-0">
                             <h6>Kelola User</h6>
                         </div>
-                        {{-- <a href="{{ route('admin.user.create') }}"
-                            class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white me-3">Tambah Admin</a> --}}
+                        @if (Auth::user()->id == '2')
+                            <a href="{{ route('admin.user.create') }}"
+                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white me-3">Tambah Admin</a>
+                        @endif
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">

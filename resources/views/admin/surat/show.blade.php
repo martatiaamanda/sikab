@@ -94,20 +94,25 @@
                                     <div class="form-group">
                                         <div class="form-control ">
                                             <button type="button" class="border-0 bg-transparent w-100 text-start"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal{{ $input_field->id }}">
                                                 {{ $surat_value[$input_field->id] }}
                                             </button>
                                         </div>
 
 
-                                        <div class="modal modal-fullscreen fade modal-xl " id="exampleModal"
-                                            tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                        <div class="modal modal-fullscreen fade modal-xl "
+                                            id="exampleModal{{ $input_field->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel{{ $input_field->id }}"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable "
                                                 role="document">
                                                 <div class="modal-content rounded rounded-3">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <h5 class="modal-title"
+                                                            id="exampleModalLabel{{ $input_field->id }}">
+                                                            {{ $input_field->title }}
+                                                        </h5>
                                                         <button type="button" class="btn-close text-dark"
                                                             data-bs-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
