@@ -96,7 +96,7 @@
 
 
           <li class="nav-item">
-            <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos') }}>
+            <a class="nav-link rounded-3  {{ Request::routeIs('admin.bansos*') ? ' bg-gradient-faded-info   text-white ' : '' }} " href={{ route('admin.bansos') }}>
               <div class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('admin.bansos.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
                   <i class="fa-solid fa-sack-dollar fs-5 text-gradient {{ Request::routeIs('admin.bansos.*') ? 'text-info' : 'text-dark' }}"></i>
               </div>
