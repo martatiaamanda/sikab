@@ -34,11 +34,28 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
                                 2
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="nama">NIK<span class="text-danger">*</span></label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nik" name="nik"
+                                placeholder="Nomor Induk Kependudukan" value="{{ $bansos->data_bansos->nik }}">
+                            @error('nik')
+                                <p class="text-danger p-0 m-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
+                                3
                             </p>
                             <label class="fs-6 m-0 ps-2" for="tempat_lahir">Tempat Lahir<span
                                     class="text-danger">*</span></label>
@@ -57,7 +74,7 @@
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                3
+                                4
                             </p>
                             <label class="fs-6 m-0 ps-2" for="tanggal_lahir">Tanggal Lahir<span
                                     class="text-danger">*</span></label>
@@ -76,7 +93,7 @@
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                4
+                                5
                             </p>
                             <label class="fs-6 m-0 ps-2" for="tanggal_lahir">Jenis Kelamin<span
                                     class="text-danger">*</span></label>
@@ -104,7 +121,7 @@
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                5
+                                6
                             </p>
                             <label class="fs-6 m-0 ps-2" for="alamat">Alamat Lengkap<span
                                     class="text-danger">*</span></label>
@@ -112,7 +129,8 @@
                     </div>
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
-                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea" placeholder="Alamat Lengkap">{{ $bansos->data_bansos->alamat }}</textarea>
+                            <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea"
+                                placeholder="Alamat Lengkap">{{ $bansos->data_bansos->alamat }}</textarea>
                             @error('alamat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -127,7 +145,8 @@
                     {{-- @foreach ($data_type->input_fields as $input_field) --}}
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
-                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
+                                style="width: 30px">
                                 1
                             </p>
                             <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga<span

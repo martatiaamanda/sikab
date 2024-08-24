@@ -10,10 +10,11 @@ class DataBansos extends Model
     use HasFactory;
 
     protected $table = 'data_bansos';
-    
+
     protected $fillable = [
         'bansos_id',
         'nama',
+        'nik',
         'alamat',
         'tempat_lahir',
         'tanggal_lahir',
@@ -34,8 +35,8 @@ class DataBansos extends Model
 
     public $timestamps = false;
 
-    public function bansos() {
+    public function bansos()
+    {
         return $this->belongsTo(Bansos::class, 'bansos_id', 'id');
     }
-
 }

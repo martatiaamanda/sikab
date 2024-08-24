@@ -107,7 +107,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/surat/{id}/konfirmasi', [AdminSuratController::class, 'konfirmasi'])->name('admin.surat.konfirmasi');
 
         // admin bansos
-        Route::get('/bansos', [AdminBansosController::class, 'index'])->name('admin.bansos');
+        Route::get('/bansos', [AdminBansosController::class, 'index'])->name('admin.bansos.index');
         Route::get('/bansos/pengajuan', [AdminBansosController::class, 'pengajuan'])->name('admin.bansos-pengajuan');
         Route::get('/bansos/done', [AdminBansosController::class, 'done'])->name('admin.bansos-done');
         Route::get('/bansos/{id}/show', [AdminBansosController::class, 'show'])->name('admin.bansos.show');

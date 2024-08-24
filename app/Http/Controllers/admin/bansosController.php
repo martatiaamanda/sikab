@@ -37,7 +37,7 @@ class bansosController extends Controller
     {
         $bansos = Bansos::where('id', $id)->first();
         if (!$bansos) {
-            return redirect()->route('admin.bansos')->with('error', 'Bansos Tidak Ditemukan');
+            return redirect()->route('admin.bansos.index')->with('error', 'Bansos Tidak Ditemukan');
         }
 
         return view('admin.bansos.show', compact('bansos'));
@@ -47,7 +47,7 @@ class bansosController extends Controller
     {
         $bansos = Bansos::where('id', $id)->first();
         if (!$bansos) {
-            return redirect()->route('admin.bansos')->with('error', 'Bansos Tidak Ditemukan');
+            return redirect()->route('admin.bansos.index')->with('error', 'Bansos Tidak Ditemukan');
         }
 
         return view('admin.bansos.edit', compact('bansos'));
@@ -57,7 +57,7 @@ class bansosController extends Controller
     {
         $bansos = Bansos::where('id', $id)->first();
         if (!$bansos) {
-            return redirect()->route('admin.bansos')->with('error', 'Bansos Tidak Ditemukan');
+            return redirect()->route('admin.bansos.index')->with('error', 'Bansos Tidak Ditemukan');
         }
 
         // dd($request);

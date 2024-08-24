@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bansos;
+use App\Models\UserDocumen;
 use Illuminate\Http\Request;
 use Laravel\Prompts\Key;
 use Termwind\Components\Dd;
@@ -44,18 +45,28 @@ class BansosController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = auth()->user();
+        $userDocument = UserDocumen::where('user_id', auth()->id())->first();
+
+        // Determine required fields based on the existence of userDocument kk and ktp
+        $kkRequired = !$userDocument || !$userDocument->kk ? 'required' : 'nullable';
+        $ktpRequired = !$userDocument || !$userDocument->ktp ? 'required' : 'nullable';
+
         $request->validate([
             'nama' => 'required',
             'alamat' => 'required',
+            'nik' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'kk' => 'required|file|mimes:pdf|max:2048',
-            'ktp' => 'required|file|mimes:pdf|max:2048',
+            'kk' => [$kkRequired, 'file', 'mimes:pdf', 'max:2048'],
+            'ktp' => [$ktpRequired, 'file', 'mimes:pdf', 'max:2048'],
             'sktm' => 'required|file|mimes:pdf|max:2048',
             'pengantar_rt' => 'required|file|mimes:pdf|max:2048'
         ], [
             'nama.required' => 'Nama Lengkap Wajib Diisi',
+            'nik.required' => 'NIK Wajib Diisi',
             'alamat.required' => 'Alamat Wajib Diisi',
             'tempat_lahir.required' => 'Tempat Lahir Wajib Diisi',
             'tanggal_lahir.required' => 'Tanggal Lahir Wajib Diisi',
@@ -81,15 +92,21 @@ class BansosController extends Controller
         $bansos->user_id = auth()->user()->id;
         $bansos->tanggal_bansos = now();
 
+
+        $ktp = request()->file('kk') ? $this->uploadFile('kk', request()->file('kk'), $bansos->id) : $userDocument->kk;
+        $kk = request()->file('ktp') ? $this->uploadFile('ktp', request()->file('ktp'), $bansos->id) : $userDocument->ktp;
+
+
         $bansos->save();
         $bansos->data_bansos()->create([
             'nama' => $request->nama,
+            'nik' => $request->nik,
             'alamat' => $request->alamat,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kk' => $this->uploadFile('kk', $request->file('kk'), $bansos->id),
-            'ktp' => $this->uploadFile('ktp', $request->file('ktp'), $bansos->id),
+            'kk' => $kk,
+            'ktp' => $ktp,
             'sktm' => $this->uploadFile('sktm', $request->file('sktm'), $bansos->id),
             'pengantar_rt' => $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id),
         ]);
@@ -129,16 +146,18 @@ class BansosController extends Controller
         //
         $request->validate([
             'nama' => 'required',
+            'nik' => 'required',
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
-            'kk' => 'required|file|mimes:pdf|max:2048',
-            'ktp' => 'required|file|mimes:pdf|max:2048',
-            'sktm' => 'required|file|mimes:pdf|max:2048',
-            'pengantar_rt' => 'required|file|mimes:pdf|max:2048'
+            'kk' => 'file|mimes:pdf|max:2048',
+            'ktp' => 'file|mimes:pdf|max:2048',
+            'sktm' => 'file|mimes:pdf|max:2048',
+            'pengantar_rt' => 'file|mimes:pdf|max:2048'
         ], [
             'nama.required' => 'Nama Lengkap Wajib Diisi',
+            'nik.required' => 'NIK Wajib Diisi',
             'alamat.required' => 'Alamat Wajib Diisi',
             'tempat_lahir.required' => 'Tempat Lahir Wajib Diisi',
             'tanggal_lahir.required' => 'Tanggal Lahir Wajib Diisi',
@@ -167,14 +186,15 @@ class BansosController extends Controller
 
         $bansos->data_bansos()->update([
             'nama' => $request->nama,
+            'nik' => $request->nik,
             'alamat' => $request->alamat,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kk' => $this->uploadFile('kk', $request->file('kk'), $bansos->id),
-            'ktp' => $this->uploadFile('ktp', $request->file('ktp'), $bansos->id),
-            'sktm' => $this->uploadFile('sktm', $request->file('sktm'), $bansos->id),
-            'pengantar_rt' => $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id),
+            'kk' => request()->file('kk') ? $this->uploadFile('kk', $request->file('kk'), $bansos->id) : $bansos->kk,
+            'ktp' => request()->file('ktp') ? $this->uploadFile('ktp', $request->file('ktp'), $bansos->id) : $bansos->ktp,
+            'sktm' => request()->file('sktm') ? $this->uploadFile('sktm', $request->file('sktm'), $bansos->id) : $bansos->sktm,
+            'pengantar_rt' => request()->file('pengantar_rt') ? $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id) : $bansos->pengantar_rt,
         ]);
 
         return redirect()->route('user.riwayat-bansos.show', [$id])->with('success', 'Bansos Berhasil Diupdate');

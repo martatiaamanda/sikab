@@ -10,8 +10,8 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class DataBansos implements FromCollection, WithHeadings
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         $bansosList = Bansos::with('data_bansos')->where('status', 'diterima')->get();
@@ -24,10 +24,10 @@ class DataBansos implements FromCollection, WithHeadings
         }
 
         foreach ($bansosList as  $bansos) {
-        //    dd($bansos);
+            //    dd($bansos);
             $dataExport->push([
                 'No' => $bansos->id,
-                'NIK' => $bansos->data_bansos->ktp,
+                'NIK' => $bansos->data_bansos->nik,
                 'Nama' => $bansos->data_bansos->nama,
                 'Alamat' => $bansos->data_bansos->alamat,
             ]);

@@ -70,14 +70,28 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama lengkap" value="{{ $bansos->data_bansos->nama }}" disabled>
+                                placeholder="Nama lengkap" value="{{ $bansos->data_bansos->nik }}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="d-flex align-items-baseline">
+                            <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
+                                2
+                            </p>
+                            <label class="fs-6 m-0 ps-2" for="nama">NIK</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-7">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nama" name="nama"
+                                placeholder="Nama lengkap" value="{{ $bansos->data_bansos->nik }}" disabled>
                         </div>
                     </div>
 
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                2
+                                3
                             </p>
                             <label class="fs-6 m-0 ps-2" for="tempat_lahir">Tempat Tanggal Lahir</label>
                         </div>
@@ -94,7 +108,7 @@
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                3
+                                4
                             </p>
                             <label class="fs-6 m-0 ps-2" for="tanggal_lahir">Jenis Kelamin</label>
                         </div>
@@ -105,10 +119,12 @@
                             <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" disabled>
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option value="L"
-                                    {{ $bansos->data_bansos->jenis_kelamin == 'L' ? 'selected' : '' }}>Laki-laki
+                                    {{ $bansos->data_bansos->jenis_kelamin == 'L' ? 'selected' : '' }}>
+                                    Laki-laki
                                 </option>
                                 <option value="P"
-                                    {{ $bansos->data_bansos->jenis_kelamin == 'P' ? 'selected' : '' }}>Perempuan
+                                    {{ $bansos->data_bansos->jenis_kelamin == 'P' ? 'selected' : '' }}>
+                                    Perempuan
                                 </option>
                             </select>
                         </div>
@@ -117,7 +133,7 @@
                     <div class="col-md-6 col-lg-4 my-3">
                         <div class="d-flex align-items-baseline">
                             <p class="bg-gradient-faded-info m-0 rounded-circle text-center square" style="width: 30px">
-                                4
+                                5
                             </p>
                             <label class="fs-6 m-0 ps-2" for="alamat">Alamat Lengkap</label>
                         </div>
