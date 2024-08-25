@@ -37,15 +37,18 @@ class SuratPindah extends Model
 
     public $timestamps = false;
 
-    public function surat() {
+    public function surat()
+    {
         return $this->belongsTo(Surat::class, 'surat_id', 'id');
     }
 
-    public function jenis_surat() {
+    public function jenis_surat()
+    {
         return $this->belongsTo(JenisSurat::class, 'jenis_surat_id', 'id');
     }
 
-    public function sub_surat_pindah() {
-        return $this->hasMany(SubSuratPindah::class, 'surat_pindah_id', 'id');
+    public function sub_surat_pindah()
+    {
+        return $this->hasMany(subSuratPindah::class, 'surat_pindah_id', 'id');
     }
 }
