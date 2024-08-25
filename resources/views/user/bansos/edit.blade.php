@@ -187,8 +187,8 @@
                                 style="width: 30px">
                                 3
                             </p>
-                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu
-                                setempat<span class="text-danger font-italic">*(pdf)</span></label>
+                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu<span
+                                    class="text-danger font-italic">*(pdf)</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">

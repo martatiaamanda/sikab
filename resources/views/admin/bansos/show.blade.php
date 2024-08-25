@@ -236,8 +236,7 @@
                                 style="width: 30px">
                                 3
                             </p>
-                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu
-                                setempat</label>
+                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu</label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -256,7 +255,7 @@
                                 <div class="modal-content rounded rounded-3">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modalSktmModalLabel">Surat Keterngan Tidak Mampu
-                                            dari RT/RW</h5>
+                                        </h5>
                                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

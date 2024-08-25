@@ -257,7 +257,7 @@
                                 <div class="modal-content rounded rounded-3">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="modalSktmModalLabel">Surat Keterangan Tidak Mampu
-                                            dari RT/RW</h5>
+                                        </h5>
                                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
