@@ -556,7 +556,7 @@
                                 class="btn bg-gradient-faded-danger mt-4 mb-0 px-5 text-white">Tolak</button>
                         @endif
 
-                        @if ($history->status == 'diterima')
+                        @if ($surat->status == 'diterima')
                             <button type="button" onclick="printContent()"
                                 class="btn bg-gradient-faded-info mt-4 mb-0 px-5 text-white me-5">Cetak</button>
                         @endif
