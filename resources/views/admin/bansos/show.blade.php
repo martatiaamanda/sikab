@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->kk) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->kk) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -222,7 +222,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->ktp) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->ktp) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -236,7 +236,7 @@
                                 style="width: 30px">
                                 3
                             </p>
-                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu dari RT/RW
+                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterngan Tidak Mampu
                                 setempat</label>
                         </div>
                     </div>
@@ -262,9 +262,10 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+                                    {{ $bansos->data_bansos->sktm }}
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->sktm) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->sktm) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -306,7 +307,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->pengantar_rt) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->pengantar_rt) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -409,13 +410,8 @@
 
 
             const showmodal = (status) => {
-                if (status == 'ditolak') {
-                    inputNomorBansos.style.display = 'none';
-                } else {
-                    inputNomorBansos.style.display = 'block';
-                }
                 const data = status
-                console.log(data);
+                // console.log(data);
                 inputStatus.value = data;
                 const modal = new bootstrap.Modal(document.getElementById('modalOk'));
                 modal.show();

@@ -16,7 +16,7 @@ class BansosController extends Controller
     {
 
         $file_name = time() . '-' . $bansos_id . '-' . $field . '_' . $file->getClientOriginalName();
-        $file->storeAs('public/bansos', $file_name);
+        $file->storeAs('public/surat', $file_name);
 
         return $file_name;
     }
@@ -184,6 +184,10 @@ class BansosController extends Controller
         $bansos->status = 'diproses';
         $bansos->save();
 
+        // dd(request()->file('kk') ? $this->uploadFile('kk', $request->file('kk'), $bansos->id) : $bansos->data_bansos->kk,);
+
+        // dd($bansos->data_bansos->kk, $request->file('kk'), request()->file('kk'));
+
         $bansos->data_bansos()->update([
             'nama' => $request->nama,
             'nik' => $request->nik,
@@ -191,10 +195,10 @@ class BansosController extends Controller
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'kk' => request()->file('kk') ? $this->uploadFile('kk', $request->file('kk'), $bansos->id) : $bansos->kk,
-            'ktp' => request()->file('ktp') ? $this->uploadFile('ktp', $request->file('ktp'), $bansos->id) : $bansos->ktp,
-            'sktm' => request()->file('sktm') ? $this->uploadFile('sktm', $request->file('sktm'), $bansos->id) : $bansos->sktm,
-            'pengantar_rt' => request()->file('pengantar_rt') ? $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id) : $bansos->pengantar_rt,
+            'kk' => request()->file('kk') ? $this->uploadFile('kk', $request->file('kk'), $bansos->id) : $bansos->data_bansos->kk,
+            'ktp' => request()->file('ktp') ? $this->uploadFile('ktp', $request->file('ktp'), $bansos->id) : $bansos->data_bansos->ktp,
+            'sktm' => request()->file('sktm') ? $this->uploadFile('sktm', $request->file('sktm'), $bansos->id) : $bansos->data_bansos->sktm,
+            'pengantar_rt' => request()->file('pengantar_rt') ? $this->uploadFile('pengantar_rt', $request->file('pengantar_rt'), $bansos->id) : $bansos->data_bansos->pengantar_rt,
         ]);
 
         return redirect()->route('user.riwayat-bansos.show', [$id])->with('success', 'Bansos Berhasil Diupdate');

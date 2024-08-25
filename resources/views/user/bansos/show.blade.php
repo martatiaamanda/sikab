@@ -183,7 +183,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->kk) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->kk) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->ktp) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->ktp) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -265,7 +265,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->sktm) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->sktm) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
@@ -279,7 +279,7 @@
                                 style="width: 30px">
                                 4
                             </p>
-                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Penganter Dari RT Setempat </label>
+                            <label class="fs-6 m-0 ps-2" for="sktm">Surat Pengantar Dari RT Setempat </label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -306,7 +306,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <embed class="p-0 m-0"
-                                            src="{{ asset('storage/bansos/' . $bansos->data_bansos->pengantar_rt) }}"
+                                            src="{{ asset('storage/surat/' . $bansos->data_bansos->pengantar_rt) }}"
                                             width="100%" height="100%" type='application/pdf'>
 
                                     </div>
