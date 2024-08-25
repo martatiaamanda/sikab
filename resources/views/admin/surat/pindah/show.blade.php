@@ -623,7 +623,7 @@
     <x-slot name='scripts'>
         <script>
             function printContent() {
-                var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$history->id]) }}", '_blank');
+                var printWindow = window.open("{{ route('user.riwayat-surat.cetak', [$surat->id]) }}", '_blank');
                 printWindow.onload = function() {
                     printWindow.print();
                     printWindow.onafterprint = function() {
