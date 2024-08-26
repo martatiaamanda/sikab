@@ -20,7 +20,7 @@ class NomorSuratController extends Controller
     }
 
 
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -31,16 +31,18 @@ class NomorSuratController extends Controller
             'awal' => 'required',
             'akhir' => 'required',
             'tahun' => 'required'
-        ],[
+        ], [
             'awal.required' => 'Nomor Surat Awal harus diisi',
             'akhir.required' => 'Nomor Surat Akhir harus diisi',
             'tahun.required' => 'Tahun harus diisi'
         ]);
 
-        $nomorSurat->update($request->all());
+        $nomorSurat->update([
+            'awal' => $request->awal,
+            'akhir' => $request->akhir,
+            'tahun' => $request->tahun
+        ]);
 
         return redirect()->route('admin.nomor-surat')->with('success', 'Nomor Surat berhasil diupdate');
-
     }
-
 }
