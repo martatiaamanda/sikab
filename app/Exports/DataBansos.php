@@ -23,10 +23,10 @@ class DataBansos implements FromCollection, WithHeadings
             return $dataExport;
         }
 
-        foreach ($bansosList as  $bansos) {
+        foreach ($bansosList as $index =>  $bansos) {
             //    dd($bansos);
             $dataExport->push([
-                'No' => $bansos->id,
+                'No' => $index + 1,
                 'NIK' => $bansos->data_bansos->nik,
                 'Nama' => $bansos->data_bansos->nama,
                 'Alamat' => $bansos->data_bansos->alamat,
