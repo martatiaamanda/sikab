@@ -70,7 +70,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama lengkap" value="{{ $bansos->data_bansos->nik }}" disabled>
+                                placeholder="Nama lengkap" value="{{ $bansos->data_bansos->nama }}" disabled>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 my-3">
