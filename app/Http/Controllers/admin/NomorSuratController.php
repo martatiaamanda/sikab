@@ -24,7 +24,7 @@ class NomorSuratController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NomorSurat $nomorSurat)
+    public function update(Request $request)
     {
         //
         $request->validate([
@@ -37,7 +37,9 @@ class NomorSuratController extends Controller
             'tahun.required' => 'Tahun harus diisi'
         ]);
 
-        $nomorSurat->update([
+        $nomor_surat = NomorSurat::first();
+
+        $nomor_surat->update([
             'awal' => $request->awal,
             'akhir' => $request->akhir,
             'tahun' => $request->tahun

@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // admin nomor surat
         Route::get('/nomor-surat', [NomorSuratController::class, 'index'])->name('admin.nomor-surat');
-        Route::put('/nomor-surat/{id}', [NomorSuratController::class, 'update'])->name('admin.nomor-surat.update');
+        Route::put('/nomor-surat/update', [NomorSuratController::class, 'update'])->name('admin.nomor-surat.update');
 
         // admin surat
         Route::get('/surat', [AdminSuratController::class, 'index'])->name('admin.surat');

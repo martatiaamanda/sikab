@@ -64,7 +64,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action={{ route('admin.nomor-surat.update', [$nomor_surat->id]) }} method="POST"
+                        <form action={{ route('admin.nomor-surat.update') }} method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
