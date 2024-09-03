@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisSurat;
 use App\Models\surat;
 use App\Models\SuratPindah;
+use App\Models\User;
 use App\Models\UserDocumen;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,11 @@ class SuratPindahController extends Controller
     public function create()
     {
         //
-        return view('user.surat.pindah.create');
+        $user = null;
+        if (request()->has('q')) {
+            $user = User::find(auth()->id());
+        }
+        return view('user.surat.pindah.create', compact('user'));
     }
 
     protected function uploadFile($field, $file, $surat_id,)

@@ -8,6 +8,7 @@ use App\Models\InputField;
 use App\Models\JenisSurat;
 use App\Models\NomorSurat;
 use App\Models\surat;
+use App\Models\User;
 use App\Models\UserDocumen;
 use Illuminate\Http\Request;
 use Laravel\Prompts\Key;
@@ -22,12 +23,15 @@ class BuatSuratController extends Controller
         return view('user.buat-surat', compact('mail_types'));
     }
 
-    public function create($slug)
+    public function create($slug, Request $request)
     {
 
         // if($slug !== 'surat-kependudukan') {
         //     return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
         // }
+
+
+
         $jenis_surat = JenisSurat::where('slug', $slug)->first();
         if (!$jenis_surat) {
             return redirect()->back()->with('error', 'Jenis Surat Tidak Ditemukan');
@@ -35,7 +39,12 @@ class BuatSuratController extends Controller
 
         $data_types = DataType::with('input_fields')->where('jenis_surat_id', $jenis_surat->id)->get();
 
-        return view('user.surat.create', compact('data_types', 'jenis_surat'));
+        $user = null;
+        if ($request->has('q')) {
+            $user = User::find(auth()->id());
+        }
+
+        return view('user.surat.create', compact('data_types', 'jenis_surat', 'user'));
     }
 
     protected function uploadFile($Key, $file, $surat_id,)

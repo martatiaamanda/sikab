@@ -15,51 +15,6 @@
                         <h6 class="ps-4 mt-5 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
                             {{ $data_type->name }}</h6>
 
-                        {{-- {{$data_type->sub_input_fields}} --}}
-
-                        {{-- @if ($data_type->sub_input_fields)
-                            @foreach ($data_type->sub_input_fields->input_field as $sub_input_field)
-                                <div class="col-md-6 col-lg-4 my-3">
-                                    <div class="d-flex align-items-baseline">
-                                        <p class="bg-gradient-faded-info m-0 rounded-circle text-center square"
-                                            style="width: 30px">
-                                            {{ $loop->iteration }}
-                                        </p>
-                                        <label class="fs-6 m-0 ps-2" for="name">{{ $sub_input_field->title }}<span
-                                                class="text-danger">*</span></label>
-                                    </div>
-                                </div>
-                                @if ($sub_input_field->tyoe == 'option')
-                                    <div class="col-md-6 col-lg-7">
-                                        <div class="form-group">
-                                            <select id="{{ $sub_input_field->name }}"
-                                                name="{{ $sub_input_field->name }}" class="form-control">
-                                                <option value="">Pilih Jenis Kelamin</option>
-                                                <option value="L">Laki-laki</option>
-                                                <option value="P">Perempuan</option>
-                                            </select>
-
-                                            @error($sub_input_field->name)
-                                                <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="col-md-6 col-lg-7">
-                                        <div class="form-group">
-                                            <input type="{{ $sub_input_field->type }}" class="form-control"
-                                                id="{{ $sub_input_field->name }}" name="{{ $sub_input_field->name }}"
-                                                placeholder="{{ $sub_input_field->title }}"
-                                                value="{{ old($sub_input_field->name) }}">
-                                            @error($sub_input_field->name)
-                                                <p class="text-danger p-0 m-0">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                @endif
-                            @endforeach
-                        @endif --}}
-
 
                         @foreach ($data_type->input_fields as $input_field)
                             <div class="col-md-6 col-lg-4 my-3">
@@ -70,7 +25,8 @@
                                     </p>
                                     @if ($input_field->type == 'file')
                                         <label class="fs-6 m-0 ps-2" for="name">Scan {{ $input_field->title }}
-                                            Asli<span class="text-danger">*</span></label>
+                                            Asli<span class="text-danger">*</span> <span
+                                                class="text-danger text-xs">.pdf, max=10MB</span></label>
                                     @else
                                         <label class="fs-6 m-0 ps-2" for="name">{{ $input_field->title }}<span
                                                 class="text-danger">*</span></label>
@@ -82,6 +38,14 @@
                                     <div class="form-group">
                                         <select id="{{ $input_field->name }}" name="{{ $input_field->name }}"
                                             class="form-control">
+                                            @if ($user != null)
+                                                @if ($input_field->name == 'jenis_kelamin')
+                                                    <option value="{{ $user->user_data->jenis_kelamin }}">
+                                                        {{ $user->user_data->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}
+                                                    </option>
+                                                @endif
+                                            @endif
+
                                             <option value="">Pilih Jenis Kelamin</option>
                                             <option value="L">Laki-laki</option>
                                             <option value="P">Perempuan</option>
@@ -95,8 +59,8 @@
                             @elseif ($input_field->type == 'text-large')
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="{{ $input_field->name }}" id="{{ $input_field->name }}" aria-label="With textarea"
-                                            placeholder="{{ $input_field->title }}">{{ old($input_field->name) }}</textarea>
+                                        <textarea class="form-control" name="{{ $input_field->name }}" id="{{ $input_field->name }}"
+                                            aria-label="With textarea" placeholder="{{ $input_field->title }}">{{ trim(old($input_field->name, $user && $input_field->name == 'alamat' ? $user->user_data->alamat : '')) }}</textarea>
                                         @error($input_field->name)
                                             <p class="text-danger p-0 m-0">{{ $message }}</p>
                                         @enderror
@@ -116,10 +80,40 @@
                             @else
                                 <div class="col-md-6 col-lg-7">
                                     <div class="form-group">
-                                        <input type="{{ $input_field->type }}" class="form-control"
-                                            id="{{ $input_field->name }}" name="{{ $input_field->name }}"
-                                            placeholder="{{ $input_field->title }}"
-                                            value="{{ old($input_field->name) }}">
+                                        @if ($user != null)
+                                            @if ($input_field->name == 'nik')
+                                                <input type="{{ $input_field->type }}" class="form-control"
+                                                    id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                    placeholder="{{ $input_field->title }}"
+                                                    value="{{ $user->NIK }}" readonly>
+                                            @elseif ($input_field->name == 'nama')
+                                                <input type="{{ $input_field->type }}" class="form-control"
+                                                    id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                    placeholder="{{ $input_field->title }}"
+                                                    value="{{ $user->name }}" readonly>
+                                            @elseif ($input_field->name == 'tempat_lahir')
+                                                <input type="{{ $input_field->type }}" class="form-control"
+                                                    id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                    placeholder="{{ $input_field->title }}"
+                                                    value="{{ $user->user_data->tempat_lahir }}" readonly>
+                                            @elseif ($input_field->name == 'tanggal_lahir')
+                                                <input type="{{ $input_field->type }}" class="form-control"
+                                                    id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                    placeholder="{{ $input_field->title }}"
+                                                    value="{{ $user->user_data->tanggal_lahir }}" readonly>
+                                            @else
+                                                <input type="{{ $input_field->type }}" class="form-control"
+                                                    id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                    placeholder="{{ $input_field->title }}"
+                                                    value="{{ old($input_field->name) }}">
+                                            @endif
+                                        @else
+                                            <input type="{{ $input_field->type }}" class="form-control"
+                                                id="{{ $input_field->name }}" name="{{ $input_field->name }}"
+                                                placeholder="{{ $input_field->title }}"
+                                                value="{{ old($input_field->name) }}">
+                                        @endif
+
                                         @error($input_field->name)
                                             <p class="text-danger p-0 m-0">{{ $message }}</p>
                                         @enderror

@@ -26,7 +26,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama lengkap" value="{{ old('nama') }}">
+                                placeholder="Nama lengkap" value="{{ old('nama', $user ? $user->name : '') }}">
                             @error('nama')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -46,6 +46,11 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+                                @if ($user != null)
+                                    <option value="{{ $user->user_data->jenis_kelamin }}">
+                                        {{ $user->user_data->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}
+                                    </option>
+                                @endif
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki
                                 </option>
@@ -71,7 +76,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}">
+                                placeholder="Tempat Lahir"
+                                value="{{ old('tempat_lahir', $user ? $user->user_data->tempat_lahir : '') }}">
                             @error('tempat_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -90,7 +96,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                placeholder="" value="{{ old('tanggal_lahir') }}">
+                                placeholder=""
+                                value="{{ old('tanggal_lahir', $user ? $user->user_data->tanggal_lahir : '') }}">
                             @error('tanggal_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -362,7 +369,8 @@
                                 1
                             </p>
                             <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga<span
-                                    class="text-danger  font-italic">*(pdf)</span></label>
+                                    class="text-danger  font-italic">*</span><span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -381,7 +389,8 @@
                                 2
                             </p>
                             <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli<span
-                                    class="text-danger font-italic">*(pdf)</span></label>
+                                    class="text-danger font-italic">*</span><span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">

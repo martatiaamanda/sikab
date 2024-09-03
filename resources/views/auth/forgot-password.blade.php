@@ -32,7 +32,10 @@
                                                 <p class="text-danger text-center p-0 m-0">Email tidak ditemukan</p>
                                             @enderror
                                             <div class="text-center">
-                                                <button type="submit"
+                                                <p id="countdown"
+                                                    class="my-2 text-primary text-gradient font-weight-bold"></p>
+                                                <!-- Countdown display -->
+                                                <button type="submit" id="submit-button"
                                                     class="btn bg-gradient-faded-info w-100 mt-4 mb-0 text-white">Kirim
                                                     Email Reset Password
                                                 </button>
@@ -82,6 +85,33 @@
                     targetIcon.classList.add('fa-eye-slash');
                 }
             }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const submitButton = document.getElementById('submit-button');
+                const countdownElement = document.getElementById('countdown');
+
+                // Check if the session indicates success
+                const sessionSuccess = {{ session('success') ? 'true' : 'false' }};
+
+                if (sessionSuccess) {
+                    submitButton.disabled = true;
+                    let timeLeft = 120; // 2 minutes in seconds
+
+                    // Update countdown every second
+                    const countdownInterval = setInterval(() => {
+                        timeLeft--;
+                        // Display the remaining time
+                        countdownElement.innerText = `Please wait ${timeLeft} seconds before resubmitting.`;
+
+                        if (timeLeft <= 0) {
+                            clearInterval(countdownInterval); // Stop the countdown
+                            submitButton.disabled = false; // Re-enable the button
+                            countdownElement.innerText = ''; // Clear the countdown message
+                            sessionStorage.removeItem('success'); // Clear the session success status
+                        }
+                    }, 1000);
+                }
+            });
         </script>
     </x-slot>
 </x-guest-layout>
