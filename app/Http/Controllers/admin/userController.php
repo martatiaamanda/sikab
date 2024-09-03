@@ -69,6 +69,7 @@ class userController extends Controller
             'email' => $request->email,
             'role' => 'admin',
             'password' => Hash::make($request->password),
+            'email_verified_at' => now(),
         ]);
 
         $user->user_data()->create([

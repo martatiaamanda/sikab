@@ -3,11 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -47,19 +49,23 @@ class User extends Authenticatable
         ];
     }
 
-    public function user_data() {
+    public function user_data()
+    {
         return $this->hasOne(UserData::class, 'user_id', 'id');
     }
 
-    public function user_documen() {
+    public function user_documen()
+    {
         return $this->hasOne(UserDocumen::class, 'user_id', 'id');
     }
 
-    public function surat() {
+    public function surat()
+    {
         return $this->hasMany(Surat::class, 'user_id', 'id');
     }
 
-    public function bansos() {
+    public function bansos()
+    {
         return $this->hasMany(Bansos::class, 'user_id', 'id');
     }
 }

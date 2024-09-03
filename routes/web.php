@@ -27,11 +27,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/', function () {
         return redirect('/login');
     });
-    Route::get('/register', [RegisterController::class, 'index'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    // Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    // Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
 
     // user routes
     Route::middleware(User::class)->group(function () {
