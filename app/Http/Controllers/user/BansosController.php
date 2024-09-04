@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bansos;
+use App\Models\User;
 use App\Models\UserDocumen;
 use Illuminate\Http\Request;
 use Laravel\Prompts\Key;
@@ -33,10 +34,17 @@ class BansosController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return view('user.bansos.create');
+
+        $user = null;
+
+        if ($request->has('q')) {
+            $user = User::find(auth()->id());
+        }
+
+        return view('user.bansos.create', compact('user'));
     }
 
     /**

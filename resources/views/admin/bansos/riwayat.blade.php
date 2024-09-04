@@ -19,8 +19,55 @@
                             <h6>{{ $page_title }}</h6>
                         </div>
                         @if ($page_title == 'Bansos Selesai')
-                            <a href="{{ route('admin.export.bansos') }}"
-                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white me-3">Export Data</a>
+                            <button type="button" href="{{ route('admin.export.bansos') }}" data-bs-toggle="modal"
+                                data-bs-target="#mudalExport"
+                                class="btn bg-gradient-faded-primary mt-4 mb-0 px-5 text-white me-3">Export
+                                Data</button>
+
+                            <div class="modal fade " id="mudalExport"" tabindex="-1" role="dialog"
+                                aria-labelledby="mudalExportLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered " role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="mudalExportLabel">Export Data
+                                            </h5>
+                                            <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action={{ route('admin.export.bansos') }} method="GET"
+                                            onsubmit="closeModal()">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="start_date">Dari Tanggal</label>
+                                                    <input type="date" class="form-control" id="start_date"
+                                                        name="start_date">
+                                                    @error('start_date')
+                                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="end_date">Sampai Tanggal</label>
+                                                    <input type="date" class="form-control" id="end_date"
+                                                        name="end_date">
+                                                    @error('end_date')
+                                                        <p class="text-danger p-0 m-0">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn bg-gradient-secondary"
+                                                    data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn bg-gradient-primary">Export</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
@@ -107,6 +154,40 @@
             $(document).ready(function() {
                 $('#data_teble').DataTable();
             });
+
+            function closeModal() {
+                const modal = new bootstrap.Modal(document.getElementById('mudalExport'));
+                modal.hide();
+            }
+
+
+            // document.addEventListener('DOMContentLoaded', function() {
+            //     const form = document.querySelector('#mudalExport form');
+            //     const modal = new bootstrap.Modal(document.getElementById('mudalExport'));
+
+            //     form.addEventListener('submit', function(event) {
+            //         event.preventDefault(); // Mencegah form dari submit default
+
+            //         // Lakukan submit menggunakan Ajax
+            //         fetch(form.action, {
+            //             method: form.method,
+            //             body: new FormData(form),
+            //             headers: {
+            //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+            //                     .getAttribute('content')
+            //             }
+            //         }).then(response => {
+            //             if (response.ok) {
+            //                 modal.hide(); // Menutup modal
+            //                 // Tambahkan logika jika ingin memperbarui data di halaman setelah export, atau menampilkan pesan sukses.
+            //             } else {
+            //                 console.error('Gagal mengekspor data.');
+            //             }
+            //         }).catch(error => {
+            //             console.error('Terjadi kesalahan:', error);
+            //         });
+            //     });
+            // });
         </script>
     </x-slot>
 </x-app-layout>

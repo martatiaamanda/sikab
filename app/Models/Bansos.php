@@ -22,12 +22,13 @@ class Bansos extends Model
 
     public $timestamps = false;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function data_bansos() {
+    public function data_bansos()
+    {
         return $this->hasOne(DataBansos::class, 'bansos_id', 'id');
     }
-
 }

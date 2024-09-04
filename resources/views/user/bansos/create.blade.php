@@ -27,7 +27,7 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nama" name="nama"
-                                placeholder="Nama lengkap" value="{{ old('nama') }}">
+                                placeholder="Nama lengkap" value="{{ old('nama', $user ? $user->name : '') }}">
                             @error('nama')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -44,7 +44,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="nik" name="nik"
-                                placeholder="Nomor Induk Kependudukan" value="{{ old('nik') }}">
+                                placeholder="Nomor Induk Kependudukan"
+                                value="{{ old('nik', $user ? $user->NIK : '') }}">
                             @error('nik')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -63,7 +64,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"
-                                placeholder="Tempat Lahir" value="{{ old('tempat_lahir') }}">
+                                placeholder="Tempat Lahir"
+                                value="{{ old('tempat_lahir', $user ? $user->user_data->tempat_lahir : '') }}">
                             @error('tempat_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -82,7 +84,8 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                placeholder="" value="{{ old('tanggal_lahir') }}">
+                                placeholder=""
+                                value="{{ old('tanggal_lahir', $user ? $user->user_data->tanggal_lahir : '') }}">
                             @error('tanggal_lahir')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror
@@ -102,6 +105,11 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <select id="jenis_kelamin" name="jenis_kelamin" class="form-control">
+                                @if ($user != null)
+                                    <option value="{{ $user->user_data->jenis_kelamin }}">
+                                        {{ $user->user_data->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}
+                                    </option>
+                                @endif
                                 <option value="">Pilih Jenis Kelamin</option>
                                 <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki
                                 </option>
@@ -127,7 +135,9 @@
                     <div class="col-md-6 col-lg-7">
                         <div class="form-group">
                             <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea"
-                                placeholder="Alamat Lengkap">{{ old('alamat') }}</textarea>
+                                placeholder="Alamat Lengkap">{{ trim(old('alamat', $user ? $user->user_data->alamat : '')) }}</textarea>
+                            {{-- <textarea class="form-control" name="alamat" id="alamat" aria-label="With textarea"
+                                placeholder="Alamat Lengkap">{{ old('alamat') }}</textarea> --}}
                             @error('alamat')
                                 <p class="text-danger p-0 m-0">{{ $message }}</p>
                             @enderror

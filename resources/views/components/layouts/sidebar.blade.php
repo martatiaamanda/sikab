@@ -70,8 +70,9 @@
 
 
             <li class="nav-item">
-                <a class="nav-link rounded-3  {{ Request::routeIs('user.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} "
-                    href={{ route('user.bansos.create') }}>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#modalDataBnS"
+                    class="nav-link rounded-3 bg-transparent border-0
+                    {{ Request::routeIs('user.bansos.*') ? ' bg-gradient-faded-info   text-white ' : '' }} ">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md text-center me-2 p-3 d-flex align-items-center justify-content-center {{ Request::routeIs('user.bansos.*') ? 'bg-white' : 'bg-gradient-faded-info' }}">
                         <i
@@ -80,7 +81,7 @@
                     <span
                         class="nav-link-text ms-1 {{ Request::routeIs('user.bansos.*') ? 'text-white ' : ' text-black' }}">Pengajuan
                         Bantuan Sosial</span>
-                </a>
+                </button>
             </li>
             <li class="nav-item">
                 <a class="nav-link rounded-3  {{ Request::routeIs('user.riwayat-bansos*') ? ' bg-gradient-faded-info   text-white ' : '' }} "
@@ -125,4 +126,44 @@
         </ul>
     </div>
 
+
 </aside>
+
+<div class="modal fade " id="modalDataBnS" tabindex="-1" role="dialog" aria-labelledby="modalDataBnSLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDataBnSLabel">Pengajuan Bnasos Untuk</h5>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-profile card-plain h-100 border border-1 text-center ">
+                            <a href="{{ route('user.bansos.create', ['q' => 'main']) }}" class="card-body">
+                                <div class="rounded rounded-3 p-4 bg-gradient-faded-info d-inline-flex aspect-square">
+                                    <i class="fa-solid fa-user fs-1 text-white"></i>
+                                </div>
+                                <h5 class="mt-3 mb-1 d-md-block text-center">Data Pribadi</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-profile card-plain h-100 border border-1 text-center ">
+                            <a href="{{ route('user.bansos.create') }}" class="card-body">
+                                <div class="rounded rounded-3 p-4 bg-gradient-faded-info d-inline-flex aspect-square">
+                                    <i class="fa-solid fa-user-pen fs-1 text-white"></i>
+                                </div>
+
+                                <h5 class="mt-3 mb-1 d-md-block">Data Orang lain</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
