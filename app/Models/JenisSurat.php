@@ -14,17 +14,21 @@ class JenisSurat extends Model
         'name',
         'slug',
         'icon',
+        'deskrisi'
     ];
 
-    public function surats() {
+    public function surats()
+    {
         return $this->hasMany(surat::class, 'jenis_surat_id', 'id');
     }
 
-    public function data_types() {
+    public function data_types()
+    {
         return $this->hasMany(DataType::class, 'jenis_surat_id', 'id');
     }
 
-    public function surat_pindah() {
+    public function surat_pindah()
+    {
         return $this->hasMany(SuratPindah::class, 'jenis_surat_id', 'id');
     }
 }

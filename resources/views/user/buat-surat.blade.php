@@ -38,7 +38,8 @@
                     <div class="modal-dialog modal-dialog-centered " role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modalTypeLabel{{ $mail_type->id }}">Pili Data</h5>
+                                <h5 class="modal-title" id="modalTypeLabel{{ $mail_type->id }}">{{ $mail_type->name }}
+                                </h5>
                                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -46,10 +47,28 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-profile card-plain h-100">
-                                            data info surat
-                                        </div>
+                                    <div class="card card-body card-plain h-100">
+                                        @php
+                                            $data = json_decode($mail_type->deskrisi, true);
+                                        @endphp
+
+                                        <h6 class=" text-uppercase text-xs font-weight-bolder opacity-6">
+                                            Deskripsi</h6>
+                                        <p class="text-sm">{{ $data['data'] }}</p>
+                                        <ul class="text-sm">
+                                            @foreach ($data['functions'] as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+
+                                        <h6 class="mt-3 text-uppercase text-xs font-weight-bolder opacity-6">
+                                            Dokumen Yang Dibutuhkan </h6>
+                                        <ul class="text-sm">
+                                            @foreach ($data['requirements'] as $item)
+                                                <li>{{ $item }}</li>
+                                            @endforeach
+                                        </ul>
+
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +76,9 @@
                     </div>
                 </div>
 
-                <div class="modal fade " id="modalMake{{ $mail_type->id }}" tabindex="-1" role="dialog"
+                <div class="modal
+                                                    fade "
+                    id="modalMake{{ $mail_type->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="modalMakeLabel{{ $mail_type->id }}" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered " role="document">
                         <div class="modal-content">
