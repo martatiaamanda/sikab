@@ -158,7 +158,8 @@
                                 1
                             </p>
                             <label class="fs-6 m-0 ps-2" for="kk">Kartu Keluarga<span
-                                    class="text-danger  font-italic">*(pdf)</span></label>
+                                    class="text-danger  font-italic">*</span> <span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -177,7 +178,8 @@
                                 2
                             </p>
                             <label class="fs-6 m-0 ps-2" for="ktp">KTP Asli<span
-                                    class="text-danger font-italic">*(pdf)</span></label>
+                                    class="text-danger font-italic">*</span> <span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -196,7 +198,8 @@
                                 3
                             </p>
                             <label class="fs-6 m-0 ps-2" for="sktm">Surat Keterangan Tidak Mampu<span
-                                    class="text-danger font-italic">*(pdf)</span></label>
+                                    class="text-danger font-italic">*</span> <span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
@@ -215,7 +218,8 @@
                                 4
                             </p>
                             <label class="fs-6 m-0 ps-2" for="pengantar_rt">Surat Pengantar Dari RT Setempat<span
-                                    class="text-danger font-italic">*(pdf)</span></label>
+                                    class="text-danger font-italic">*</span> <span class="text-danger text-xs">.pdf,
+                                    max=10MB</span></label>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-7">
